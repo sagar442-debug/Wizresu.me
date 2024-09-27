@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { CiGlobe } from "react-icons/ci";
 import { FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
@@ -7,10 +7,27 @@ import { FaMapMarker } from "react-icons/fa";
 import { Progress } from "@/components/ui/progress";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { Button } from "@/components/ui/button";
+import { MdDownloadForOffline } from "react-icons/md";
 
-const ResumeTemplate = () => {
+const ResumeTemplate = forwardRef((props, ref) => {
   const resumeRef = useRef();
   const [initialTap, setInitialTap] = useState(false);
+
+  // const generateText = async () => {
+  //   const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+  //   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+  //   const prompt =
+  //     "Please provide me the list of skills required for Next js developer position. Provide me a list with a comma after each skill and don't jump on another line just keep on write it in just a sentence without changing line.Also do not mention any additional text before and after the list. I don't need any of your recommendation. Also do not provide any brackets please!!";
+
+  //   const result = await model.generateContent(prompt);
+  //   console.log(result.response.text());
+  // };
+  // useEffect(() => {
+  //   generateText();
+  // }, []);
 
   // Handle file change
   const handleDownloadPdf = async () => {
@@ -30,9 +47,12 @@ const ResumeTemplate = () => {
     setInitialTap(false);
   };
   return (
-    <div>
-      <div className={!initialTap ? "" : "hidden"}>
-        <div className="title pb-5 mb-2 border-b">
+    <div className="">
+      <div
+        ref={ref}
+        className={!initialTap ? "resume-template" : "hidden resume-template"}
+      >
+        <div className="title pb-5 mb-2 border-b text-center mt-2">
           <h1 className="text-2xl tracking-widest">Sagar Sapkota</h1>
           <p className="text-xs font-medium mt-2 tracking-wide">
             Software developer
@@ -120,7 +140,7 @@ const ResumeTemplate = () => {
                 </li>
               </ul>
             </section>
-            <section className="language-section text-left mt-3 border-b border-[#adadad] pb-2 ">
+            <section className="language-section text-left mt-3  border-[#adadad] pb-2 ">
               <h1 className="font-bold mb-2 tracking-widest">Language</h1>
               <ul className="text-xs space-y-2 ">
                 <li className="flex gap-2 items-center justify-between  ">
@@ -128,7 +148,7 @@ const ResumeTemplate = () => {
                   <Progress
                     className="h-[6px] w-28 bg-gray-700/10"
                     value={96}
-                    indicatorColor={"bg-gray-600"}
+                    indicatorColor={"bg-gray-700"}
                   />
                 </li>
                 <li className="flex gap-2 items-center justify-between ">
@@ -136,7 +156,7 @@ const ResumeTemplate = () => {
                   <Progress
                     className="h-[6px] w-28 bg-gray-700/10 "
                     value={80}
-                    indicatorColor={"bg-gray-600"}
+                    indicatorColor={"bg-gray-700"}
                   />
                 </li>
                 <li className="flex gap-2 items-center justify-between  ">
@@ -144,7 +164,7 @@ const ResumeTemplate = () => {
                   <Progress
                     className="h-[6px] w-28 bg-gray-700/10"
                     value={77}
-                    indicatorColor={"bg-gray-600"}
+                    indicatorColor={"bg-gray-700"}
                   />
                 </li>
               </ul>
@@ -165,7 +185,7 @@ const ResumeTemplate = () => {
                 dolorum? Natus nihil reiciendis adipisci?
               </p>
             </div>
-            <div className="profile mt-3 text-left ">
+            <div className="profile mt-3 text-left  ml-4">
               <h1 className="text-sm font-semibold tracking-wider ">
                 Work Experience
               </h1>
@@ -175,26 +195,26 @@ const ResumeTemplate = () => {
                   <h1 className="text-xs tracking-tighter">Company Name</h1>
                   <h1 className="text-xs">2020-2024</h1>
                 </span>
-                <ol className="text-xs tracking-tighter space-y-1">
+                <ol className="text-xs tracking-tighter space-y-1 list-disc">
                   <li>
-                    - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   </li>
                   <li>
-                    - Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Iure vitae praesentium quis ab quod veniam optio tenetur
                     quam fuga. Est?
                   </li>
                   <li>
-                    - Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                     Iure, accusamus obcaecati eaque ex dolorum
                   </li>
                   <li>
-                    - Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Voluptatum, molestiae harum provident nostrum incidunt
                     suscipit dolorem, repellat animi veniam similique?
                   </li>
                   <li>
-                    - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Eaque, qui!
                   </li>
                 </ol>
@@ -205,26 +225,26 @@ const ResumeTemplate = () => {
                   <h1 className="text-xs tracking-tighter">Company Name</h1>
                   <h1 className="text-xs">2020-2024</h1>
                 </span>
-                <ol className="text-xs tracking-tighter space-y-1">
+                <ol className="text-xs tracking-tighter space-y-1 list-disc">
                   <li>
-                    - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   </li>
                   <li>
-                    - Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Iure vitae praesentium quis ab quod veniam optio tenetur
                     quam fuga. Est?
                   </li>
                   <li>
-                    - Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                     Iure, accusamus obcaecati eaque ex dolorum
                   </li>
                   <li>
-                    - Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Voluptatum, molestiae harum provident nostrum incidunt
                     suscipit dolorem, repellat animi veniam similique?
                   </li>
                   <li>
-                    - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Eaque, qui!
                   </li>
                 </ol>
@@ -334,25 +354,25 @@ const ResumeTemplate = () => {
                 <li className="flex gap-2 items-center justify-between  ">
                   <span>English</span>
                   <Progress
-                    className="h-[6px] w-28 bg-gray-700/10"
+                    className="h-[6px] mt-4 w-28 bg-gray-700/10"
                     value={96}
-                    indicatorColor={"bg-gray-600"}
+                    indicatorColor={"bg-gray-700"}
                   />
                 </li>
                 <li className="flex gap-2 items-center justify-between ">
                   <span>French</span>
                   <Progress
-                    className="h-[6px] w-28 bg-gray-700/10 "
+                    className="h-[6px] mt-4 w-28 bg-gray-700/10 "
                     value={80}
-                    indicatorColor={"bg-gray-600"}
+                    indicatorColor={"bg-gray-700"}
                   />
                 </li>
                 <li className="flex gap-2 items-center justify-between  ">
                   <span>Spanish</span>
                   <Progress
-                    className="h-[6px] w-28 bg-gray-700/10"
+                    className="h-[6px] mt-4 w-28 bg-gray-700/10"
                     value={77}
-                    indicatorColor={"bg-gray-600"}
+                    indicatorColor={"bg-gray-700"}
                   />
                 </li>
               </ul>
@@ -385,24 +405,24 @@ const ResumeTemplate = () => {
                 </span>
                 <ol className="text-xs tracking-tighter space-y-1">
                   <li>
-                    - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   </li>
                   <li>
-                    - Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Iure vitae praesentium quis ab quod veniam optio tenetur
                     quam fuga. Est?
                   </li>
                   <li>
-                    - Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                     Iure, accusamus obcaecati eaque ex dolorum
                   </li>
                   <li>
-                    - Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Voluptatum, molestiae harum provident nostrum incidunt
                     suscipit dolorem, repellat animi veniam similique?
                   </li>
                   <li>
-                    - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Eaque, qui!
                   </li>
                 </ol>
@@ -415,24 +435,24 @@ const ResumeTemplate = () => {
                 </span>
                 <ol className="text-xs tracking-tighter space-y-1">
                   <li>
-                    - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   </li>
                   <li>
-                    - Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Iure vitae praesentium quis ab quod veniam optio tenetur
                     quam fuga. Est?
                   </li>
                   <li>
-                    - Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                     Iure, accusamus obcaecati eaque ex dolorum
                   </li>
                   <li>
-                    - Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Voluptatum, molestiae harum provident nostrum incidunt
                     suscipit dolorem, repellat animi veniam similique?
                   </li>
                   <li>
-                    - Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Eaque, qui!
                   </li>
                 </ol>
@@ -441,9 +461,8 @@ const ResumeTemplate = () => {
           </div>
         </div>
       </div>
-      <button onClick={handleDownloadPdf}>Download</button>
     </div>
   );
-};
+});
 
 export default ResumeTemplate;

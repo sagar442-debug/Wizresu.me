@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media print {
+  .resume-template {
+    transform: scale(1.2); /* Scale the content to 120% */
+    transform-origin: top left; /* Ensure the scaling starts from the top-left */
+    width: 83.33%; /* Adjust width to fit A4 after scaling */
+    margin: 0; /* Avoid extra margins */
+    padding: 0; /* Avoid extra padding */
+  }
+}
+
+.no-spinner {
+  -moz-appearance: textfield;
+}
+
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
