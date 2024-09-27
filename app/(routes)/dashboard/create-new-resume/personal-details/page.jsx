@@ -19,9 +19,10 @@ const Page = () => {
   const jobTitle = useStore((state) => state.jobTitle);
   const [secondInstitution, setSecondInstitution] = useState(false);
   const previousPage = useStore((state) => state.previousPage);
+  const setPreviousPage = useStore((state) => state.setPreviousPage);
 
   useEffect(() => {
-    console.log(previousPage);
+    setPreviousPage("/dashboard/create-new-resume/");
   }, []);
 
   return (
@@ -308,7 +309,7 @@ const Page = () => {
           </section>
         </CardContent>
         <CardFooter>
-          <Link href="/dashboard/create-new-resume/personal-detail">
+          <Link href="/dashboard/create-new-resume/personal-details">
             <Button
               className=" hover:bg-blue-400 rounded hover:text-white shadow border "
               variant="ghost"

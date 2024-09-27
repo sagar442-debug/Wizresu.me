@@ -23,6 +23,9 @@ function page() {
   return (
     <div>
       <Card>
+        <CardHeader className="pb-0">
+          <CardTitle className="text-xl">Job Details</CardTitle>
+        </CardHeader>
         <JobDetail />
       </Card>
     </div>

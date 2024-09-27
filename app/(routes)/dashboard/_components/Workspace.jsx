@@ -8,25 +8,31 @@ import { Card } from "@/components/ui/card";
 function Workspace() {
   return (
     <div className="">
-      <h2 className="text-3xl font-semibold mx-1 ">Hello Sagar</h2>
-      <div className="flex justify-between items-center mt-4 mx-1">
-        <h2 className="font-semibold text-xl">Your Workspace</h2>
-        <div className="flex gap-2">
-          <AlignJustify className="hover:bg-[#dfdfdf] rounded cursor-pointer transition-all" />
-          <Grid2X2 className="hover:bg-[#dfdfdf] rounded cursor-pointer transition-all" />
+      <h2 className="text-4xl font-bold mx-1  tracking-wider">Dashboard</h2>
+      <div className="flex justify-between items-center mx-1">
+        <h2 className="text-lg font-semibold text-gray-500 tracking-wider">
+          Create a new resume
+        </h2>
+        <div className="flex">
+          <AlignJustify className=" rounded cursor-pointer transition-all" />
+          <Grid2X2 className=" rounded cursor-pointer transition-all" />
         </div>
       </div>
-      <Link href={"/dashboard/create-new-resume"}>
-        <Card className="flex items-center border w-60 h-40 rounded-2xl mt-10 shadow-lg cursor-pointer hover:bg-gray-50 transition-all">
-          <div className="flex items-center mx-auto">
-            <span>
-              {" "}
-              <Plus />
-            </span>
-            <h2 className="text-xl font-medium">New Resume</h2>
-          </div>
-        </Card>
-      </Link>
+      <div className="w-60 h-40">
+        <Link href={"/dashboard/create-new-resume"}>
+          <Card className="flex items-center border w-full h-full group rounded-2xl mt-2 shadow-lg cursor-pointer hover:bg-gray-50 transition-all">
+            <div className="flex items-center group-hover:text-gray-500 mx-auto">
+              <span>
+                {" "}
+                <Plus className="group-hover:text-gray-500" />
+              </span>
+              <h2 className="text-xl font-medium tracking-wider group-shover:text-gray-500">
+                New Resume
+              </h2>
+            </div>
+          </Card>
+        </Link>
+      </div>
     </div>
   );
 }

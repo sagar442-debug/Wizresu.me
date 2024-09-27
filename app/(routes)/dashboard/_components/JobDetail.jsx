@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import useStore from "@/store/useStore";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
@@ -14,6 +14,9 @@ const JobDetail = () => {
   const setJobDescription = useStore((state) => state.setJobDescription);
   const setPreviousPage = useStore((state) => state.setPreviousPage);
   const [errorMessage, setErrorMessage] = useState("");
+  useEffect(() => {
+    setPreviousPage("/dashboard/");
+  }, []);
   const router = useRouter();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,7 +51,6 @@ const JobDetail = () => {
         className: "class",
       });
     } else {
-      setPreviousPage("/dashboard/create-new-resume/");
       router.push("/dashboard/create-new-resume/personal-details");
     }
   };
