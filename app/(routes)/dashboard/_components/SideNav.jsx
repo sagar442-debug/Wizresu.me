@@ -15,11 +15,10 @@ function SideNav() {
   const pathname = usePathname();
   const { isSignedIn, user, isLoaded } = useUser();
 
-  console.log("user name:", user?.fullName);
   return (
     <div className="fixed">
       <div className="w-80 bg-[#f1f1f1] h-[100vh] shadow-2xl flex flex-col">
-        <Link href={"/"} className="py-4 px-10">
+        <Link href={"/dashboard"} className="py-4 px-10">
           <Logo />
           <hr className=" mt-2 border " />
         </Link>
