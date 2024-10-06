@@ -1,11 +1,14 @@
+"use client";
 import React from "react";
 import Logo from "./Logo";
 import ThemeButton from "./ThemeButton";
 import Link from "next/link";
 import Image from "next/image";
+import { useUser } from "@clerk/nextjs";
 // #2a2663
 
 const LandingPageHeader = () => {
+  const { isLoggenIn, user } = useUser();
   return (
     <div className="relative max-w-7xl  md:mx-auto ">
       <div className="absolute -z-10 bg-[#F3C168] sm:-left-[40rem] sm:-top-[150rem] md:-left-[40rem] md:-top-[142rem] rounded-full h-[200rem] w-[200rem] "></div>
@@ -44,7 +47,16 @@ const LandingPageHeader = () => {
           </ul>
         </div>
         <div className="flex sm:gap-2 md:gap-6  items-center">
-          <ThemeButton />
+          {user ? (
+            <Link href={"/dashboard"}>
+              <ThemeButton text="Dashboard" />
+            </Link>
+          ) : (
+            <Link href={"/sign-in"}>
+              <ThemeButton text="Sign In" />
+            </Link>
+          )}
+
           <Link
             className="underline sm:text-base md:text-lg font-medium text-[##2a2663]"
             href={"/"}
@@ -63,12 +75,14 @@ const LandingPageHeader = () => {
             the perfect match—maximizing your ATS score to help you land the
             job."
           </p>
-          <button
+
+          <Link
+            href={"/dashboard"}
             className="font-semibold hover:shadow-lg md:text-2xl  px-4 py-2 rounded-full text-white bg-gradient-to-r from-[#7DA7C5]
      to-[#949C5C] bg-[length:200%_200%] bg-left transition-all duration-100 ease-in-out hover:bg-right"
           >
             Get Started Here
-          </button>
+          </Link>
         </div>
         <Image
           src={"/resume6.jpg"}

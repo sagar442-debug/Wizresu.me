@@ -1,3 +1,4 @@
+"use client";
 import Logo from "@/app/(components)/Logo";
 import Link from "next/link";
 import React from "react";
@@ -5,8 +6,16 @@ import { House } from "lucide-react";
 import { Blocks } from "lucide-react";
 import { History } from "lucide-react";
 import { ChartNoAxesColumnIncreasing } from "lucide-react";
+import { Wand } from "lucide-react";
+import { useParams, usePathname } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 
 function SideNav() {
+  const params = useParams();
+  const pathname = usePathname();
+  const { isSignedIn, user, isLoaded } = useUser();
+
+  console.log("user name:", user?.fullName);
   return (
     <div className="fixed">
       <div className="w-80 bg-[#f1f1f1] h-[100vh] shadow-2xl flex flex-col">
@@ -15,13 +24,21 @@ function SideNav() {
           <hr className=" mt-2 border " />
         </Link>
         <div className="px-10 ">
-          <h1 className="text-2xl font-light px-5 text-[#363636] pt-5 ">
-            Dashboard
-          </h1>
           <div className="my-2 flex flex-col">
             <Link
               href={"/dashboard"}
-              className="flex gap-3 hover:shadow-md transition-all p-4 font-medium items-center text-[#555] hover:bg-[#dfdfdf] rounded"
+              className="flex gap-3 hover:shadow-md transition-all p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white"
+            >
+              <Wand width={30} className="" />
+              <span className="text-xl font-semibold">Quick Build</span>
+            </Link>
+            <Link
+              href={"/dashboard"}
+              className={`flex gap-3 hover:shadow-md transition-all p-4 ${
+                pathname.startsWith("/dashboard/create-new-resume")
+                  ? "font-bold"
+                  : "font-medium"
+              } items-center text-[#555] hover:bg-[#dfdfdf] rounded`}
             >
               <House width={30} className="" />
               <span className="text-lg">Home</span>
