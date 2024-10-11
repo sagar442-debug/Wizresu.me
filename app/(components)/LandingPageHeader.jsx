@@ -71,9 +71,9 @@ const LandingPageHeader = () => {
             Optimize Your Resume In Seconds!
           </h1>
           <p className="text-[#2a2663] sm:text-lg my-5 leading-10 md:text-xl">
-            Simply upload your resume and the job description, and we'll craft
-            the perfect match—maximizing your ATS score to help you land the
-            job."
+            Simply provide the job description and upload your old resume or
+            provide your details, and we'll craft the perfect match—maximizing
+            your <strong>ATS</strong> score to help you land the job."
           </p>
 
           <Link

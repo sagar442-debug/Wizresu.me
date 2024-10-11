@@ -10,10 +10,19 @@ import jsPDF from "jspdf";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { Button } from "@/components/ui/button";
 import { MdDownloadForOffline } from "react-icons/md";
+import useStore from "@/store/useStore";
 
 const ResumeTemplate = forwardRef((props, ref) => {
   const resumeRef = useRef();
   const [initialTap, setInitialTap] = useState(false);
+
+  const userFullName = useStore((state) => state.userFullName);
+  const userEmailAddress = useStore((state) => state.userEmailAddress);
+  const userPhoneNumber = useStore((state) => state.userPhoneNumber);
+  const userWebsite = useStore((state) => state.userWebsite);
+  const userAddress = useStore((state) => state.userAddress);
+  const userDegree = useStore((state) => state.userDegree);
+  const userLanguage = useStore((state) => state.userLanguage);
 
   // const generateText = async () => {
   //   const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
@@ -53,7 +62,9 @@ const ResumeTemplate = forwardRef((props, ref) => {
         className={!initialTap ? "resume-template" : "hidden resume-template"}
       >
         <div className="title pb-5 mb-2 border-b text-center mt-2">
-          <h1 className="text-2xl tracking-widest">Sagar Sapkota</h1>
+          <h1 className="text-2xl tracking-widest">
+            {userFullName.length > 3 ? userFullName : "Sagar Sapkota"}
+          </h1>
           <p className="text-xs font-medium mt-2 tracking-wide">
             Software developer
           </p>
@@ -64,24 +75,41 @@ const ResumeTemplate = forwardRef((props, ref) => {
             <section className="contact section text-left border-b border-[#adadad] h-36">
               <h1 className="font-bold mb-2 tracking-widest">Contact</h1>
               <ul className="text-xs space-y-2 ">
-                <li className="flex gap-2 justify-start items-center">
-                  <FaPhone className="" />
-                  <span>403-688-3933</span>
+                <li className="flex gap-2 items-center">
+                  <FaPhone size={10} className="" />
+                  <span className="text-[10px]">
+                    {userPhoneNumber.length > "3"
+                      ? userPhoneNumber
+                      : "403-123-1234"}
+                  </span>
                 </li>
                 <li className="flex gap-2 items-center">
-                  <IoIosMail className="" />
-                  <span>sagar@gmail.com</span>
+                  <IoIosMail />
+                  <span className="text-[9px]">
+                    {userEmailAddress.length > 3
+                      ? userEmailAddress
+                      : "sagarsapkota0987@gmail.com"}
+                  </span>
                 </li>
-                <li className="flex gap-2 items-center">
-                  <CiGlobe className="" />
+                {userWebsite.length > 3 ? (
+                  <li className="flex gap-2 ">
+                    <CiGlobe className="" />
 
-                  <span>sagarspk.com.np</span>
-                </li>
-                <li className="flex gap-2 items-center">
-                  <FaMapMarker className="" />
+                    <span className="text-[10px]">{userWebsite}</span>
+                  </li>
+                ) : (
+                  ""
+                )}
 
-                  <span>196 Whitehaven rd</span>
-                </li>
+                {userAddress.length > 3 ? (
+                  <li className="flex gap-2 ">
+                    <FaMapMarker size={10} className="mt-0.5" />
+
+                    <span className="text-[10px]"> {userAddress}</span>
+                  </li>
+                ) : (
+                  ""
+                )}
               </ul>
             </section>
             <section className="skills-section text-left my-3 border-b pb-3 mb-2 border-[#adadad]">
@@ -116,7 +144,32 @@ const ResumeTemplate = forwardRef((props, ref) => {
             <section className="skills-section text-left mt-3 border-b border-[#adadad] pb-4">
               <h1 className="font-bold mb-2 tracking-widest">Education</h1>
               <ul className="text-xs space-y-6 ">
-                <li className="flex flex-col ">
+                {userDegree.map((degree, i) => (
+                  <li key={i} className="flex flex-col ">
+                    <span>{degree.degreeName}</span>
+                    <span className="text-sm font-bold tracking-tighter">
+                      {degree.degreeInstitution}
+                    </span>
+                    <span>{degree.degreeEndDate}</span>
+                    <p className="mt-1">{degree.shortDesc}</p>
+                  </li>
+                ))}
+
+                {userDegree.length === 0 ? (
+                  <li className="flex flex-col ">
+                    <span>Degree Name</span>
+                    <span className="text-sm font-bold tracking-tighter">
+                      Institution Name
+                    </span>
+                    <span>2024-08-08</span>
+                    <p className="mt-1">
+                      You will be able to see the updated degree in next page!
+                    </p>
+                  </li>
+                ) : (
+                  ""
+                )}
+                {/* <li className="flex flex-col ">
                   <span>Degree Name</span>
                   <span className="text-sm font-bold tracking-tighter">
                     Institution Name
@@ -137,7 +190,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                     Completed ABC degree in XYZ field. Did reasearch on ABC
                     topic and presented it in XYZ conference.
                   </p>
-                </li>
+                </li> */}
               </ul>
             </section>
             <section className="language-section text-left mt-3  border-[#adadad] pb-2 ">
@@ -145,27 +198,30 @@ const ResumeTemplate = forwardRef((props, ref) => {
               <ul className="text-xs space-y-2 ">
                 <li className="flex gap-2 items-center justify-between  ">
                   <span>English</span>
-                  <Progress
-                    className="h-[6px] w-28 bg-gray-700/10"
-                    value={96}
-                    indicatorColor={"bg-gray-700"}
-                  />
+                  <div className="w-full bg-gray-700/20 rounded-full h-2">
+                    <div
+                      className="bg-gray-500 h-2 rounded-full transition-all duration-500 ease-in-out"
+                      style={{ width: "75%" }}
+                    ></div>
+                  </div>
                 </li>
                 <li className="flex gap-2 items-center justify-between ">
                   <span>French</span>
-                  <Progress
-                    className="h-[6px] w-28 bg-gray-700/10 "
-                    value={80}
-                    indicatorColor={"bg-gray-700"}
-                  />
+                  <div className="w-full bg-gray-700/20 rounded-full h-2">
+                    <div
+                      className="bg-gray-500 h-2 rounded-full transition-all duration-500 ease-in-out"
+                      style={{ width: "75%" }}
+                    ></div>
+                  </div>
                 </li>
                 <li className="flex gap-2 items-center justify-between  ">
                   <span>Spanish</span>
-                  <Progress
-                    className="h-[6px] w-28 bg-gray-700/10"
-                    value={77}
-                    indicatorColor={"bg-gray-700"}
-                  />
+                  <div className="w-full bg-gray-700/20 rounded-full h-2">
+                    <div
+                      className="bg-gray-500 h-2 rounded-full transition-all duration-500 ease-in-out"
+                      style={{ width: "75%" }}
+                    ></div>
+                  </div>
                 </li>
               </ul>
             </section>

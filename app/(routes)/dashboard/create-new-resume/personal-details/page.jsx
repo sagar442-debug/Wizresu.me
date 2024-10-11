@@ -199,7 +199,7 @@ const Page = () => {
                   <input
                     className="w-full rounded-lg border border-gray-200 p-3 text-sm no-spinner"
                     placeholder="Phone Number"
-                    type="number"
+                    type="text"
                     id="phone"
                     onChange={(e) => setUserPhoneNumber(e.target.value)}
                   />

@@ -26,10 +26,13 @@ function SideNav() {
           <div className="my-2 flex flex-col">
             <Link
               href={"/dashboard"}
-              className="flex gap-3 hover:shadow-md transition-all p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white"
+              className="relative flex gap-3 hover:shadow-md transition-all p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden"
             >
-              <Wand width={30} className="" />
+              <Wand width={30} className="animate-pulse" />
               <span className="text-xl font-semibold">Quick Build</span>
+
+              {/* Shine effect */}
+              <span className="shine-effect"></span>
             </Link>
             <Link
               href={"/dashboard"}

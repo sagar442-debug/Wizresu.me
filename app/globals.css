@@ -21,3 +21,37 @@
   -webkit-appearance: none;
   margin: 0;
 }
+
+/* Shine effect styling */
+.shine-effect {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: skewX(-45deg);
+  transition: none;
+  z-index: 0;
+  opacity: 0.3;
+  animation: shine 5s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -120%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Ensure text and icon are above the shine effect */
+.Link {
+  position: relative;
+  z-index: 1;
+}

@@ -9,7 +9,7 @@ const useStore = create((set) => ({
   jobDescription: "",
   userFullName: "",
   userEmailAddress: "",
-  userPhoneNumber: "",
+  userPhoneNumber: "403-688-3933",
   userWebsite: "",
   userAddress: "",
   userDegree: [],

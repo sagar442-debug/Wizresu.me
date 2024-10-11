@@ -1,5 +1,6 @@
 import LandingPageHeader from "./(components)/LandingPageHeader";
 import SecondPartLanding from "./(components)/SecondPartLanding";
+import ThirdPartLanding from "./(components)/ThirdPartLanding";
 
 export default function Home() {
   return (
@@ -7,7 +8,9 @@ export default function Home() {
       <div className=" relative z-10 h-screen">
         <LandingPageHeader />
       </div>
-      <SecondPartLanding />
+      <div className="max-w-7xl  md:mx-auto">
+        <SecondPartLanding />
+      </div>
     </div>
   );
 }
