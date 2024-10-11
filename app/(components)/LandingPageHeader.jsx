@@ -10,7 +10,7 @@ import { useUser } from "@clerk/nextjs";
 const LandingPageHeader = () => {
   const { isLoggenIn, user } = useUser();
   return (
-    <div className="relative max-w-7xl  md:mx-auto ">
+    <div className="relative max-w-7xl  md:mx-auto">
       <div className="absolute -z-10 bg-[#F3C168] sm:-left-[40rem] sm:-top-[150rem] md:-left-[40rem] md:-top-[142rem] rounded-full h-[200rem] w-[200rem] "></div>
       <div className="flex justify-between items-center py-8 xl:px-0 sm:px-10  ">
         <div className="logo">

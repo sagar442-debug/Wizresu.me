@@ -8,8 +8,9 @@ export default function Home() {
       <div className=" relative z-10 h-screen">
         <LandingPageHeader />
       </div>
-      <div className="max-w-7xl  md:mx-auto">
+      <div className="max-w-7xl px-8 md:mx-auto">
         <SecondPartLanding />
+        <ThirdPartLanding />
       </div>
     </div>
   );

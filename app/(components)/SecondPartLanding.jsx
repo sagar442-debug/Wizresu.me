@@ -7,7 +7,7 @@ import { RiFileDownloadFill } from "react-icons/ri";
 
 function SecondPartLanding() {
   return (
-    <div className="h-[100vh] mt-20 flex-col space-y-56 text-center items-center px-8">
+    <div className="mt-20 flex-col space-y-56 text-center items-center ">
       <div className="flex justify-center items-center">
         <Wand
           height={100}
