@@ -9,7 +9,7 @@ import Exclusive from "./Exclusive";
 
 const ThirdPartLanding = () => {
   return (
-    <div className="mt-36 my-10">
+    <div id="pricing" className="mt-36 my-10">
       <h1 className="font-semibold text-center text-5xl">Pricing</h1>
       <div className="mt-28 flex justify-center space-x-12">
         <BasicCard />

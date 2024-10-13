@@ -23,7 +23,7 @@ const LandingPageHeader = () => {
             <li>
               <Link
                 className="hover:border-b transition-all hover:border-black"
-                href={"/"}
+                href={"#how-it-works"}
               >
                 How It Works
               </Link>
@@ -31,7 +31,7 @@ const LandingPageHeader = () => {
             <li>
               <Link
                 className="hover:border-b transition-all hover:border-black"
-                href={"/"}
+                href={"#pricing"}
               >
                 Pricing
               </Link>
@@ -39,7 +39,7 @@ const LandingPageHeader = () => {
             <li>
               <Link
                 className="hover:border-b transition-all hover:border-black"
-                href={"/"}
+                href={"#faq"}
               >
                 FAQ
               </Link>
