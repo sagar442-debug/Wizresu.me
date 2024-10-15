@@ -5,6 +5,7 @@ import ThemeButton from "./ThemeButton";
 import Link from "next/link";
 import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
 // #2a2663
 
 const LandingPageHeader = () => {
@@ -49,6 +50,12 @@ const LandingPageHeader = () => {
         <div className="flex sm:gap-2 md:gap-6  items-center">
           {user ? (
             <Link href={"/dashboard"}>
+              {/* <Button
+                className="rounded hover:text-white shadow-none text-[#2a2663] text-xl "
+                variant=""
+              >
+                Dashboard
+              </Button> */}
               <ThemeButton text="Dashboard" />
             </Link>
           ) : (
@@ -58,7 +65,7 @@ const LandingPageHeader = () => {
           )}
 
           <Link
-            className="underline sm:text-base md:text-lg font-medium text-[##2a2663]"
+            className="underline sm:text-base md:text-lg font-medium text-[#2a2663]"
             href={"/"}
           >
             Exclusive Access!
@@ -78,8 +85,8 @@ const LandingPageHeader = () => {
 
           <Link
             href={"/dashboard"}
-            className="font-semibold hover:shadow-lg md:text-2xl  px-4 py-2 rounded-full text-white bg-gradient-to-r from-[#7DA7C5]
-     to-[#949C5C] bg-[length:200%_200%] bg-left transition-all duration-100 ease-in-out hover:bg-right"
+            className="font-semibold hover:shadow-lg md:text-2xl  px-4 py-2 rounded-full text-white bg-gradient-to-r from-[#7DA7C5] duration-200
+     to-[#949C5C] bg-[length:200%_200%] bg-left transition-all  ease-out hover:bg-right"
           >
             Get Started Here
           </Link>

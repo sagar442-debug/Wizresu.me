@@ -14,8 +14,11 @@ import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { toast } from "sonner";
+import { useRouter, usePathname } from "next/navigation";
 
 const Page = () => {
+  const router = useRouter();
+  const pathname = usePathname();
   const [secondInstitution, setSecondInstitution] = useState(false);
   const setPreviousPage = useStore((state) => state.setPreviousPage);
   const setUserFullName = useStore((state) => state.setUserFullName);
@@ -110,6 +113,7 @@ const Page = () => {
         }
       );
       return;
+    } else {
     }
 
     setUserDegree({
@@ -153,7 +157,7 @@ const Page = () => {
           languagePercentage: languagePercentage4,
         })
       : null;
-
+    router.push(`${pathname}/job-details/`);
     console.log(userDegree, userLanguage);
   };
 

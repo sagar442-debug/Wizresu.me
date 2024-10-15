@@ -1,4 +1,5 @@
 import Faq from "./(components)/Faq";
+import Footer from "./(components)/Footer";
 import LandingPageHeader from "./(components)/LandingPageHeader";
 import SecondPartLanding from "./(components)/SecondPartLanding";
 import ThirdPartLanding from "./(components)/ThirdPartLanding";
@@ -14,6 +15,7 @@ export default function Home() {
         <ThirdPartLanding />
         <Faq />
       </div>
+      <Footer />
     </div>
   );
 }

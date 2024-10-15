@@ -23,6 +23,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
   const userAddress = useStore((state) => state.userAddress);
   const userDegree = useStore((state) => state.userDegree);
   const userLanguage = useStore((state) => state.userLanguage);
+  console.log(userLanguage);
 
   // const generateText = async () => {
   //   const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
@@ -71,7 +72,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
         </div>
         <div className="flex border-b pb-4">
           {/* Left side */}
-          <div className="left-side w-52 bg-[#dbdbdb] pl-4 pr-6 py-2">
+          <div className="left-side min-w-52 bg-[#dbdbdb] pl-4 pr-6 py-2">
             <section className="contact section text-left border-b border-[#adadad] h-36">
               <h1 className="font-bold mb-2 tracking-widest">Contact</h1>
               <ul className="text-xs space-y-2 ">
@@ -196,33 +197,17 @@ const ResumeTemplate = forwardRef((props, ref) => {
             <section className="language-section text-left mt-3  border-[#adadad] pb-2 ">
               <h1 className="font-bold mb-2 tracking-widest">Language</h1>
               <ul className="text-xs space-y-2 ">
-                <li className="flex gap-2 items-center justify-between  ">
-                  <span>English</span>
-                  <div className="w-full bg-gray-700/20 rounded-full h-2">
-                    <div
-                      className="bg-gray-500 h-2 rounded-full transition-all duration-500 ease-in-out"
-                      style={{ width: "75%" }}
-                    ></div>
-                  </div>
-                </li>
-                <li className="flex gap-2 items-center justify-between ">
-                  <span>French</span>
-                  <div className="w-full bg-gray-700/20 rounded-full h-2">
-                    <div
-                      className="bg-gray-500 h-2 rounded-full transition-all duration-500 ease-in-out"
-                      style={{ width: "75%" }}
-                    ></div>
-                  </div>
-                </li>
-                <li className="flex gap-2 items-center justify-between  ">
-                  <span>Spanish</span>
-                  <div className="w-full bg-gray-700/20 rounded-full h-2">
-                    <div
-                      className="bg-gray-500 h-2 rounded-full transition-all duration-500 ease-in-out"
-                      style={{ width: "75%" }}
-                    ></div>
-                  </div>
-                </li>
+                {userLanguage.map((language, i) => (
+                  <li className="flex gap-2 items-center justify-between  ">
+                    <span>{language.languageName}</span>
+                    <div className="w-full bg-gray-700/20 rounded-full h-2">
+                      <div
+                        className="bg-gray-500 h-2 rounded-full transition-all duration-500 ease-in-out"
+                        style={{ width: `${language.languagePercentage}%` }}
+                      ></div>
+                    </div>
+                  </li>
+                ))}
               </ul>
             </section>
           </div>
