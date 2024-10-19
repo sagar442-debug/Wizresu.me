@@ -14,7 +14,7 @@ const page = () => {
       <div className="rounded min-w-[40rem] min-h-[80vh]">
         <Card>
           <CardHeader>
-            <CardTitle>Job Details</CardTitle>
+            <CardTitle>Previous Experience</CardTitle>
           </CardHeader>
           <CardContent>
             <form action="#" className="space-y-4">
