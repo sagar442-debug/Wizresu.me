@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { toast } from "sonner";
 import { useRouter, usePathname } from "next/navigation";
+export const runtime = "edge";
 
 const Page = () => {
   const router = useRouter();

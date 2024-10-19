@@ -3,6 +3,7 @@ import Footer from "./(components)/Footer";
 import LandingPageHeader from "./(components)/LandingPageHeader";
 import SecondPartLanding from "./(components)/SecondPartLanding";
 import ThirdPartLanding from "./(components)/ThirdPartLanding";
+export const runtime = "edge";
 
 export default function Home() {
   return (

@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+export const runtime = "edge";
 
 const page = () => {
   return (

@@ -16,6 +16,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+export const runtime = "edge";
 
 function page() {
   const count = useStore((state) => state.count);
