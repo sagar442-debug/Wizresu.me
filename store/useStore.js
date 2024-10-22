@@ -48,7 +48,7 @@ const useStore = create((set) => ({
         },
       ],
     })),
-  setJobExpereince: (job) =>
+  setJobExperience: (job) =>
     set((state) => ({
       jobExperience: [
         ...state.jobExperience,

@@ -159,7 +159,6 @@ const Page = () => {
         })
       : null;
     router.push(`${pathname}/job-details/`);
-    console.log(userDegree, userLanguage);
   };
 
   return (
@@ -170,7 +169,7 @@ const Page = () => {
         </CardHeader>
         <CardContent>
           <section className="">
-            <form action="#" className="space-y-4">
+            <form className="space-y-4">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                   <label className="sr-only" htmlFor="email">
