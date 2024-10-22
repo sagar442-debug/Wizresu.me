@@ -23,6 +23,7 @@ const page = () => {
   const [jobEndDate, setJobEndDate] = useState("");
   const [jobDescription, setJobDescription] = useState("");
   const [addMore, setAddMore] = useState(false);
+  const jobTitle2 = useStore((state) => state.jobTitle);
 
   const onJobExperienceSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +34,7 @@ const page = () => {
       jobEndDate,
       jobDescription,
     });
-    console.log(jobExperience);
+    console.log(jobExperience, jobTitle2);
   };
 
   const onAddMore = () => {
