@@ -9,11 +9,12 @@ const useStore = create((set) => ({
   jobDescription: "",
   userFullName: "",
   userEmailAddress: "",
-  userPhoneNumber: "403-688-3933",
+  userPhoneNumber: "400-600-3000",
   userWebsite: "",
   userAddress: "",
   userDegree: [],
   userLanguage: [],
+  jobExperience: [],
 
   // Actions to update the state
   setJobTitle: (title) => set((state) => ({ jobTitle: title })),
@@ -44,6 +45,19 @@ const useStore = create((set) => ({
         {
           languageName: language.languageName,
           languagePercentage: language.languagePercentage,
+        },
+      ],
+    })),
+  setJobExpereince: (job) =>
+    set((state) => ({
+      jobExperience: [
+        ...state.jobExperience,
+        {
+          jobTitle: job.jobTitle,
+          jobCompany: job.jobCompany,
+          jobStartDate: job.jobStartDate,
+          jobEndDate: job.jobEndDate,
+          jobDescription: job.jobDescription,
         },
       ],
     })),

@@ -23,7 +23,6 @@ const ResumeTemplate = forwardRef((props, ref) => {
   const userAddress = useStore((state) => state.userAddress);
   const userDegree = useStore((state) => state.userDegree);
   const userLanguage = useStore((state) => state.userLanguage);
-  console.log(userLanguage);
 
   // const generateText = async () => {
   //   const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
