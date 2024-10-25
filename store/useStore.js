@@ -15,6 +15,7 @@ const useStore = create((set) => ({
   userDegree: [],
   userLanguage: [],
   jobExperience: [],
+  chatOutput: {},
 
   // Actions to update the state
   setJobTitle: (title) => set((state) => ({ jobTitle: title })),
@@ -61,6 +62,7 @@ const useStore = create((set) => ({
         },
       ],
     })),
+  setChatOutput: (chat) => set((state) => ({ chatOutput: chat })),
 }));
 
 export default useStore;
