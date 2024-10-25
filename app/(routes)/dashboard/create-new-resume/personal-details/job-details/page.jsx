@@ -12,9 +12,11 @@ import useStore from "@/store/useStore";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { IoAddCircleOutline } from "react-icons/io5";
+import { useDataGenerator } from "@/app/_utils/dataGenerator";
 export const runtime = "edge";
 
 const page = () => {
+  const { generateData } = useDataGenerator();
   const setJobExperience = useStore((state) => state.setJobExperience);
   const jobExperience = useStore((state) => state.jobExperience);
   const [jobTitle, setJobTitle] = useState("");
@@ -34,7 +36,7 @@ const page = () => {
       jobEndDate,
       jobDescription,
     });
-    console.log(jobExperience, jobTitle2);
+    console.log(generateData());
   };
 
   const onAddMore = () => {
