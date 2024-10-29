@@ -17,7 +17,7 @@ const layout = ({ children }) => {
         </span>
       </Link>
       <div className="flex items-center justify-center">
-        <div className="flex gap-10 ">
+        <div className="flex lg:gap-2 xl:gap-5 ">
           {children}
           <div className=" rounded max-w-[40rem]  text-center">
             <Card>

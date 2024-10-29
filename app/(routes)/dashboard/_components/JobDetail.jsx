@@ -63,7 +63,7 @@ const JobDetail = () => {
     }
   };
   return (
-    <div className="md:min-w-[20rem] lg:min-w-[30rem] xl:min-w-[40rem]  p-5">
+    <div className="lg:min-w-[25rem] xl:min-w-[30rem]  p-5">
       <div className=" ">
         <section className="">
           <form action="#" className="space-y-4">

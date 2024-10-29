@@ -42,7 +42,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
   }, [chatOutput]);
 
   return (
-    <div className="">
+    <div className="max-w-[40rem]">
       <div
         ref={ref}
         className={!initialTap ? "resume-template" : "hidden resume-template"}
