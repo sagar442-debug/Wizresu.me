@@ -36,7 +36,7 @@ ${jobExperience
 The user seeks a role involving: ${jobDescription}. 
 
 Generate a JSON object that reflects the user's experience with the following structure:
-- **objective**: A brief career objective linking the user's passion and target job responsibilities which should have at least have 280 characters.
+- **objective**: A brief career objective linking the user's passion and target job responsibilities which should have at least have 200 characters.
 - **skills**: An array of 12-16 relevant, ATS-optimized skills related to the job description.
 - **jobExperience**: An array where each item is an object with:
   - **jobTitle**: Provided job title.
