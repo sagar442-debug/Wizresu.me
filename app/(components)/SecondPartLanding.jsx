@@ -69,7 +69,7 @@ function SecondPartLanding() {
             </div>
           </div>
 
-          <div className="lg:min-w-[800px] xl:min-w-[1000px] bg-[#7FA9C4] h-3 rounded-2xl absolute top-10 transform -translate-y-1/2 "></div>
+          <div className="lg:min-w-[800px] xl:w-[1000px] bg-[#7FA9C4] h-3 rounded-2xl absolute top-10 transform -translate-y-1/2 "></div>
         </div>
       </div>
       <div>

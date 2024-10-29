@@ -8,7 +8,7 @@ const DashboardLayout = ({ children }) => {
       <div>
         <SideNav />
       </div>
-      <div className="ml-80 mx-auto block w-full py-10 px-32 overflow-x-hidden">
+      <div className="ml-80 mx-auto block w-full py-10 pl-10 overflow-x-hidden">
         {children}
       </div>
     </div>

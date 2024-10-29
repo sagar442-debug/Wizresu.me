@@ -19,7 +19,7 @@ const layout = ({ children }) => {
       <div className="flex items-center justify-center">
         <div className="flex gap-10 ">
           {children}
-          <div className=" rounded w-[40rem]  text-center">
+          <div className=" rounded max-w-[40rem]  text-center">
             <Card>
               <ResumeTemplate />
             </Card>

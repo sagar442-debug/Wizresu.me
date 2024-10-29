@@ -16,8 +16,10 @@ const useStore = create((set) => ({
   userLanguage: [],
   jobExperience: [],
   chatOutput: {},
+  loading: false,
 
   // Actions to update the state
+  setLoading: (loading) => set((state) => ({ loading: loading })),
   setJobTitle: (title) => set((state) => ({ jobTitle: title })),
   setJobDescription: (description) =>
     set((state) => ({ jobDescription: description })),

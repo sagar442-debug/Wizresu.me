@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -36,10 +36,17 @@ const page = () => {
       jobEndDate,
       jobDescription,
     });
-    console.log(generateData());
   };
 
-  const onAddMore = () => {
+  // Run generateData whenever jobExperience changes
+  useEffect(() => {
+    if (jobExperience && jobExperience.length > 0) {
+      generateData();
+    }
+  }, [jobExperience]);
+
+  const onAddMore = (e) => {
+    e.preventDefault();
     setAddMore(true);
     setJobExperience({
       jobTitle,

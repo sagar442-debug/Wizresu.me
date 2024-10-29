@@ -13,10 +13,6 @@ function Workspace() {
         <h2 className="text-lg font-semibold text-gray-500 tracking-wider">
           Create a new resume
         </h2>
-        <div className="flex">
-          <AlignJustify className=" rounded cursor-pointer transition-all" />
-          <Grid2X2 className=" rounded cursor-pointer transition-all" />
-        </div>
       </div>
       <div className="w-60 h-40">
         <Link href={"/dashboard/create-new-resume"}>

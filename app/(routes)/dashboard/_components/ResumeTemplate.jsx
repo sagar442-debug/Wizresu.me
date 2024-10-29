@@ -23,20 +23,22 @@ const ResumeTemplate = forwardRef((props, ref) => {
   const userAddress = useStore((state) => state.userAddress);
   const userDegree = useStore((state) => state.userDegree);
   const userLanguage = useStore((state) => state.userLanguage);
+  const jobTitle = useStore((state) => state.jobTitle);
+  const jobDescription = useStore((state) => state.jobDescription);
+  const jobExperience = useStore((state) => state.jobExperience);
+  const chatOutput = useStore((state) => state.chatOutput);
 
-  // const generateText = async () => {
-  //   const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-  //   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const [dataJobExperience, setDataJobExperience] = useState();
+  const [objective, setObjective] = useState("");
+  const [skills, setSkills] = useState([]);
 
-  //   const prompt =
-  //     "Please provide me the list of skills required for Next js developer position. Provide me a list with a comma after each skill and don't jump on another line just keep on write it in just a sentence without changing line.Also do not mention any additional text before and after the list. I don't need any of your recommendation. Also do not provide any brackets please!!";
-
-  //   const result = await model.generateContent(prompt);
-  //   console.log(result.response.text());
-  // };
-  // useEffect(() => {
-  //   generateText();
-  // }, []);
+  useEffect(() => {
+    if (chatOutput) {
+      setDataJobExperience(chatOutput.jobExperience);
+      setObjective(chatOutput.objective);
+      setSkills(chatOutput.skills);
+    }
+  }, [chatOutput]);
 
   // Handle file change
   const handleDownloadPdf = async () => {
@@ -66,7 +68,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
             {userFullName.length > 3 ? userFullName : "Sagar Sapkota"}
           </h1>
           <p className="text-xs font-medium mt-2 tracking-wide">
-            Software developer
+            {jobTitle.length > 3 ? jobTitle : "Software developer"}
           </p>
         </div>
         <div className="flex border-b pb-4">
@@ -114,32 +116,41 @@ const ResumeTemplate = forwardRef((props, ref) => {
             </section>
             <section className="skills-section text-left my-3 border-b pb-3 mb-2 border-[#adadad]">
               <h1 className="font-bold mb-2 tracking-widest">Skills</h1>
-              <ul className="text-xs grid gap-1 grid-cols-3">
-                <li className="flex ">
-                  <span>Sql</span>
-                </li>
-                <li className="">
-                  <span>React</span>
-                </li>
-                <li className="">
-                  <span>TailwindCss</span>
-                </li>
-                <li className="">
-                  <span>NextJs</span>
-                </li>
-                <li className="">
-                  <span>Testing</span>
-                </li>
-                <li className="">
-                  <span>ExpressJs</span>
-                </li>
-                <li className="">
-                  <span>C#</span>
-                </li>
-                <li className="">
-                  <span>Java</span>
-                </li>
-              </ul>
+              <p className="w-44 text-[10px]">
+                {skills?.map((skill, i) => (
+                  <span>{skill}, </span>
+                ))}
+              </p>
+              {Object.keys(chatOutput).length == 0 ? (
+                <ul className="text-xs grid gap-1 grid-cols-3">
+                  <li className="flex ">
+                    <span>Sql</span>
+                  </li>
+                  <li className="">
+                    <span>React</span>
+                  </li>
+                  <li className="">
+                    <span>TailwindCss</span>
+                  </li>
+                  <li className="">
+                    <span>NextJs</span>
+                  </li>
+                  <li className="">
+                    <span>Testing</span>
+                  </li>
+                  <li className="">
+                    <span>ExpressJs</span>
+                  </li>
+                  <li className="">
+                    <span>C#</span>
+                  </li>
+                  <li className="">
+                    <span>Java</span>
+                  </li>
+                </ul>
+              ) : (
+                ""
+              )}
             </section>
             <section className="skills-section text-left mt-3 border-b border-[#adadad] pb-4">
               <h1 className="font-bold mb-2 tracking-widest">Education</h1>
@@ -217,19 +228,104 @@ const ResumeTemplate = forwardRef((props, ref) => {
                 Profile
               </h1>
               <p className="text-xs">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Laboriosam, sit! Porro dolorum reprehenderit eius nulla,
-                eligendi facere reiciendis distinctio, assumenda cupiditate
-                earum voluptatibus placeat! Mollitia nihil aspernatur voluptas
-                saepe animi, reiciendis voluptatum nemo eveniet voluptates
-                dolorum? Natus nihil reiciendis adipisci?
+                {objective?.length > 3
+                  ? objective
+                  : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit! Porro dolorum reprehenderit eius nulla, eligendi facere reiciendis distinctio, assumenda cupiditate earum voluptatibus placeat! Mollitia nihil aspernatur voluptas saepe animi, reiciendis voluptatum nemo eveniet voluptates dolorum? Natus nihil reiciendis adipisci?"}
               </p>
             </div>
             <div className="profile mt-3 text-left  ml-4">
               <h1 className="text-sm font-semibold tracking-wider ">
                 Work Experience
               </h1>
-              <div className="experience-1 mb-10">
+
+              {dataJobExperience?.map((exp, i) => (
+                <div className="experience-1 mb-10">
+                  <h1 className="text-sm my-2">{exp.jobTitle}</h1>
+                  <span className="flex justify-between my-2 mr-4">
+                    <h1 className="text-xs tracking-tighter">
+                      {exp.companyName}
+                    </h1>
+                    <h1 className="text-xs">
+                      {exp.startDate} - {exp.endDate}
+                    </h1>
+                  </span>
+                  <ol className="text-xs tracking-tighter space-y-1 list-disc pr-5">
+                    {exp?.userRoleDescription?.map((jobExp, i) => (
+                      <li>{jobExp}</li>
+                    ))}
+                  </ol>
+                </div>
+              ))}
+
+              {Object.keys(chatOutput).length == 0 ? (
+                <>
+                  <div className="experience-1 mb-10">
+                    <h1 className="text-sm my-2">Your Job Position Here</h1>
+                    <span className="flex justify-between my-2 mr-4">
+                      <h1 className="text-xs tracking-tighter">Company Name</h1>
+                      <h1 className="text-xs">2020-2024</h1>
+                    </span>
+                    <ol className="text-xs tracking-tighter space-y-1 list-disc">
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit.
+                      </li>
+                      <li>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Iure vitae praesentium quis ab quod veniam optio tenetur
+                        quam fuga. Est?
+                      </li>
+                      <li>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Iure, accusamus obcaecati eaque ex dolorum
+                      </li>
+                      <li>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Voluptatum, molestiae harum provident nostrum incidunt
+                        suscipit dolorem, repellat animi veniam similique?
+                      </li>
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Eaque, qui!
+                      </li>
+                    </ol>
+                  </div>
+                  <div className="experience-1 mb-10">
+                    <h1 className="text-sm my-2">Your Job Position Here</h1>
+                    <span className="flex justify-between my-2 mr-4">
+                      <h1 className="text-xs tracking-tighter">Company Name</h1>
+                      <h1 className="text-xs">2020-2024</h1>
+                    </span>
+                    <ol className="text-xs tracking-tighter space-y-1 list-disc">
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit.
+                      </li>
+                      <li>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Iure vitae praesentium quis ab quod veniam optio tenetur
+                        quam fuga. Est?
+                      </li>
+                      <li>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Iure, accusamus obcaecati eaque ex dolorum
+                      </li>
+                      <li>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Voluptatum, molestiae harum provident nostrum incidunt
+                        suscipit dolorem, repellat animi veniam similique?
+                      </li>
+                      <li>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Eaque, qui!
+                      </li>
+                    </ol>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
+              {/* <div className="experience-1 mb-10">
                 <h1 className="text-sm my-2">Your Job Position Here</h1>
                 <span className="flex justify-between my-2 mr-4">
                   <h1 className="text-xs tracking-tighter">Company Name</h1>
@@ -258,8 +354,8 @@ const ResumeTemplate = forwardRef((props, ref) => {
                     Eaque, qui!
                   </li>
                 </ol>
-              </div>
-              <div className="experience-1 mb-4">
+              </div> */}
+              {/* <div className="experience-1 mb-4">
                 <h1 className="text-sm my-2">Your Job Position Here</h1>
                 <span className="flex justify-between my-2 mr-4">
                   <h1 className="text-xs tracking-tighter">Company Name</h1>
@@ -288,7 +384,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                     Eaque, qui!
                   </li>
                 </ol>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
