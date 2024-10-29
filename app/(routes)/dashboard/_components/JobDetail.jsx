@@ -6,8 +6,11 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 const JobDetail = () => {
+  const loading = useStore((state) => state.loading);
+  const setLoading = useStore((state) => state.setLoading);
   const jobTitle = useStore((state) => state.jobTitle);
   const jobDescription = useStore((state) => state.jobDescription);
   const setJobTitle = useStore((state) => state.setJobTitle);
@@ -15,11 +18,13 @@ const JobDetail = () => {
   const setPreviousPage = useStore((state) => state.setPreviousPage);
   const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
+    setLoading(false);
     setPreviousPage("/dashboard/");
   }, []);
   const router = useRouter();
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     if (jobTitle.trim() === "" && jobDescription.trim() === "") {
       toast.error("Please fill in all the fields", {
         style: {
@@ -30,6 +35,7 @@ const JobDetail = () => {
         },
         className: "class",
       });
+      setLoading(false);
     } else if (jobTitle.length < 3) {
       toast.error("Job Title should be more than 3 characters", {
         style: {
@@ -40,6 +46,7 @@ const JobDetail = () => {
         },
         className: "class",
       });
+      setLoading(false);
     } else if (jobDescription.length < 100) {
       toast.error("Job Description should be more than 100 characters", {
         style: {
@@ -50,6 +57,7 @@ const JobDetail = () => {
         },
         className: "class",
       });
+      setLoading(false);
     } else {
       router.push("/dashboard/create-new-resume/personal-details");
     }
@@ -87,10 +95,16 @@ const JobDetail = () => {
               ></textarea>
             </div>
             <Button
+              disabled={loading}
               className="mt-6 hover:bg-blue-400 rounded hover:text-white shadow border"
               variant="ghost"
               onClick={handleSubmit}
             >
+              {loading ? (
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                ""
+              )}
               Proceed
             </Button>
           </form>

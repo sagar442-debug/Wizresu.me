@@ -15,9 +15,12 @@ import { Input } from "@/components/ui/input";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { toast } from "sonner";
 import { useRouter, usePathname } from "next/navigation";
+import { ReloadIcon } from "@radix-ui/react-icons";
 export const runtime = "edge";
 
 const Page = () => {
+  const loading = useStore((state) => state.loading);
+  const setLoading = useStore((state) => state.setLoading);
   const router = useRouter();
   const pathname = usePathname();
   const [secondInstitution, setSecondInstitution] = useState(false);
@@ -60,10 +63,12 @@ const Page = () => {
 
   useEffect(() => {
     setPreviousPage("/dashboard/create-new-resume/");
+    setLoading(false);
   }, []);
 
   const onProceed = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     // empty fields validation
 
@@ -77,6 +82,7 @@ const Page = () => {
         },
         className: "class",
       });
+      setLoading(false);
       return;
     } else if (userEmailAddress.length < 3) {
       toast.error("Email should be at least 3 characters", {
@@ -88,6 +94,7 @@ const Page = () => {
         },
         className: "class",
       });
+      setLoading(false);
       return;
     } else if (userPhoneNumber.length < 3) {
       toast.error("Phone Number should be at least 10 characters", {
@@ -99,6 +106,7 @@ const Page = () => {
         },
         className: "class",
       });
+      setLoading(false);
       return;
     } else if (languageName1.length < 3 || languagePercentage1.length === "0") {
       toast.error(
@@ -113,6 +121,7 @@ const Page = () => {
           className: "class",
         }
       );
+      setLoading(false);
       return;
     } else {
     }
@@ -158,6 +167,7 @@ const Page = () => {
           languagePercentage: languagePercentage4,
         })
       : null;
+
     router.push(`${pathname}/job-details/`);
   };
 
@@ -468,10 +478,16 @@ const Page = () => {
         <CardFooter>
           <Link href="/dashboard/create-new-resume/personal-details">
             <Button
-              onClick={onProceed}
-              className=" hover:bg-blue-400 rounded hover:text-white shadow border "
+              disabled={loading}
+              className="mt-6 hover:bg-blue-400 rounded hover:text-white shadow border"
               variant="ghost"
+              onClick={onProceed}
             >
+              {loading ? (
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                ""
+              )}
               Proceed
             </Button>
           </Link>

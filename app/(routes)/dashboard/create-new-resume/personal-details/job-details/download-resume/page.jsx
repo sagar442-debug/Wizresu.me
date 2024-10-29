@@ -28,7 +28,7 @@ const page = () => {
       console.error("resumeRef is not set or is invalid.");
       return;
     }
-    await html2canvas(input, { scale: 3 }).then((canvas) => {
+    await html2canvas(input, { scale: 6 }).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF("p", "mm", "a4");
       const imgWidth = 210; // A4 page width in mm
@@ -40,35 +40,7 @@ const page = () => {
     });
     setInitialTap(false);
   };
-  // const handleDownloadPdf = async (e) => {
-  //   const input = resumeRef.current; // Get the reference to the resume
 
-  //   if (!input) {
-  //     console.error("resumeRef is not set or is invalid.");
-  //     return;
-  //   }
-
-  //   const printWindow = window.open("", "_blank"); // Open a new window
-  //   printWindow.document.write("<html><head><title>Print Resume</title>");
-
-  //   // Include any styles you need
-  //   printWindow.document.write(`
-  //   <style>
-  //     body {
-  //       font-family: Arial, sans-serif;
-  //     }
-  //     /* Add more styles here as needed */
-  //   </style>
-  // `);
-
-  //   // Write the content to the new window
-  //   printWindow.document.write('<body onload="window.print()">');
-  //   printWindow.document.write(input.innerHTML); // Use innerHTML of the resumeRef
-  //   printWindow.document.write("</body></html>");
-
-  //   printWindow.document.close(); // Close the document to trigger loading
-  //   printWindow.focus(); // Focus on the new window
-  // };
   return (
     <div>
       <Card>

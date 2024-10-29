@@ -14,9 +14,12 @@ import { Button } from "@/components/ui/button";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { useDataGenerator } from "@/app/_utils/dataGenerator";
 import { useRouter, usePathname } from "next/navigation";
+import { ReloadIcon } from "@radix-ui/react-icons";
 export const runtime = "edge";
 
 const page = () => {
+  const loading = useStore((state) => state.loading);
+  const setLoading = useStore((state) => state.setLoading);
   const router = useRouter();
   const pathname = usePathname();
   const { generateData } = useDataGenerator();
@@ -32,6 +35,7 @@ const page = () => {
 
   const onJobExperienceSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     setJobExperience({
       jobTitle,
       jobCompany,
@@ -39,15 +43,18 @@ const page = () => {
       jobEndDate,
       jobDescription,
     });
+    router.push(`${pathname}/download-resume`);
   };
 
   // Run generateData whenever jobExperience changes
   useEffect(() => {
     if (jobExperience && jobExperience.length > 0) {
       generateData();
-      router.push(`${pathname}/download-resume`);
     }
   }, [jobExperience]);
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   const onAddMore = (e) => {
     e.preventDefault();
@@ -211,7 +218,13 @@ const page = () => {
                 onClick={onJobExperienceSubmit}
                 className=" hover:bg-blue-400 rounded hover:text-white shadow border "
                 variant="ghost"
+                diabled={loading}
               >
+                {loading ? (
+                  <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  ""
+                )}
                 Proceed
               </Button>
             </Link>
