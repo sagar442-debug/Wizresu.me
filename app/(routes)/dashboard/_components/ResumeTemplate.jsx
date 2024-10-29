@@ -14,8 +14,8 @@ import useStore from "@/store/useStore";
 
 const ResumeTemplate = forwardRef((props, ref) => {
   const resumeRef = useRef();
-  const [initialTap, setInitialTap] = useState(false);
-
+  const initialTap = useStore((state) => state.initialTap);
+  const setResumeRef = useStore((state) => state.setResumeRef);
   const userFullName = useStore((state) => state.userFullName);
   const userEmailAddress = useStore((state) => state.userEmailAddress);
   const userPhoneNumber = useStore((state) => state.userPhoneNumber);
@@ -38,25 +38,9 @@ const ResumeTemplate = forwardRef((props, ref) => {
       setObjective(chatOutput.objective);
       setSkills(chatOutput.skills);
     }
+    setResumeRef(resumeRef);
   }, [chatOutput]);
 
-  // Handle file change
-  const handleDownloadPdf = async () => {
-    setInitialTap(true);
-    await new Promise((resolve) => setTimeout(resolve, 200));
-    const input = resumeRef.current;
-    await html2canvas(input, { scale: 4 }).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      const imgWidth = 210; // A4 page width in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight, null, "FAST");
-
-      pdf.save("resume.pdf");
-    });
-    setInitialTap(false);
-  };
   return (
     <div className="">
       <div

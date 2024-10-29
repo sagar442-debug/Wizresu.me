@@ -13,9 +13,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { useDataGenerator } from "@/app/_utils/dataGenerator";
+import { useRouter, usePathname } from "next/navigation";
 export const runtime = "edge";
 
 const page = () => {
+  const router = useRouter();
+  const pathname = usePathname();
   const { generateData } = useDataGenerator();
   const setJobExperience = useStore((state) => state.setJobExperience);
   const jobExperience = useStore((state) => state.jobExperience);
@@ -42,6 +45,7 @@ const page = () => {
   useEffect(() => {
     if (jobExperience && jobExperience.length > 0) {
       generateData();
+      router.push(`${pathname}/download-resume`);
     }
   }, [jobExperience]);
 

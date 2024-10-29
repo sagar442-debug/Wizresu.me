@@ -17,8 +17,12 @@ const useStore = create((set) => ({
   jobExperience: [],
   chatOutput: {},
   loading: false,
+  resumeRef: null,
+  initialTap: false,
 
   // Actions to update the state
+  setInitialTap: (tap) => set((state) => ({ initialTap: tap })),
+  setResumeRef: (ref) => set((state) => ({ resumeRef: ref })),
   setLoading: (loading) => set((state) => ({ loading: loading })),
   setJobTitle: (title) => set((state) => ({ jobTitle: title })),
   setJobDescription: (description) =>
