@@ -19,7 +19,7 @@ function SideNav() {
   const [lgScreen, setLgScreen] = useState(false);
 
   const onResize = () => {
-    setLgScreen(window.innerWidth <= 1024);
+    setLgScreen(window.innerWidth <= 1440);
   };
   const onResizeBack = () => {
     setLgScreen(false);
@@ -41,7 +41,7 @@ function SideNav() {
             className={`${!lgScreen ? "hidden" : ""}`}
             onClick={onResizeBack}
           >
-            <GiHamburgerMenu className="text-xl mt-1 text-[#2a2663]" />
+            <GiHamburgerMenu className="text-xl mt-1 text-[#555]" />
           </button>
           <Link className="flex gap-2 items-center" href={"/dashboard"}>
             <Logo />
