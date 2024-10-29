@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -13,13 +13,24 @@ import useStore from "@/store/useStore";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import html2pdf from "html2pdf.js";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 const page = () => {
   const resumeRef = useStore((state) => state.resumeRef);
-  console.log(resumeRef);
+  const loading = useStore((state) => state.loading);
+  const setLoading = useStore((state) => state.setLoading);
+  const jobExperience = useStore((state) => state.jobExperience);
+  useEffect(() => {
+    if (Object.keys(jobExperience).length === 0) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, []);
   const inititalTap = useStore((state) => state.initialTap);
   const setInitialTap = useStore((state) => state.setInitialTap);
   const handleDownloadPdf = async (e) => {
+    setLoading(true);
     e.preventDefault();
     setInitialTap(true);
     await new Promise((resolve) => setTimeout(resolve, 200));
@@ -39,6 +50,7 @@ const page = () => {
       pdf.save("resume.pdf");
     });
     setInitialTap(false);
+    setLoading(false);
   };
 
   return (
@@ -53,9 +65,22 @@ const page = () => {
               className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg"
               variant="secondary"
               onClick={handleDownloadPdf}
+              disabled={loading}
             >
+              {loading ? (
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                ""
+              )}
               Download
             </Button>
+            {/* <Button
+              className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg"
+              variant="secondary"
+              onClick={handleDownloadPdf}
+            >
+              Download
+            </Button> */}
           </div>
         </CardContent>
       </Card>

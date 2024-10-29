@@ -69,9 +69,9 @@ const ResumeTemplate = forwardRef((props, ref) => {
                       : "403-123-1234"}
                   </span>
                 </li>
-                <li className="flex gap-2 items-center">
+                <li className="flex gap-2 items-center ">
                   <IoIosMail />
-                  <span className="text-[9px]">
+                  <span className="text-[9px] break-words">
                     {userEmailAddress.length > 3
                       ? userEmailAddress
                       : "sagarsapkota0987@gmail.com"}
@@ -307,7 +307,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
         </div>
         <div className="flex border-b pb-4">
           {/* Left side */}
-          <div className="left-side w-52 bg-[#dbdbdb] pl-4 pr-6 py-2">
+          <div className="left-side min-w-52 bg-[#dbdbdb] pl-4 pr-6 py-2">
             <section className="contact section text-left border-b border-[#adadad] h-36">
               <h1 className="font-bold mb-2 tracking-widest">Contact</h1>
               <ul className="text-xs space-y-2 ">
@@ -321,18 +321,18 @@ const ResumeTemplate = forwardRef((props, ref) => {
                       : "403-123-1234"}
                   </span>
                 </li>
-                <li className="flex gap-2 items-center">
+                <li className="flex gap-2 ">
                   <span className="h-4 w-4 pt-2">
                     <IoIosMail className="" />
                   </span>
-                  <span>
+                  <span className="w-40 break-words">
                     {userEmailAddress.length > 3
                       ? userEmailAddress
-                      : "johndoe@gmail.com"}
+                      : "sagarsapkota0987@gmail.com"}
                   </span>
                 </li>
                 {userWebsite.length > 3 ? (
-                  <li className="flex gap-2 items-center">
+                  <li className="flex gap-2 ">
                     <span className="h-4 w-4 pt-2">
                       <CiGlobe className="" />
                     </span>
@@ -343,7 +343,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                 )}
 
                 {userAddress.length > 3 ? (
-                  <li className="flex gap-2 items-center">
+                  <li className="flex gap-2 ">
                     <span className="h-4 w-4 pt-2">
                       <FaMapMarker className="" />
                     </span>
