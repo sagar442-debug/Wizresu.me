@@ -13,6 +13,7 @@ const LandingPageHeader = () => {
   return (
     <div className="relative max-w-7xl  md:mx-auto">
       <div className="absolute -z-10 bg-[#F3C168] sm:-left-[40rem] sm:-top-[150rem] lg:-top-[155rem] xl:-top-[150rem] xl:-left-[50rem] md:-top-[155rem] md:-left-[60rem] rounded-full h-[200rem] w-[200rem] "></div>
+
       <div className="flex justify-between items-center py-8 xl:px-0 sm:px-10  ">
         <div className="logo ">
           <Link className="flex gap-2 items-center" href={"/"}>

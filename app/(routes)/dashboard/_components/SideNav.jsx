@@ -29,8 +29,8 @@ function SideNav() {
     <div className="fixed">
       <div
         className={`${
-          lgScreen ? "lg:w-20" : "lg:w-64"
-        } transition-all duration-500  xl:w-80 bg-[#f1f1f1] h-[100vh] shadow-2xl flex flex-col`}
+          lgScreen ? "w-16" : "w-60 lg:w-64"
+        } transition-all duration-500   xl:w-80 bg-[#f1f1f1] h-[100vh] shadow-2xl flex flex-col`}
       >
         <div
           className={`${
@@ -64,7 +64,9 @@ function SideNav() {
         </div>
 
         <div
-          className={`${lgScreen ? "lg:px-2" : "lg:px-10"} lg:px-10 xl:px-10 `}
+          className={`${
+            lgScreen ? "lg:px-2" : "lg:px-10"
+          } px-6 sm:px-8 lg:px-10 xl:px-10 `}
         >
           <div
             className={`${lgScreen ? "items-center" : ""} my-2 flex flex-col`}
@@ -73,7 +75,7 @@ function SideNav() {
               href={"/dashboard"}
               className={`${
                 lgScreen ? "p-2 lg:w-10" : "lg:p-4 "
-              } relative flex lg:gap-0 xl:gap-3  hover:shadow-md transition-all xl:p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden`}
+              } relative flex lg:gap-0 xl:gap-3 p-2 sm:p-2 hover:shadow-md transition-all xl:p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden`}
             >
               <Wand className="animate-pulse lg:w-8" />
               <span
