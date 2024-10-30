@@ -14,9 +14,14 @@ const LandingPageHeader = () => {
     <div className="relative max-w-7xl  md:mx-auto">
       <div className="absolute -z-10 bg-[#F3C168] sm:-left-[40rem] sm:-top-[150rem] xl:-top-[142rem] xl:-left-[40rem] md:-top-[155rem] md:-left-[60rem] rounded-full h-[200rem] w-[200rem] "></div>
       <div className="flex justify-between items-center py-8 xl:px-0 sm:px-10  ">
-        <div className="logo">
-          <Link href={"/"}>
+        <div className="logo ">
+          <Link className="flex gap-2 items-center" href={"/"}>
             <Logo />
+            <h1
+              className={` font-bold sm:text-xl xl:text-2xl lg:text-xl text-[#2a2663]`}
+            >
+              WizResu.me
+            </h1>
           </Link>
         </div>
         <div>

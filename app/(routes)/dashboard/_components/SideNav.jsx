@@ -29,8 +29,8 @@ function SideNav() {
     <div className="fixed">
       <div
         className={`${
-          lgScreen ? "lg:w-20" : ""
-        } transition-all duration-500 lg:w-64 xl:w-80 bg-[#f1f1f1] h-[100vh] shadow-2xl flex flex-col`}
+          lgScreen ? "lg:w-20" : "lg:w-64"
+        } transition-all duration-500  xl:w-80 bg-[#f1f1f1] h-[100vh] shadow-2xl flex flex-col`}
       >
         <div
           className={`${
