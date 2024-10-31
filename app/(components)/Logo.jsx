@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <div className="flex gap-2 items-center">
       <Image
-        className="w-8 xl:w-10"
+        className="md:w-10 xl:w-10"
         src={"/Favicon.png"}
         height={48}
         width={48}

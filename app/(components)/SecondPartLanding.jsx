@@ -8,7 +8,7 @@ import { RiFileDownloadFill } from "react-icons/ri";
 function SecondPartLanding() {
   return (
     <div
-      className="mt-20 flex-col space-y-56 text-center items-center "
+      className="mt-28 lg:mt-20 flex-col space-y-56 text-center items-center "
       id="how-it-works"
     >
       <div className="flex justify-center items-center">
