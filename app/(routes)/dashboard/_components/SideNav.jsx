@@ -30,7 +30,7 @@ function SideNav() {
       <div
         className={`${
           lgScreen ? "w-16" : "w-60 lg:w-64"
-        } transition-all duration-500   xl:w-80 bg-[#f1f1f1] h-[100vh] shadow-2xl flex flex-col`}
+        } transition-all duration-500   xl:w-72 bg-[#f1f1f1] h-[100vh] shadow-2xl flex flex-col`}
       >
         <div
           className={`${
@@ -137,7 +137,7 @@ function SideNav() {
         <div
           className={`absolute ${
             lgScreen ? "lg:left-6" : "lg:left-4"
-          } xl:left-3 bottom-10 lg:w-60 xl:w-72 flex gap-1 items-center cursor-pointer`}
+          } xl:left-3 bottom-10 lg:w-60 xl:w-60 flex gap-1 items-center cursor-pointer`}
         >
           <ChartNoAxesColumnIncreasing color="#4e2ec2" />
           <h1
@@ -205,9 +205,9 @@ export function smallScreenNav() {
             </Link>
           </div>
         </div>
-        <div className="absolute left-3  bottom-10 lg:w-60 xl:w-72 flex gap-1 items-center cursor-pointer">
+        <div className="absolute left-3  bottom-10 lg:w-60 xl:w-60 flex gap-1 items-center cursor-pointer">
           <ChartNoAxesColumnIncreasing color="#4e2ec2" />
-          <h1 className="underline text-[#4e2ec2] text-sm ">
+          <h1 className="underline text-[#4e2ec2] text-[8px] ">
             Upgrade for more premium features
           </h1>
         </div>

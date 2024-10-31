@@ -19,7 +19,7 @@ function Workspace() {
     router.push("/dashboard/create-new-resume");
   };
   return (
-    <div className="">
+    <div className="ml-5">
       <h2 className="text-4xl font-bold mx-1  tracking-wider">Dashboard</h2>
       <div className="flex justify-between items-center mx-1">
         <h2 className="text-lg font-semibold text-gray-500 tracking-wider">

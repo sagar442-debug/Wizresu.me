@@ -102,7 +102,10 @@ const ResumeTemplate = forwardRef((props, ref) => {
               <h1 className="font-bold mb-2 tracking-widest">Skills</h1>
               <p className="w-44 text-[10px]">
                 {skills?.map((skill, i) => (
-                  <span>{skill}, </span>
+                  <span>
+                    {skill}
+                    {i < skills.length - 1 && ", "}{" "}
+                  </span>
                 ))}
               </p>
               {Object.keys(chatOutput).length == 0 ? (
@@ -211,9 +214,12 @@ const ResumeTemplate = forwardRef((props, ref) => {
                       {exp.startDate} - {exp.endDate}
                     </h1>
                   </span>
-                  <ol className="text-xs tracking-tighter space-y-1 pr-5">
+                  <ol className="text-xs tracking-tighter  pr-5">
                     {exp?.userRoleDescription?.map((jobExp, i) => (
-                      <li>{jobExp}</li>
+                      <li>
+                        <span className="text-sm p-0 m-0"> &#8226; </span>
+                        {jobExp}
+                      </li>
                     ))}
                   </ol>
                 </div>
@@ -358,7 +364,10 @@ const ResumeTemplate = forwardRef((props, ref) => {
               <h1 className="font-bold mb-2 tracking-widest">Skills</h1>
               <p className="w-44 text-xs">
                 {skills?.map((skill, i) => (
-                  <span>{skill}, </span>
+                  <span>
+                    {skill}
+                    {i < skills.length - 1 && ", "}
+                  </span>
                 ))}
               </p>
               {Object.keys(chatOutput).length == 0 ? (

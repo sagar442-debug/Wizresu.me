@@ -45,7 +45,15 @@ Generate a JSON object that reflects the user's experience with the following st
   - **startDate**: Provided start date (jobStartDate).
   - **endDate**: Provided end date (jobEndDate).
 
-Return only the JSON object, and do not include additional commentary, backticks, or brackets around the output. Use placeholder values only for missing data, and ensure the JSON format maximizes ATS compatibility with the job details.`;
+Return only the JSON object, and do not include additional commentary, backticks, or brackets around the output. Use placeholder values only for missing data, and ensure the JSON format maximizes ATS compatibility with the job details. To get the most ats friendly result please take following into consideration:
+
+Tailored Length: While the ideal length varies, aim for a concise and impactful resume.
+Prioritize Relevant Experience: Focus on experiences directly related to the job you're applying for.
+Strong Action Verbs: Use strong action verbs (e.g., "achieved," "implemented," "led") to highlight your accomplishments.
+Measurable Achievements: Quantify your achievements whenever possible (e.g., "Increased sales by 20%").
+Avoid Complex Language: Use simple, clear language that's easy for the ATS to understand.
+
+`;
 
     try {
       const result = await model.generateContent(prompt);
