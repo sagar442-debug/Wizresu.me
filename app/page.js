@@ -13,14 +13,14 @@ export default function Home() {
     <div className="bg-[url('/BgPatterns.jpg')] bg-contain  overflow-hidden">
       <Link
         href="#"
-        className="fixed bottom-10 right-20 p-4 text-2xl z-50 bg-white rounded-full shadow-md hover:bg-slate-100 duration-100 transition-all"
+        className="fixed bottom-10 right-20 p-2 lg:p-4 text-2xl z-50 bg-white rounded-full shadow-md hover:bg-slate-100 duration-100 transition-all"
       >
-        <FaArrowUp />
+        <FaArrowUp className="md:text-xs lg:text-base" />
       </Link>
-      <div className=" relative z-10 h-screen">
+      <div className=" relative z-10 lg:h-screen">
         <LandingPageHeader />
       </div>
-      <div className="max-w-7xl px-8 md:mx-auto">
+      <div className="max-w-7xl md:px-8 md:mx-auto">
         <SecondPartLanding />
         <ThirdPartLanding />
         <Faq />

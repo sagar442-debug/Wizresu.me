@@ -8,7 +8,7 @@ import { RiFileDownloadFill } from "react-icons/ri";
 function SecondPartLanding() {
   return (
     <div
-      className="mt-28 lg:mt-20 flex-col space-y-56 text-center items-center "
+      className="mt-10 lg:mt-20 flex-col space-y-56 text-center items-center "
       id="how-it-works"
     >
       <div className="flex justify-center items-center">
@@ -25,7 +25,7 @@ function SecondPartLanding() {
       <div className="">
         <div className="relative">
           <div className="">
-            <div className="flex justify-between">
+            <div className="flex flex-col justify-center items-cente lg:flex lg:flex-row lg:justify-between ">
               <div className="paper flex-col">
                 <div className="p-3 rounded-full w-fit bg-gradient-to-r from-[#7EA8C4] to-[#BAC56A] border-8 border-[#fafafa] z-10 relative">
                   <PiNotepadFill className="text-5xl text-white" />
@@ -69,7 +69,8 @@ function SecondPartLanding() {
             </div>
           </div>
 
-          <div className="lg:min-w-[800px] xl:w-[1000px] bg-[#7FA9C4] h-3 rounded-2xl absolute top-10 transform -translate-y-1/2 "></div>
+          <div className="md:hidden lg:block lg:min-w-[800px] xl:w-[1000px] bg-[#7FA9C4] h-3 rounded-2xl absolute top-10 transform lg:-translate-y-1/2 "></div>
+          <div className="lg:hidden  h-[600px] bg-[#7FA9C4] w-3 rounded-2xl absolute top-10 transform "></div>
         </div>
       </div>
       <div>

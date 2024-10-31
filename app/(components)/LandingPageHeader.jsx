@@ -80,7 +80,7 @@ const LandingPageHeader = () => {
         </div>
       </div>
 
-      <div className="flex lg:justify-between  mt-10 md:px-10 xl:px-0 sm:px-10 sm:items-center md:items-start">
+      <div className="flex lg:justify-between md:mt-0 lg:mt-10 md:px-10 xl:px-0 sm:px-10 sm:items-center md:items-start">
         <div className="w-[40rem]">
           <h1 className="md:mt-20 sm:mt-10 sm:text-2xl md:text-2xl lg:text-5xl font-bold  text-[#2a2663]">
             Optimize Your Resume In Seconds!
