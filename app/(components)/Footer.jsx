@@ -54,7 +54,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="pt-10">
-          <h1 className="tracking-wider text-sm">
+          <h1 className="tracking-wider text-sm  py-4 lg:py-0">
             &copy;2024 WizResume. All rights reserved.
           </h1>
         </div>

@@ -10,12 +10,12 @@ const Faq = () => {
   return (
     <div id="faq" className="h-[70vh] mt-52 flex justify-between">
       <div>
-        <h1 className="text-5xl font-bold text-left">FAQ</h1>
+        <h1 className="text-3xl py-4 md:text-5xl font-bold text-left">FAQ</h1>
       </div>
-      <div className="w-[60%]">
+      <div className="w-[60%] mr-10 md:mr-0">
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger className="text-2xl font-semibold text-left">
+            <AccordionTrigger className="md:text-xl font-semibold text-left">
               Is there a trial version for premium or exclusive plans?
             </AccordionTrigger>
             <AccordionContent>
@@ -23,7 +23,7 @@ const Faq = () => {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
-            <AccordionTrigger className="text-2xl font-semibold">
+            <AccordionTrigger className="md:text-xl font-semibold">
               Is it accessible?
             </AccordionTrigger>
             <AccordionContent>
@@ -31,7 +31,7 @@ const Faq = () => {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
-            <AccordionTrigger className="text-2xl font-semibold">
+            <AccordionTrigger className="md:text-xl font-semibold">
               Is it accessible?
             </AccordionTrigger>
             <AccordionContent>
