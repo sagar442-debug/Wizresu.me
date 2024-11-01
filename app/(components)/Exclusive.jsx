@@ -3,7 +3,7 @@ import { FaCheckCircle } from "react-icons/fa";
 
 const Exclusive = () => {
   return (
-    <div className="flex-col px-12 py-6 space-y-5 bg-[#49305e] text-white  w-[400px] rounded-xl shadow-xl ">
+    <div className="flex-col px-12 py-6 space-y-5 bg-[#49305e] text-white  w-[400px] md:rounded-xl shadow-xl ">
       <div>
         <h1 className="text-xl font-semibold">Exclusive</h1>
         <p>For Professionals</p>

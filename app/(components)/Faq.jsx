@@ -8,7 +8,7 @@ import {
 
 const Faq = () => {
   return (
-    <div id="faq" className="h-[70vh] mt-52 flex justify-between">
+    <div id="faq" className=" my-20 flex justify-between">
       <div>
         <h1 className="text-3xl py-4 md:text-5xl font-bold text-left">FAQ</h1>
       </div>

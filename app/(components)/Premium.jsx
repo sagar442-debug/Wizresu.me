@@ -3,7 +3,7 @@ import { FaCheckCircle } from "react-icons/fa";
 
 const Premium = () => {
   return (
-    <div className="px-12 py-6 space-y-5 bg-[#242842] text-white w-[400px] rounded-xl shadow-xl ">
+    <div className="px-12 py-6 space-y-5 bg-[#242842] text-white w-[400px] md:rounded-xl shadow-xl ">
       <div>
         <h1 className="text-xl font-semibold">Premium</h1>
         <p>For Experienced</p>
