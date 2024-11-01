@@ -13,7 +13,7 @@ export default function Home() {
     <div className="bg-[url('/BgPatterns.jpg')] bg-contain  overflow-hidden">
       <Link
         href="#"
-        className="fixed bottom-10 right-20 p-2 lg:p-4 text-2xl z-50 bg-white rounded-full shadow-md hover:bg-slate-100 duration-100 transition-all"
+        className="fixed bottom-5 md:bottom-8 right-5 md:right-20 p-2 lg:p-4 text-2xl z-50 bg-white rounded-full shadow-md hover:bg-slate-100 duration-100 transition-all"
       >
         <FaArrowUp className="md:text-xs lg:text-base" />
       </Link>

@@ -4,9 +4,9 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="bg-[#242842] px-8 h-[40vh]">
+    <div className="bg-[#242842] px-8 ">
       <div className="text-white mx-auto max-w-7xl">
-        <div className="pt-10 flex justify-between">
+        <div className="pt-10 flex flex-col items-center md:items-start md:flex-row md:flex md:justify-between">
           <div className="">
             <div className="logo flex gap-2 items-center ">
               <Image
@@ -28,7 +28,7 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div className="right-side flex gap-5">
+          <div className="right-side flex w-full justify-center gap-16 md:w-auto md:pt-0 pt-10 md:gap-5">
             <div>
               <h1 className="text-xl font-semibold">Links</h1>
               <ul className="mt-5 space-y-2 text-gray-300">
@@ -53,8 +53,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="mt-10">
-          <h1 className="tracking-wider">
+        <div className="pt-10">
+          <h1 className="tracking-wider text-sm">
             &copy;2024 WizResume. All rights reserved.
           </h1>
         </div>
