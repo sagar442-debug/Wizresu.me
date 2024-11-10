@@ -2,6 +2,10 @@ import React from "react";
 
 import SideNav from "./_components/SideNav"; // Adjust the import path as needed
 
+export const metadata = {
+  title: "Dashboard",
+};
+
 const DashboardLayout = ({ children }) => {
   return (
     <div className="flex">
