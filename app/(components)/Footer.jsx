@@ -16,7 +16,7 @@ const Footer = () => {
                 alt="wizresu-logo"
               />
               <h1 className="text-2xl font-semibold text-gray-300">
-                WizResume
+                WizResu.me
               </h1>
             </div>
             <div className="mt-2 w-72 text-sm text-gray-300">
@@ -44,7 +44,7 @@ const Footer = () => {
               <h1 className="text-xl font-semibold">Legal</h1>
               <ul className="mt-5 space-y-2 text-gray-300">
                 <li className="hover:underline">
-                  <Link href="#pricing">Privacy Policy</Link>
+                  <Link href="/privacy-policy">Privacy Policy</Link>
                 </li>
                 <li className="hover:underline">
                   <Link href="#pricing">Terms & Conditions</Link>

@@ -75,13 +75,12 @@ const page = () => {
               )}
               Download
             </Button>
-            {/* <Button
+            <Button
               className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg"
               variant="secondary"
-              onClick={handleDownloadPdf}
             >
-              Download
-            </Button> */}
+              Save
+            </Button>
           </div>
         </CardContent>
       </Card>
