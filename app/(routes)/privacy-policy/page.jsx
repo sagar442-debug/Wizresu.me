@@ -2,6 +2,7 @@ import Footer from "@/app/(components)/Footer";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+export const runtime = "edge";
 
 const page = () => {
   return (
