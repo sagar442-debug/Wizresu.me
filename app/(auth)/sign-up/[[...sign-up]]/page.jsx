@@ -4,7 +4,7 @@ export const runtime = "edge";
 
 const page = () => {
   return (
-    <div>
+    <div className="flex items-center justify-center h-[80vh]">
       <SignUp />
     </div>
   );
