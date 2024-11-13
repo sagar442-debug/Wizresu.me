@@ -5,8 +5,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Montserrat({ subsets: ["latin"] });
 
-const clerkFrontendApi = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
-
 export const metadata = {
   title: {
     default: "Wiz Resume | Quick Resume Build",
@@ -25,7 +23,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider frontendApi={clerkFrontendApi}>
+    <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
           <main>{children}</main>
