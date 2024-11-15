@@ -26,7 +26,7 @@ function SideNav() {
   };
 
   return (
-    <div className="fixed">
+    <div className="fixed z-50">
       <div
         className={`${
           lgScreen ? "w-16" : "w-60 lg:w-64"

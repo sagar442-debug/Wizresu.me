@@ -27,7 +27,7 @@ function Workspace() {
           Create a new resume
         </h2>
       </div>
-      <div className="grid gap-4 lg:w-[1000px] justify-center md:grid-col-3 lg:grid-cols-4">
+      <div className="grid gap-4 lg:w-[1000px] justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <button onClick={onNewResume} className="w-60 h-40">
           <Card className="flex items-center border w-full h-full group rounded-2xl mt-2 shadow-lg cursor-pointer hover:bg-gray-50 transition-all">
             <div className="flex items-center group-hover:text-gray-500 mx-auto">
@@ -46,8 +46,6 @@ function Workspace() {
           </Card>
         </button>
 
-        <ResumeCards />
-        <ResumeCards />
         <ResumeCards />
         <ResumeCards />
         <ResumeCards />

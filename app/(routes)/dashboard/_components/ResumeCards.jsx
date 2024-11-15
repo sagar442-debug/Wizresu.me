@@ -5,7 +5,7 @@ import { VscDebugRestart } from "react-icons/vsc";
 
 const ResumeCards = () => {
   return (
-    <button className="relative group flex items-center justify-center">
+    <button className="relative group flex md:items-center md:justify-center">
       <div className="absolute z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100 text-xl font-semibold tracking-widest">
         <div className="flex gap-2 items-center ">
           <span className="transform transition-transform duration-500 delay-100 group-hover:-rotate-90">
