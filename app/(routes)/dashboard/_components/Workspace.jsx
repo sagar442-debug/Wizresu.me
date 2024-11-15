@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card";
 import useStore from "@/store/useStore";
 import { useRouter } from "next/navigation";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import ResumeCards from "./ResumeCards";
 
 function Workspace() {
   const router = useRouter();
@@ -26,23 +27,32 @@ function Workspace() {
           Create a new resume
         </h2>
       </div>
-      <button onClick={onNewResume} className="w-60 h-40">
-        <Card className="flex items-center border w-full h-full group rounded-2xl mt-2 shadow-lg cursor-pointer hover:bg-gray-50 transition-all">
-          <div className="flex items-center group-hover:text-gray-500 mx-auto">
-            <span>
-              {" "}
-              {loading ? (
-                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-              ) : (
-                <Plus className="group-hover:text-gray-500" />
-              )}
-            </span>
-            <h2 className="text-xl font-medium tracking-wider group-shover:text-gray-500">
-              New Resume
-            </h2>
-          </div>
-        </Card>
-      </button>
+      <div className="grid gap-4 lg:w-[1000px] justify-center md:grid-col-3 lg:grid-cols-4">
+        <button onClick={onNewResume} className="w-60 h-40">
+          <Card className="flex items-center border w-full h-full group rounded-2xl mt-2 shadow-lg cursor-pointer hover:bg-gray-50 transition-all">
+            <div className="flex items-center group-hover:text-gray-500 mx-auto">
+              <span>
+                {" "}
+                {loading ? (
+                  <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <Plus className="group-hover:text-gray-500" />
+                )}
+              </span>
+              <h2 className="text-xl font-medium tracking-wider group-shover:text-gray-500">
+                New Resume
+              </h2>
+            </div>
+          </Card>
+        </button>
+
+        <ResumeCards />
+        <ResumeCards />
+        <ResumeCards />
+        <ResumeCards />
+        <ResumeCards />
+        <ResumeCards />
+      </div>
     </div>
   );
 }

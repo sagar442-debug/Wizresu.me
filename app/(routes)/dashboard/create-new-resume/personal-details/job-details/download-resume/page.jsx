@@ -14,6 +14,8 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import html2pdf from "html2pdf.js";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import { FaRegBookmark } from "react-icons/fa";
+
 export const runtime = "edge";
 
 const page = () => {
@@ -61,7 +63,7 @@ const page = () => {
           <CardTitle>Your Resume is Ready</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-center">
+          <div className="flex gap-4 items-center">
             <Button
               className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg"
               variant="secondary"
@@ -76,10 +78,11 @@ const page = () => {
               Download
             </Button>
             <Button
-              className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg"
+              className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg space-x-2"
               variant="secondary"
             >
-              Save
+              <FaRegBookmark />
+              <span>Save</span>
             </Button>
           </div>
         </CardContent>
