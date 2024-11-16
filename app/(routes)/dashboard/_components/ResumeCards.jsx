@@ -23,6 +23,7 @@ const ResumeCards = () => {
               }
               height={400}
               width={250}
+              alt="Previous-Resume-Picture"
               className="h-36 w-24 group-hover:blur-xs duration-200"
             />
           </div>

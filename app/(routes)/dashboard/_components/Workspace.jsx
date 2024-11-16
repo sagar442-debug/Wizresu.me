@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AlignJustify } from "lucide-react";
 import { Grid2X2 } from "lucide-react";
 import { Plus } from "lucide-react";
@@ -9,11 +9,56 @@ import useStore from "@/store/useStore";
 import { useRouter } from "next/navigation";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import ResumeCards from "./ResumeCards";
+import { useUser } from "@clerk/nextjs";
+
+const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 function Workspace() {
   const router = useRouter();
   const loading = useStore((state) => state.loading);
   const setLoading = useStore((state) => state.setLoading);
+  const { user, isLoaded, isSignedIn } = useUser();
+  const [clerkId, setClerkId] = useState();
+
+  useEffect(() => {
+    if (isLoaded) {
+      setClerkId(user.id);
+    }
+  }, [isLoaded]);
+
+  useEffect(() => {
+    if (clerkId && isLoaded) {
+      fetchUserDetail();
+    }
+  }, [clerkId]);
+
+  const fetchUserDetail = async () => {
+    console.log(clerkId);
+    const apiGo = `http://localhost:5000/api/users/get-user?clerkId=${clerkId}`;
+    console.log(apiGo);
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/users/get-user?clerkId=${encodeURIComponent(
+          clerkId
+        )}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch user details. Status: ${response.status}`
+        );
+      }
+      const userDetails = await response.json();
+      console.log("User Details:", userDetails);
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+    }
+  };
 
   const onNewResume = () => {
     setLoading(true);
