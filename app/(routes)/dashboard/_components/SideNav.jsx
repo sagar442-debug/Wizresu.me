@@ -11,8 +11,12 @@ import { useParams, usePathname } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
+import { SignOutButton } from "@clerk/nextjs";
+import { LogOut } from "lucide-react";
+import { useClerk } from "@clerk/nextjs";
 
 function SideNav() {
+  const { signOut } = useClerk();
   const params = useParams();
   const pathname = usePathname();
   const { isSignedIn, user, isLoaded } = useUser();
@@ -23,6 +27,10 @@ function SideNav() {
   };
   const onResizeBack = () => {
     setLgScreen(false);
+  };
+
+  const signningOut = () => {
+    signOut({ redirectUrl: "/" });
   };
 
   return (
@@ -132,6 +140,20 @@ function SideNav() {
                 History
               </span>
             </Link>
+
+            <button
+              onClick={() => signningOut()}
+              className="flex gap-3 hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
+            >
+              <LogOut width={32} />
+              <span
+                className={`${
+                  lgScreen ? "hidden" : ""
+                } lg:text-base xl:text-xl`}
+              >
+                Sign Out
+              </span>
+            </button>
           </div>
         </div>
         <div
@@ -203,6 +225,7 @@ export function smallScreenNav() {
               <History width={30} className="" />
               <span className="lg:text-base xl:text-xl">History</span>
             </Link>
+            <SignOutButton />
           </div>
         </div>
         <div className="absolute left-3  bottom-10 lg:w-60 xl:w-60 flex gap-1 items-center cursor-pointer">
