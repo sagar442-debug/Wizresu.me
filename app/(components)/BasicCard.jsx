@@ -23,6 +23,10 @@ const BasicCard = () => {
             <FaCheckCircle className="mt-1" />
             <span>Daily limitations on multiple jobs.</span>
           </li>
+          <li className="flex gap-2 ">
+            <FaCheckCircle className="mt-1" />
+            <span>ATS calculator.</span>
+          </li>
         </ul>
       </div>
       <div className="button text-center">

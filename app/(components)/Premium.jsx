@@ -33,6 +33,10 @@ const Premium = () => {
             <FaCheckCircle className="mt-1" />
             <span>Limited Resume saves.</span>
           </li>
+          <li className="flex gap-2 ">
+            <FaCheckCircle className="mt-1" />
+            <span>Unlimited ATS calculator.</span>
+          </li>
         </ul>
       </div>
       <div className="button text-center">

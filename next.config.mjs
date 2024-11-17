@@ -5,6 +5,7 @@ const nextConfig = {
     GOOGLE_API_KEY: process.env.GOOGLE_API, // Assuming you have a NEXT_PUBLIC_API_KEY in .env or .env.local
   },
   images: {
+    domains: ["img.clerk.com"],
     remotePatterns: [
       {
         protocol: "https",

@@ -92,7 +92,7 @@ const LandingPageHeader = () => {
           </p>
 
           <Link
-            href={"/sign-in"}
+            href={"/sign-up"}
             className="font-semibold  hover:shadow-lg md:text-xl px-3 py-1  md:px-4 md:py-2 rounded-full text-white bg-gradient-to-r from-[#7DA7C5] duration-200
      to-[#949C5C] bg-[length:200%_200%] bg-left transition-all  ease-out hover:bg-right"
           >

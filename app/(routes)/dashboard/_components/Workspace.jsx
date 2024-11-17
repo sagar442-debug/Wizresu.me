@@ -45,9 +45,7 @@ function Workspace() {
   const fetchUserDetail = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/users/get-user?clerkId=${encodeURIComponent(
-          clerkId
-        )}`,
+        `${apiUrl}users/get-user?clerkId=${encodeURIComponent(clerkId)}`,
         {
           method: "GET",
           headers: {

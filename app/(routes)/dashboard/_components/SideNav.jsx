@@ -1,7 +1,7 @@
 "use client";
 import Logo from "@/app/(components)/Logo";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { House } from "lucide-react";
 import { Blocks } from "lucide-react";
 import { History } from "lucide-react";
@@ -14,6 +14,10 @@ import { RxCross1 } from "react-icons/rx";
 import { SignOutButton } from "@clerk/nextjs";
 import { LogOut } from "lucide-react";
 import { useClerk } from "@clerk/nextjs";
+import Image from "next/image";
+import { CircleUser } from "lucide-react";
+
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 function SideNav() {
   const { signOut } = useClerk();
@@ -21,6 +25,10 @@ function SideNav() {
   const pathname = usePathname();
   const { isSignedIn, user, isLoaded } = useUser();
   const [lgScreen, setLgScreen] = useState(false);
+  const [route, setRoute] = useState("");
+  useEffect(() => {
+    setRoute("");
+  }, [pathname]);
 
   const onResize = () => {
     setLgScreen(window.innerWidth <= 1440);
@@ -31,6 +39,14 @@ function SideNav() {
 
   const signningOut = () => {
     signOut({ redirectUrl: "/" });
+  };
+
+  const onRouting = (routeName) => {
+    if (pathname !== `${routeName}`) {
+      setRoute(routeName);
+    } else {
+      setRoute("");
+    }
   };
 
   return (
@@ -81,11 +97,13 @@ function SideNav() {
           >
             <Link
               href={"/dashboard"}
+              onClick={() => onRouting("dashboard")}
               className={`${
                 lgScreen ? "p-2 lg:w-10" : "lg:p-4 "
               } relative flex lg:gap-0 xl:gap-3 p-2 sm:p-2 hover:shadow-md transition-all xl:p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden`}
             >
               <Wand className="animate-pulse lg:w-8" />
+
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
@@ -99,13 +117,19 @@ function SideNav() {
             </Link>
             <Link
               href={"/dashboard"}
+              onClick={() => onRouting("dashboard")}
               className={`flex gap-3 hover:shadow-md transition-all p-4 ${
                 pathname.startsWith("/dashboard/create-new-resume")
                   ? "font-bold"
                   : "font-medium"
               } items-center text-[#555] hover:bg-[#dfdfdf] rounded`}
             >
-              <House width={30} className="" />
+              {route == "dashboard" ? (
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <House width={30} className="" />
+              )}
+
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
@@ -115,10 +139,16 @@ function SideNav() {
               </span>
             </Link>
             <Link
+              onClick={() => onRouting("/dashboard/resumes")}
               href={"/dashboard/resumes"}
               className="flex gap-3 hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
             >
-              <Blocks width={30} className="" />
+              {route == "/dashboard/resumes" ? (
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <Blocks width={30} className="" />
+              )}
+
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
@@ -138,6 +168,32 @@ function SideNav() {
                 } lg:text-base xl:text-xl`}
               >
                 History
+              </span>
+            </Link>
+            <Link
+              href={"/dashboard/user-profile"}
+              className="flex gap-3  hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
+            >
+              {/*
+               */}
+              {user ? (
+                <Image
+                  className="rounded-full h-auto w-auto"
+                  height={30}
+                  width={24}
+                  src={user?.imageUrl}
+                  alt="profile-picture"
+                />
+              ) : (
+                <CircleUser width={30} />
+              )}
+
+              <span
+                className={`${
+                  lgScreen ? "hidden" : ""
+                } lg:text-base xl:text-xl`}
+              >
+                Profile
               </span>
             </Link>
 
