@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import ResumeCards from "./ResumeCards";
 import { useUser } from "@clerk/nextjs";
+import LoadingResumeCard from "./LoadingResumeCard";
 
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -19,6 +20,9 @@ function Workspace() {
   const setLoading = useStore((state) => state.setLoading);
   const { user, isLoaded, isSignedIn } = useUser();
   const [clerkId, setClerkId] = useState();
+  const [userInfo, setUserInfo] = useState();
+  const [totalResume, setTotalResumes] = useState([]);
+  const [resumeLoading, setResumeLoading] = useState(true);
 
   useEffect(() => {
     if (isLoaded) {
@@ -32,10 +36,13 @@ function Workspace() {
     }
   }, [clerkId]);
 
+  useEffect(() => {
+    setTotalResumes(userInfo?.resumes);
+    setResumeLoading(false);
+  }, [userInfo]);
+
   const fetchUserDetail = async () => {
     console.log(clerkId);
-    const apiGo = `http://localhost:5000/api/users/get-user?clerkId=${clerkId}`;
-    console.log(apiGo);
     try {
       const response = await fetch(
         `http://localhost:5000/api/users/get-user?clerkId=${encodeURIComponent(
@@ -54,7 +61,7 @@ function Workspace() {
         );
       }
       const userDetails = await response.json();
-      console.log("User Details:", userDetails);
+      setUserInfo(userDetails.userData);
     } catch (error) {
       console.error("Error fetching user details:", error);
     }
@@ -90,11 +97,13 @@ function Workspace() {
             </div>
           </Card>
         </button>
-
-        <ResumeCards />
-        <ResumeCards />
-        <ResumeCards />
-        <ResumeCards />
+        {resumeLoading ? (
+          <LoadingResumeCard />
+        ) : (
+          totalResume?.map((resume, i) => (
+            <ResumeCards key={i} resume={resume} />
+          ))
+        )}
       </div>
     </div>
   );
