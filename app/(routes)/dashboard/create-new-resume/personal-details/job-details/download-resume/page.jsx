@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { Lock } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -9,6 +10,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 import useStore from "@/store/useStore";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -53,7 +59,8 @@ const page = () => {
   const { user, isLoaded } = useUser();
   const [resumeName, setResumeName] = useState("");
   const [buttonDisable, setButtonDisable] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("Basic");
+  const [sub, setSub] = useState();
 
   useEffect(() => {
     if (Object.keys(jobExperience).length === 0) {
@@ -62,6 +69,31 @@ const page = () => {
       setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    getUserDetails();
+  }, [user]);
+
+  const getUserDetails = async () => {
+    try {
+      const response = await fetch(
+        `${apiUrl}users/get-user?clerkId=${user.id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application-json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const data = await response.json();
+      setSub(data?.userData?.subscription);
+    } catch (error) {
+      console.error("Failed to get user details:", error);
+    }
+  };
 
   useEffect(() => {
     setResumeData({
@@ -166,15 +198,47 @@ const page = () => {
               Download
             </Button>
             <Dialog className="">
-              <DialogTrigger asChild>
-                <Button
-                  className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg space-x-2"
-                  variant="secondary"
-                >
-                  <FaRegBookmark />
-                  <span>Save</span>
-                </Button>
-              </DialogTrigger>
+              {/* {sub == "Professional" ||
+                (sub == "Premium" && (
+                  <DialogTrigger asChild>
+                    <Button
+                      className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg space-x-2"
+                      variant="secondary"
+                    >
+                      <FaRegBookmark />
+                      <span>Save</span>
+                    </Button>
+                  </DialogTrigger>
+                ))} */}
+              {sub == "Premium" || (sub == "Professional" && isLoaded) ? (
+                <DialogTrigger asChild>
+                  <Button
+                    className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg space-x-2"
+                    variant="secondary"
+                  >
+                    <FaRegBookmark />
+                    <span>Save</span>
+                  </Button>
+                </DialogTrigger>
+              ) : (
+                <HoverCard>
+                  <HoverCardTrigger>
+                    <Button
+                      className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg space-x-2"
+                      variant="secondary"
+                      disabled
+                    >
+                      <Lock width={16} />
+
+                      <span>Save</span>
+                    </Button>
+                  </HoverCardTrigger>
+                  <HoverCardContent>
+                    Get the premium subscription to save your resumes
+                  </HoverCardContent>
+                </HoverCard>
+              )}
+
               <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
                   <DialogTitle>Name Your Fame</DialogTitle>
