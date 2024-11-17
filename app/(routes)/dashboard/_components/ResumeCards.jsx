@@ -1,21 +1,55 @@
+"use client";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { VscDebugRestart } from "react-icons/vsc";
+import { useUser } from "@clerk/nextjs";
 
-const ResumeCards = () => {
+const ResumeCards = ({ resume }) => {
+  const { user, isLoaded, isSignedIn } = useUser();
+  const [resumeData, setResumeData] = useState();
+
+  useEffect(() => {
+    fetchResumeDetails();
+    console.log(resumeData);
+  }, [user]);
+
+  const fetchResumeDetails = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/resume/detail?resumeId=${resume}&clerkId=${user.id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch resume details");
+      }
+      const data = await response.json();
+      if (data.message !== "Resume found!!") {
+        throw new Error(data.message || "Unknown error");
+      }
+      setResumeData(data.resumeDetails);
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+    }
+  };
+
   return (
     <button className="relative group flex md:items-center md:justify-center">
-      <div className="absolute z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100 text-xl font-semibold tracking-widest">
-        <div className="flex gap-2 items-center ">
+      <div className="absolute z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100 text-xl font-semibold">
+        <div className="flex">
           <span className="transform transition-transform duration-500 delay-100 group-hover:-rotate-90">
-            <VscDebugRestart />
+            <VscDebugRestart className="text-sm" />
           </span>
-          <h1>Software</h1>
+          <h1 className="text-sm tracking-widest">{resumeData?.resumeTitle}</h1>
         </div>
       </div>
-      <div className="group w-60 h-40">
-        <Card className="flex items-center border w-60 h-40  group rounded-2xl mt-2 shadow-lg cursor-pointer  transition-all">
+      <div className="group ">
+        <Card className="flex items-center border w-52 h-36  group rounded-2xl mt-2 shadow-lg cursor-pointer  transition-all">
           <div className="flex justify-center w-full ">
             <Image
               src={
@@ -24,7 +58,7 @@ const ResumeCards = () => {
               height={400}
               width={250}
               alt="Previous-Resume-Picture"
-              className="h-36 w-24 group-hover:blur-xs duration-200"
+              className="h-32 w-20 group-hover:blur-xs duration-200"
             />
           </div>
         </Card>

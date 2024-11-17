@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import ResumeCards from "./ResumeCards";
 import { useUser } from "@clerk/nextjs";
+
 import LoadingResumeCard from "./LoadingResumeCard";
 
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -42,7 +43,6 @@ function Workspace() {
   }, [userInfo]);
 
   const fetchUserDetail = async () => {
-    console.log(clerkId);
     try {
       const response = await fetch(
         `http://localhost:5000/api/users/get-user?clerkId=${encodeURIComponent(
@@ -79,8 +79,8 @@ function Workspace() {
           Create a new resume
         </h2>
       </div>
-      <div className="grid gap-4 lg:w-[1000px] justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        <button onClick={onNewResume} className="w-60 h-40">
+      <div className="grid gap-2 lg:w-[1000px] justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <button onClick={onNewResume} className="w-52 h-36">
           <Card className="flex items-center border w-full h-full group rounded-2xl mt-2 shadow-lg cursor-pointer hover:bg-gray-50 transition-all">
             <div className="flex items-center group-hover:text-gray-500 mx-auto">
               <span>
