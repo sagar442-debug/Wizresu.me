@@ -179,7 +179,7 @@ function SideNav() {
                */}
               {user ? (
                 <Image
-                  className="rounded-full h-auto w-auto"
+                  className="rounded-full"
                   height={30}
                   width={24}
                   src={user?.imageUrl}
