@@ -11,7 +11,6 @@ const ResumeCards = ({ resume }) => {
 
   useEffect(() => {
     fetchResumeDetails();
-    console.log(resumeData);
   }, [user]);
 
   const fetchResumeDetails = async () => {
