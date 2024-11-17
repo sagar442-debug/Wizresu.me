@@ -51,7 +51,9 @@ const page = () => {
   const [resumeData, setResumeData] = useState();
   const chatOutput = useStore((state) => state.chatOutput);
   const { user, isLoaded } = useUser();
-  const [resumeName, setResumeName] = useState();
+  const [resumeName, setResumeName] = useState("");
+  const [buttonDisable, setButtonDisable] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (Object.keys(jobExperience).length === 0) {
@@ -114,6 +116,12 @@ const page = () => {
   }, [resumeName]);
 
   const uploadResumeDetails = async () => {
+    if (resumeName?.length < 3) {
+      setErrorMessage("Resume name must be at least 3 characters!");
+    }
+
+    // Disable the button to prevent multiple submissions
+    setButtonDisable(true);
     try {
       const response = await fetch(`${apiUrl}resume/save-resume`, {
         method: "POST",
@@ -123,6 +131,8 @@ const page = () => {
         body: JSON.stringify(resumeData),
       });
       if (!response.ok) {
+        setButtonDisable(false);
+        setErrorMessage(response.statusText);
         throw new Error(`Error: ${response.statusText}`);
       }
 
@@ -172,6 +182,22 @@ const page = () => {
                     Because even your resume deserves a title as legendary as
                     you are! 🏆✨
                   </DialogDescription>
+                  {resumeName.length < 3 ? (
+                    <DialogDescription>
+                      <p className="text-red-600">
+                        Resume Name must be at least 3 character long
+                      </p>
+                    </DialogDescription>
+                  ) : (
+                    ""
+                  )}
+                  {errorMessage ? (
+                    <DialogDescription>
+                      <p className="text-red-600">{errorMessage}</p>
+                    </DialogDescription>
+                  ) : (
+                    ""
+                  )}
                 </DialogHeader>
                 <div className="grid gap-4 py-4 ">
                   <div className="grid grid-cols-4 items-center justify-start gap-4">
@@ -193,15 +219,14 @@ const page = () => {
                     >
                       Save
                     </Button> */}
-                    <DialogClose asChild>
-                      <Button
-                        onClick={uploadResumeDetails}
-                        type="button"
-                        className="hover:bg-slate-100 shadow-lg rounded "
-                      >
-                        Save
-                      </Button>
-                    </DialogClose>
+                    <Button
+                      onClick={uploadResumeDetails}
+                      type="button"
+                      disabled={buttonDisable}
+                      className="hover:bg-slate-100 shadow-lg rounded "
+                    >
+                      Save
+                    </Button>
                   </div>
                 </DialogFooter>
               </DialogContent>
