@@ -15,6 +15,19 @@ import jsPDF from "jspdf";
 import html2pdf from "html2pdf.js";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { FaRegBookmark } from "react-icons/fa";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useTheme } from "next-themes";
 
 export const runtime = "edge";
 
@@ -77,13 +90,55 @@ const page = () => {
               )}
               Download
             </Button>
-            <Button
-              className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg space-x-2"
-              variant="secondary"
-            >
-              <FaRegBookmark />
-              <span>Save</span>
-            </Button>
+            <Dialog className="">
+              <DialogTrigger asChild>
+                <Button
+                  className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg space-x-2"
+                  variant="secondary"
+                >
+                  <FaRegBookmark />
+                  <span>Save</span>
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Name Your Fame</DialogTitle>
+                  <DialogDescription>
+                    Because even your resume deserves a title as legendary as
+                    you are! 🏆✨
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4 py-4 ">
+                  <div className="grid grid-cols-4 items-center justify-start gap-4">
+                    <Label htmlFor="name" className="text-right">
+                      Name
+                    </Label>
+                    <input
+                      type="text"
+                      className="outline-none p-2 border w-52 rounded"
+                    />
+                  </div>
+                </div>
+                <DialogFooter>
+                  <div className="flex justify-center w-full">
+                    {/* <Button
+                      className="hover:bg-slate-100 shadow-lg rounded text-lg "
+                      type="confirm"
+                    >
+                      Save
+                    </Button> */}
+                    <DialogClose asChild>
+                      <Button
+                        type="button"
+                        className="hover:bg-slate-100 shadow-lg rounded "
+                      >
+                        Save
+                      </Button>
+                    </DialogClose>
+                  </div>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </div>
         </CardContent>
       </Card>
