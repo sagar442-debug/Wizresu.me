@@ -314,7 +314,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
         <div className="flex border-b pb-4">
           {/* Left side */}
           <div className="left-side min-w-52 bg-[#dbdbdb] pl-4 pr-6 py-2">
-            <section className="contact section text-left border-b border-[#adadad] h-36">
+            <section className="contact section text-left  h-36">
               <h1 className="font-bold mb-2 tracking-widest">Contact</h1>
               <ul className="text-xs space-y-2 ">
                 <li className="flex gap-2 justify-start items-center">

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -28,14 +28,31 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useTheme } from "next-themes";
+import { useUser } from "@clerk/nextjs";
 
 export const runtime = "edge";
+
+const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const page = () => {
   const resumeRef = useStore((state) => state.resumeRef);
   const loading = useStore((state) => state.loading);
   const setLoading = useStore((state) => state.setLoading);
   const jobExperience = useStore((state) => state.jobExperience);
+  const jobTitle = useStore((state) => state.jobTitle);
+  const userFullName = useStore((state) => state.userFullName);
+  const userEmailAddress = useStore((state) => state.userEmailAddress);
+  const userPhoneNumber = useStore((state) => state.userPhoneNumber);
+  const userWebsite = useStore((state) => state.userWebsite);
+  const userAddress = useStore((state) => state.userAddress);
+  const userDegree = useStore((state) => state.userDegree);
+  const userLanguage = useStore((state) => state.userLanguage);
+  const jobDescription = useStore((state) => state.jobDescription);
+  const [resumeData, setResumeData] = useState();
+  const chatOutput = useStore((state) => state.chatOutput);
+  const { user, isLoaded } = useUser();
+  const [resumeName, setResumeName] = useState();
+
   useEffect(() => {
     if (Object.keys(jobExperience).length === 0) {
       setLoading(true);
@@ -43,6 +60,24 @@ const page = () => {
       setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    setResumeData({
+      clerkId: user?.id,
+      resumeTitle: resumeName,
+      jobTitle,
+      jobDescription,
+      userFullName,
+      userEmailAddress,
+      userPhoneNumber,
+      userWebsite,
+      userAddress,
+      userDegree,
+      userLanguage,
+      jobExperience,
+    });
+  }, [isLoaded, resumeName]);
+
   const inititalTap = useStore((state) => state.initialTap);
   const setInitialTap = useStore((state) => state.setInitialTap);
   const handleDownloadPdf = async (e) => {
@@ -67,6 +102,36 @@ const page = () => {
     });
     setInitialTap(false);
     setLoading(false);
+  };
+
+  const onResumeSave = (e) => {
+    e.preventDefault();
+    console.log(resumeData);
+  };
+
+  useEffect(() => {
+    console.log(resumeName);
+  }, [resumeName]);
+
+  const uploadResumeDetails = async () => {
+    try {
+      const response = await fetch(`${apiUrl}resume/save-resume`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(resumeData),
+      });
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      console.log("Resume uploaded successfully:", data);
+    } catch (error) {
+      console.error("Failed to upload resume:", error);
+    }
   };
 
   return (
@@ -115,7 +180,8 @@ const page = () => {
                     </Label>
                     <input
                       type="text"
-                      className="outline-none p-2 border w-52 rounded"
+                      onChange={(e) => setResumeName(e.target.value)}
+                      className="outline-none p-2 border w-60 rounded"
                     />
                   </div>
                 </div>
@@ -129,6 +195,7 @@ const page = () => {
                     </Button> */}
                     <DialogClose asChild>
                       <Button
+                        onClick={uploadResumeDetails}
                         type="button"
                         className="hover:bg-slate-100 shadow-lg rounded "
                       >
