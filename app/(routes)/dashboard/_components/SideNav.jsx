@@ -38,6 +38,7 @@ function SideNav() {
   };
 
   const signningOut = () => {
+    setRoute("signout");
     signOut({ redirectUrl: "/" });
   };
 
@@ -201,7 +202,12 @@ function SideNav() {
               onClick={() => signningOut()}
               className="flex gap-3 hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
             >
-              <LogOut width={32} />
+              {route == "signout" ? (
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <LogOut width={32} />
+              )}
+
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
