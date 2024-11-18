@@ -129,6 +129,7 @@ const page = () => {
       const pdf = new jsPDF("p", "mm", "a4");
       const imgWidth = 210; // A4 page width in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      console.log(imgHeight);
 
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight, null, "FAST");
 
@@ -140,12 +141,9 @@ const page = () => {
 
   const onResumeSave = (e) => {
     e.preventDefault();
-    console.log(resumeData);
   };
 
-  useEffect(() => {
-    console.log(resumeName);
-  }, [resumeName]);
+  useEffect(() => {}, [resumeName]);
 
   const uploadResumeDetails = async () => {
     if (resumeName?.length < 3) {

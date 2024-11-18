@@ -63,7 +63,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
               <ul className="text-xs space-y-2 ">
                 <li className="flex gap-2 items-center">
                   <FaPhone size={10} className="" />
-                  <span className="text-[10px]">
+                  <span className="text-xs">
                     {userPhoneNumber.length > "3"
                       ? userPhoneNumber
                       : "403-123-1234"}
@@ -81,7 +81,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                   <li className="flex gap-2 ">
                     <CiGlobe className="" />
 
-                    <span className="text-[10px]">{userWebsite}</span>
+                    <span className="text-xs">{userWebsite}</span>
                   </li>
                 ) : (
                   ""
@@ -91,7 +91,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                   <li className="flex gap-2 ">
                     <FaMapMarker size={10} className="mt-0.5" />
 
-                    <span className="text-[10px]"> {userAddress}</span>
+                    <span className="text-xs"> {userAddress}</span>
                   </li>
                 ) : (
                   ""
@@ -100,7 +100,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
             </section>
             <section className="skills-section text-left my-3 border-b pb-3 mb-2 border-[#adadad]">
               <h1 className="font-bold mb-2 tracking-widest">Skills</h1>
-              <p className="w-44 text-[10px]">
+              <p className="w-44 text-xs">
                 {skills?.map((skill, i) => (
                   <span>
                     {skill}
@@ -270,24 +270,29 @@ const ResumeTemplate = forwardRef((props, ref) => {
                     </span>
                     <ol className="text-xs tracking-tighter space-y-1">
                       <li>
+                        <span className="text-sm"> &#8226;</span>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit.
                       </li>
                       <li>
+                        <span className="text-sm"> &#8226;</span>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Iure vitae praesentium quis ab quod veniam optio tenetur
                         quam fuga. Est?
                       </li>
                       <li>
+                        <span className="text-sm"> &#8226;</span>
                         Lorem ipsum dolor, sit amet consectetur adipisicing
                         elit. Iure, accusamus obcaecati eaque ex dolorum
                       </li>
                       <li>
+                        <span className="text-sm"> &#8226;</span>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Voluptatum, molestiae harum provident nostrum incidunt
                         suscipit dolorem, repellat animi veniam similique?
                       </li>
                       <li>
+                        <span className="text-sm"> &#8226;</span>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit. Eaque, qui!
                       </li>
@@ -302,7 +307,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
         </div>
       </div>
       <div ref={resumeRef} className={initialTap ? "" : "hidden"}>
-        <div className="title pb-5 mb-2 border-b">
+        <div className="title py-5 mb-2  border-b">
           <h1 className="text-2xl tracking-widest">
             {" "}
             {userFullName.length > 3 ? userFullName : "Sagar Sapkota"}
@@ -311,7 +316,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
             {jobTitle.length > 3 ? jobTitle : "Software developer"}
           </p>
         </div>
-        <div className="flex border-b pb-4">
+        <div className="flex pb-4 border-b">
           {/* Left side */}
           <div className="left-side min-w-52 bg-[#dbdbdb] pl-4 pr-6 py-2">
             <section className="contact section text-left  h-36">
@@ -461,15 +466,15 @@ const ResumeTemplate = forwardRef((props, ref) => {
               </p>
             </div>
             <div className="profile mt-3 text-left ">
-              <h1 className="text-sm font-semibold tracking-wider ">
+              <h1 className="text-base font-semibold tracking-wider ">
                 Work Experience
               </h1>
 
               {dataJobExperience?.map((exp, i) => (
                 <div className="experience-1 mb-10">
-                  <h1 className="text-sm my-2">{exp.jobTitle}</h1>
+                  <h1 className="text-base my-2">{exp.jobTitle}</h1>
                   <span className="flex justify-between my-2 mr-4">
-                    <h1 className="text-xs tracking-tighter">
+                    <h1 className="text-sm tracking-tighter">
                       {exp.companyName}
                     </h1>
                     <h1 className="text-xs">
@@ -489,6 +494,11 @@ const ResumeTemplate = forwardRef((props, ref) => {
               {Object.keys(chatOutput).length == 0 ? (
                 <>
                   <div className="experience-1 mb-10">
+                    <h1 className="text-base my-2">Your Job Position Here</h1>
+                    <span className="flex justify-between my-2 mr-4">
+                      <h1 className="text-sm tracking-tighter">Company Name</h1>
+                      <h1 className="text-xs">2020-2024</h1>
+                    </span>
                     <ol className="text-xs tracking-tighter space-y-1">
                       <li>
                         <span className="text-sm"> &#8226;</span>
@@ -520,31 +530,36 @@ const ResumeTemplate = forwardRef((props, ref) => {
                     </ol>
                   </div>
                   <div className="experience-1 mb-4">
-                    <h1 className="text-sm my-2">Your Job Position Here</h1>
+                    <h1 className="text-base my-2">Your Job Position Here</h1>
                     <span className="flex justify-between my-2 mr-4">
-                      <h1 className="text-xs tracking-tighter">Company Name</h1>
+                      <h1 className="text-sm tracking-tighter">Company Name</h1>
                       <h1 className="text-xs">2020-2024</h1>
                     </span>
                     <ol className="text-xs tracking-tighter space-y-1">
                       <li>
+                        <span className="text-sm"> &#8226;</span>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit.
                       </li>
                       <li>
+                        <span className="text-sm"> &#8226;</span>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Iure vitae praesentium quis ab quod veniam optio tenetur
                         quam fuga. Est?
                       </li>
                       <li>
+                        <span className="text-sm"> &#8226;</span>
                         Lorem ipsum dolor, sit amet consectetur adipisicing
                         elit. Iure, accusamus obcaecati eaque ex dolorum
                       </li>
                       <li>
+                        <span className="text-sm"> &#8226;</span>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Voluptatum, molestiae harum provident nostrum incidunt
                         suscipit dolorem, repellat animi veniam similique?
                       </li>
                       <li>
+                        <span className="text-sm"> &#8226;</span>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit. Eaque, qui!
                       </li>
