@@ -100,7 +100,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
             </section>
             <section className="skills-section text-left my-3 border-b pb-3 mb-2 border-[#adadad]">
               <h1 className="font-bold mb-2 tracking-widest">Skills</h1>
-              <p className="w-44 text-xs">
+              <p className="w-44 text-[10px] space-x-2">
                 {skills?.map((skill, i) => (
                   <span>
                     {skill}
@@ -367,7 +367,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
             </section>
             <section className="skills-section text-left my-3 border-b pb-3 mb-2 border-[#adadad]">
               <h1 className="font-bold mb-2 tracking-widest">Skills</h1>
-              <p className="w-44 text-xs">
+              <p className="w-44 text-[10px] space-x-2">
                 {skills?.map((skill, i) => (
                   <span>
                     {skill}
@@ -442,7 +442,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                 {userLanguage.map((language, i) => (
                   <li className="flex gap-2 items-center justify-between  ">
                     <span>{language.languageName}</span>
-                    <div className="w-full bg-gray-700/20 rounded-full h-2">
+                    <div className="w-full bg-gray-700/20 rounded-full h-2 pt-3">
                       <div
                         className="bg-gray-500 h-2 rounded-full transition-all duration-500 ease-in-out"
                         style={{ width: `${language.languagePercentage}%` }}
