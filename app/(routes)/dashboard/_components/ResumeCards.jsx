@@ -18,7 +18,7 @@ const ResumeCards = ({ resume }) => {
   const fetchResumeDetails = async () => {
     try {
       const response = await fetch(
-        `${apiUrl}/resume/detail?resumeId=${resume}&clerkId=${user.id}`,
+        `${apiUrl}resume/detail?resumeId=${resume}&clerkId=${user.id}`,
         {
           method: "GET",
           headers: {
