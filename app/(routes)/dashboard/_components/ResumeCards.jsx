@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 import { VscDebugRestart } from "react-icons/vsc";
 import { useUser } from "@clerk/nextjs";
 
+const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 const ResumeCards = ({ resume }) => {
   const { user, isLoaded, isSignedIn } = useUser();
   const [resumeData, setResumeData] = useState();
@@ -16,7 +18,7 @@ const ResumeCards = ({ resume }) => {
   const fetchResumeDetails = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/resume/detail?resumeId=${resume}&clerkId=${user.id}`,
+        `${apiUrl}/resume/detail?resumeId=${resume}&clerkId=${user.id}`,
         {
           method: "GET",
           headers: {
