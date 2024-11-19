@@ -8,17 +8,17 @@ const Footer = () => {
       <div className="text-white mx-auto max-w-7xl">
         <div className="pt-10 flex flex-col items-center md:items-start md:flex-row md:flex md:justify-between">
           <div className="">
-            <div className="logo flex gap-2 items-center ">
-              <Image
-                src={"/Favicon.png"}
-                height={48}
-                width={48}
-                alt="wizresu-logo"
-              />
-              <h1 className="text-2xl font-semibold text-gray-300">
-                WizResu.me
-              </h1>
-            </div>
+            <Link href={"/"}>
+              <div className="logo flex gap-2 items-center ">
+                <Image
+                  src={"/Favicon.png"}
+                  height={36}
+                  width={36}
+                  alt="wizresu-logo"
+                />
+                <h1 className="text-xl font-semibold ">WizResu.me</h1>
+              </div>
+            </Link>
             <div className="mt-2 w-72 text-sm text-gray-300">
               <p>
                 WizResume is a web app that lets you create and customize
@@ -47,7 +47,7 @@ const Footer = () => {
                   <Link href="/privacy-policy">Privacy Policy</Link>
                 </li>
                 <li className="hover:underline">
-                  <Link href="#pricing">Terms & Conditions</Link>
+                  <Link href="/terms&conditions">Terms & Conditions</Link>
                 </li>
               </ul>
             </div>

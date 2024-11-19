@@ -1,7 +1,50 @@
+"use client";
 import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
+import { loadStripe } from "@stripe/stripe-js";
+import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
+
+const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const Premium = () => {
+  const router = useRouter();
+  const { user, isLoaded, isSignedIn } = useUser();
+  const item = {
+    name: "Premium Wizresume",
+    price: 299,
+    image: "https://via.placeholder.com/150",
+    quantity: 1,
+  };
+
+  const handleCheckout = async () => {
+    if (!user) {
+      router.push("/sign-up");
+      return;
+    }
+
+    const stripe = await stripePromise;
+
+    const response = await fetch(`${apiUrl}stripe/create-checkout-session`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ item }),
+    });
+
+    const { sessionId } = await response.json();
+
+    // Redirect to Stripe Checkout
+    const result = await stripe.redirectToCheckout({ sessionId });
+    if (result.error) {
+      console.error(result.error.message);
+    }
+  };
   return (
     <div className="px-12 py-6 space-y-5 bg-[#242842] text-white w-[400px] md:rounded-xl shadow-xl ">
       <div>
@@ -40,7 +83,10 @@ const Premium = () => {
         </ul>
       </div>
       <div className="button text-center">
-        <button className=" p-2 mt-10 rounded-2xl text-xl text-[#49305e]  px-10 bg-[white]  font-semibold hover:bg-gray-300 transition-all duration-200">
+        <button
+          onClick={handleCheckout}
+          className=" p-2 mt-10 rounded-2xl text-xl text-[#49305e]  px-10 bg-[white]  font-semibold hover:bg-gray-300 transition-all duration-200"
+        >
           Subscribe
         </button>
       </div>

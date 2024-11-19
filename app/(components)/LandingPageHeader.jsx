@@ -1,15 +1,21 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Logo from "./Logo";
 import ThemeButton from "./ThemeButton";
 import Link from "next/link";
 import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
+import Loader from "../(routes)/dashboard/_components/Loader";
 // #2a2663
 
 const LandingPageHeader = () => {
   const { isLoggenIn, user } = useUser();
+  const [loading, setLoading] = useState(false);
+
+  const onDashboardClick = () => {
+    setLoading(true);
+  };
   return (
     <div className="relative max-w-7xl  md:mx-auto px-5 py-10 lg:p-0 md:px-0 bg-[#F3C168] lg:bg-transparent mb:pb-5 lg:pb-0">
       <div className="absolute hidden lg:block -z-10 bg-[#F3C168] sm:-left-[40rem] sm:-top-[150rem] lg:-top-[155rem] xl:-top-[150rem] xl:-left-[50rem] md:-top-[155rem] md:-left-[60rem] rounded-full h-[200rem] w-[200rem] "></div>
@@ -55,14 +61,24 @@ const LandingPageHeader = () => {
           </div>
           <div className="flex sm:gap-2 md:gap-6  items-center">
             {user ? (
-              <Link href={"/dashboard"}>
+              <Link onClick={onDashboardClick} href={"/dashboard"}>
                 {/* <Button
                 className="rounded hover:text-white shadow-none text-[#2a2663] text-xl "
                 variant=""
               >
                 Dashboard
               </Button> */}
-                <ThemeButton text="Dashboard" />
+
+                <button
+                  disabled={loading}
+                  className={`font-semibold ${
+                    loading ? "opacity-60" : ""
+                  } flex items-center duration-200 rounded-full sm:text-sm lg:text-xl px-4 py-1 lg:py-1 bg-gradient-to-r from-[#7DA7C5] to-[#949C5C] text-white hover:shadow-md`}
+                >
+                  {loading ? <Loader /> : ""}
+
+                  <span>Dashboard</span>
+                </button>
               </Link>
             ) : (
               <Link href={"/sign-in"}>
