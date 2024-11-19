@@ -14,6 +14,7 @@ const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 const Exclusive = () => {
   const router = useRouter();
   const { user, isLoaded, isSignedIn } = useUser();
+  const email = user?.emailAddresses[0].emailAddress;
   const item = {
     name: "Premium Wizresume",
     price: 499,
@@ -33,7 +34,11 @@ const Exclusive = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ item }),
+      body: JSON.stringify({
+        item,
+        userEmail: email,
+        subscriptionId: "professional",
+      }),
     });
 
     const { sessionId } = await response.json();
