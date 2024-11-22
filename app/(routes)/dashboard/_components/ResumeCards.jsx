@@ -40,31 +40,35 @@ const ResumeCards = ({ resume }) => {
   };
 
   return (
-    <button className="relative group flex md:items-center md:justify-center">
-      <div className="absolute z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100 text-xl font-semibold">
-        <div className="flex">
-          <span className="transform transition-transform duration-500 delay-100 group-hover:-rotate-90">
-            <VscDebugRestart className="text-sm" />
-          </span>
-          <h1 className="text-sm tracking-widest">{resumeData?.resumeTitle}</h1>
-        </div>
-      </div>
-      <div className="group ">
-        <Card className="flex items-center border w-52 h-36  group rounded-2xl mt-2 shadow-lg cursor-pointer  transition-all">
-          <div className="flex justify-center w-full ">
-            <Image
-              src={
-                "https://cdn-blog.novoresume.com/articles/modern-resume-templates/modern-resume-templates.png"
-              }
-              height={400}
-              width={250}
-              alt="Previous-Resume-Picture"
-              className="h-32 w-20 group-hover:blur-xs duration-200"
-            />
+    <div className="">
+      <button className="relative group flex md:items-center items-center justify-center md:justify-center">
+        <div className="absolute z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100 text-xl font-semibold">
+          <div className="flex">
+            <span className="transform transition-transform duration-500 delay-100 group-hover:-rotate-90">
+              <VscDebugRestart className="text-sm" />
+            </span>
+            <h1 className="text-sm tracking-widest">
+              {resumeData?.resumeTitle}
+            </h1>
           </div>
-        </Card>
-      </div>
-    </button>
+        </div>
+        <div className="group ">
+          <Card className="flex items-center border w-52 h-36  group rounded-2xl mt-2 shadow-lg cursor-pointer  transition-all">
+            <div className="flex justify-center w-full ">
+              <Image
+                src={
+                  "https://cdn-blog.novoresume.com/articles/modern-resume-templates/modern-resume-templates.png"
+                }
+                height={400}
+                width={250}
+                alt="Previous-Resume-Picture"
+                className="h-32 w-20 group-hover:blur-xs duration-200"
+              />
+            </div>
+          </Card>
+        </div>
+      </button>
+    </div>
   );
 };
 

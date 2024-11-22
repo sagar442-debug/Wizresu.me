@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
 
@@ -31,9 +32,11 @@ const BasicCard = () => {
         </ul>
       </div>
       <div className="button text-center">
-        <button className=" p-2 mt-10 rounded-2xl hover:shadow-[10px_8px_0px_0px_rgba(36,40,66,0.4)] text-xl text-[#49305e] border-2 border-[#49305e] hover:bg-[#49305e] hover:text-white px-10 bg-[white]  font-semibold transition-all duration-200">
-          Subscribe
-        </button>
+        <Link href={"/sign-in"}>
+          <button className=" p-2 mt-10 rounded-2xl hover:shadow-[10px_8px_0px_0px_rgba(36,40,66,0.4)] text-xl text-[#49305e] border-2 border-[#49305e] hover:bg-[#49305e] hover:text-white px-10 bg-[white]  font-semibold transition-all duration-200">
+            Subscribe
+          </button>
+        </Link>
       </div>
     </div>
   );

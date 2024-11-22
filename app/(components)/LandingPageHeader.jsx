@@ -107,13 +107,29 @@ const LandingPageHeader = () => {
             your <strong>ATS</strong> score to help you land the job.
           </p>
 
-          <Link
-            href={"/sign-up"}
-            className="font-semibold  hover:shadow-lg md:text-xl px-3 py-1  md:px-4 md:py-2 rounded-full text-white bg-gradient-to-r from-[#7DA7C5] duration-200
+          {user ? (
+            <Link onClick={onDashboardClick} href={"/dashboard"}>
+              <button
+                disabled={loading}
+                className={`font-semibold ${
+                  loading ? "opacity-60" : ""
+                } font-semibold flex items-center hover:shadow-lg md:text-xl px-3 py-1  md:px-4 md:py-2 rounded-full text-white bg-gradient-to-r from-[#7DA7C5] duration-200
+     to-[#949C5C] bg-[length:200%_200%] bg-left transition-all  ease-out hover:bg-right`}
+              >
+                {loading ? <Loader /> : ""}
+
+                <span>Go To Dashboard</span>
+              </button>
+            </Link>
+          ) : (
+            <Link
+              href={"/sign-up"}
+              className="font-semibold  hover:shadow-lg md:text-xl px-3 py-1  md:px-4 md:py-2 rounded-full text-white bg-gradient-to-r from-[#7DA7C5] duration-200
      to-[#949C5C] bg-[length:200%_200%] bg-left transition-all  ease-out hover:bg-right"
-          >
-            Get Started Here
-          </Link>
+            >
+              Get Started Here
+            </Link>
+          )}
         </div>
         <Image
           src={"/resume6.jpg"}
