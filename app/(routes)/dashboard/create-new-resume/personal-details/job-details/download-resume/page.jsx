@@ -308,7 +308,9 @@ const page = () => {
                     </Button>
                   </DialogTrigger>
                 ))} */}
-              {sub == "Premium" || (sub == "Professional" && isLoaded) ? (
+              {sub == process.env.NEXT_PUBLIC_PREMIUM_PRICE ||
+              (sub == process.env.NEXT_PUBLIC_PROFESSIONAL_PRICE &&
+                isLoaded) ? (
                 <DialogTrigger asChild>
                   <Button
                     className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg space-x-2"
