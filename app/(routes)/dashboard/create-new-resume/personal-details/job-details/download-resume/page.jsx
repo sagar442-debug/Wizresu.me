@@ -114,27 +114,127 @@ const page = () => {
 
   const inititalTap = useStore((state) => state.initialTap);
   const setInitialTap = useStore((state) => state.setInitialTap);
+  //   const handleDownloadPdf = async (e) => {
+  //     setLoading(true);
+  //     e.preventDefault();
+  //     setInitialTap(true);
+
+  //     await new Promise((resolve) => setTimeout(resolve, 200));
+  //     const input = resumeRef.current;
+
+  //     if (!input) {
+  //         console.error("resumeRef is not set or is invalid.");
+  //         setLoading(false);
+  //         return;
+  //     }
+
+  //     await html2canvas(input, { scale: 3 }).then((canvas) => {
+  //         const imgData = canvas.toDataURL("image/png");
+  //         const pdf = new jsPDF("p", "mm", "a4");
+
+  //         // A4 dimensions in pixels at 96dpi
+  //         const pdfWidth = 210; // in mm
+  //         const pdfHeight = 297; // in mm
+
+  //         const canvasWidth = canvas.width;
+  //         const canvasHeight = canvas.height;
+
+  //         // Convert canvas height to corresponding height in mm
+  //         const imgHeight = (canvasHeight * pdfWidth) / canvasWidth;
+
+  //         // Calculate the number of pages needed
+  //         let heightLeft = imgHeight; // Remaining content height
+  //         let position = 0; // Initial position
+
+  //         // Add the first page
+  //         pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight > pdfHeight ? pdfHeight : imgHeight);
+
+  //         heightLeft -= pdfHeight;
+
+  //         // Add additional pages if content overflows
+  //         while (heightLeft > 0) {
+  //             position -= pdfHeight; // Move to the next section
+  //             pdf.addPage();
+  //             pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight > pdfHeight ? pdfHeight : heightLeft);
+  //             heightLeft -= pdfHeight;
+  //         }
+
+  //         pdf.save("resume.pdf");
+  //     });
+
+  //     setInitialTap(false);
+  //     setLoading(false);
+  // };
   const handleDownloadPdf = async (e) => {
     setLoading(true);
     e.preventDefault();
     setInitialTap(true);
+
     await new Promise((resolve) => setTimeout(resolve, 200));
     const input = resumeRef.current;
+
     if (!input) {
       console.error("resumeRef is not set or is invalid.");
+      setLoading(false);
       return;
     }
-    await html2canvas(input, { scale: 6 }).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      const imgWidth = 210; // A4 page width in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      console.log(imgHeight);
 
-      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight, null, "FAST");
+    const pdf = new jsPDF("p", "mm", "a4");
+    const pdfWidth = 210; // A4 width in mm
+    const pdfHeight = 297; // A4 height in mm
+    const pdfAspectRatio = pdfHeight / pdfWidth; // Aspect ratio of A4
 
-      pdf.save("resume.pdf");
-    });
+    const canvas = await html2canvas(input, { scale: 3 }); // Higher scale for better quality
+    const imgWidth = pdfWidth;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width; // Scale image height proportionally
+
+    const pageHeightInPx = (canvas.width / pdfWidth) * pdfHeight; // Height of one PDF page in pixels
+    let heightLeft = canvas.height; // Total canvas height in pixels
+    let position = 0; // Start at the top
+
+    while (heightLeft > 0) {
+      // Render the current portion of the canvas
+      const canvasPage = document.createElement("canvas");
+      canvasPage.width = canvas.width;
+      canvasPage.height = Math.min(pageHeightInPx, heightLeft); // Current page height in pixels
+
+      const ctx = canvasPage.getContext("2d");
+      ctx.drawImage(
+        canvas,
+        0,
+        position,
+        canvas.width,
+        canvasPage.height,
+        0,
+        0,
+        canvas.width,
+        canvasPage.height
+      );
+
+      // Convert the page canvas to an image
+      const imgData = canvasPage.toDataURL("image/png");
+
+      // Add the image to the PDF
+      pdf.addImage(
+        imgData,
+        "PNG",
+        0,
+        0,
+        imgWidth,
+        (canvasPage.height * imgWidth) / canvasPage.width
+      );
+
+      // Move to the next portion
+      heightLeft -= pageHeightInPx;
+      position += pageHeightInPx;
+
+      // Add a new page for the next portion (if necessary)
+      if (heightLeft > 0) {
+        pdf.addPage();
+      }
+    }
+
+    pdf.save("resume.pdf");
     setInitialTap(false);
     setLoading(false);
   };

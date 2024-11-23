@@ -43,9 +43,9 @@ const ResumeCards = ({ resume }) => {
     <div className="">
       <button className="relative group flex md:items-center items-center justify-center md:justify-center">
         <div className="absolute z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100 text-xl font-semibold">
-          <div className="flex">
-            <span className="transform transition-transform duration-500 delay-100 group-hover:-rotate-90">
-              <VscDebugRestart className="text-sm" />
+          <div className="flex flex-col items-center opacity-70">
+            <span className="transform transition-transform duration-500 delay-100 group-hover:-rotate-90 ">
+              <VscDebugRestart className="text-base" />
             </span>
             <h1 className="text-sm tracking-widest">
               {resumeData?.resumeTitle}
