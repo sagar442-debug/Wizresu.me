@@ -16,6 +16,7 @@ import { LogOut } from "lucide-react";
 import { useClerk } from "@clerk/nextjs";
 import Image from "next/image";
 import { CircleUser } from "lucide-react";
+import { ScanText } from "lucide-react";
 
 import { ReloadIcon } from "@radix-ui/react-icons";
 
@@ -160,16 +161,16 @@ function SideNav() {
               </span>
             </Link>
             <Link
-              href={"/dashboard"}
+              href={"/dashboard/ats"}
               className="flex gap-3  hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
             >
-              <History width={30} className="" />
+              <ScanText width={30} className="" />
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
                 } lg:text-base xl:text-xl`}
               >
-                History
+                ATS
               </span>
             </Link>
             <Link

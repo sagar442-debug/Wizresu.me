@@ -1,0 +1,56 @@
+{
+  "resumeDetails": {
+    "_id": "123e4567e89b12d3a456426614174000",
+    "clerkId": "user_xg5PHTz7wFp68RtK8dPX7mCB9Zq",
+    "resumeTitle": "Lead Software Engineer",
+    "userFullName": "John Doe",
+    "userEmailAddress": "john.doe@example.com",
+    "userPhoneNumber": "+1-555-123-4567",
+    "userAddress": "123 Elm Street, San Francisco, California, USA",
+    "userWebsite": "www.johndoe.dev",
+    "userDegree": [
+      {
+        "degreeName": "Bachelor of Computer Science",
+        "degreeInstitution": "Stanford University",
+        "degreeEndDate": "2022-06-15"
+      },
+      {
+        "degreeName": "Master of Artificial Intelligence",
+        "degreeInstitution": "MIT",
+        "degreeEndDate": "2024-05-20"
+      }
+    ],
+    "userLanguage": [
+      {
+        "languageName": "English",
+        "languagePercentage": "100"
+      },
+      {
+        "languageName": "Spanish",
+        "languagePercentage": "85"
+      },
+      {
+        "languageName": "German",
+        "languagePercentage": "70"
+      }
+    ],
+    "jobExperience": [
+      {
+        "jobTitle": "Software Engineer",
+        "jobCompany": "TechNova Inc.",
+        "jobStartDate": "2020-07-01",
+        "jobEndDate": "2022-12-31",
+        "jobDescription": "Developed scalable web applications using React and Node.js. Improved application performance by 40% through optimization techniques."
+      },
+      {
+        "jobTitle": "Senior Software Developer",
+        "jobCompany": "CodeCraft Labs",
+        "jobStartDate": "2023-01-01",
+        "jobEndDate": "2024-06-30",
+        "jobDescription": "Led a team of developers to build a cloud-native application. Designed CI/CD pipelines and implemented infrastructure as code using AWS."
+      }
+    ],
+    "jobDescription": "As a Lead Software Engineer, you will drive innovation and oversee development in cutting-edge projects. Responsibilities include designing architectures, mentoring junior engineers, and ensuring the delivery of high-quality software. Join our diverse, inclusive team and shape the future of technology.",
+    "__v": 0
+  }
+}

@@ -15,16 +15,23 @@ const useStore = create((set) => ({
   userDegree: [],
   userLanguage: [],
   jobExperience: [],
+  skills: [],
+  objective: "",
   chatOutput: {},
   loading: false,
   resumeRef: null,
   initialTap: false,
+  atsScore: null,
 
   // Actions to update the state
   setInitialTap: (tap) => set((state) => ({ initialTap: tap })),
   setResumeRef: (ref) => set((state) => ({ resumeRef: ref })),
   setLoading: (loading) => set((state) => ({ loading: loading })),
   setJobTitle: (title) => set((state) => ({ jobTitle: title })),
+  setObjective: (objective) =>
+    set((state) => ({
+      objective: objective,
+    })),
   setJobDescription: (description) =>
     set((state) => ({ jobDescription: description })),
   setPreviousPage: (page) => set((state) => ({ previousPage: page })),
@@ -33,6 +40,7 @@ const useStore = create((set) => ({
   setUserPhoneNumber: (phone) => set((state) => ({ userPhoneNumber: phone })),
   setUserWebsite: (website) => set((state) => ({ userWebsite: website })),
   setUserAddress: (address) => set((state) => ({ userAddress: address })),
+  setAtsScore: (score) => set((state) => ({ atsScore: score })),
   setUserDegree: (degree) =>
     set((state) => ({
       userDegree: [
@@ -44,6 +52,12 @@ const useStore = create((set) => ({
           shortDesc: degree.shortDesc,
         },
       ],
+    })),
+  setSkills: (skill) =>
+    set((state) => ({
+      skills: state.skills.includes(skill)
+        ? state.skills
+        : [...state.skills, skill],
     })),
   setUserLanguage: (language) =>
     set((state) => ({

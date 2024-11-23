@@ -18,7 +18,10 @@ export const useDataGenerator = () => {
   // Function to generate data using GoogleGenerativeAI
   const generateData = async () => {
     const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({
+      model: "gemini-1.5-flash",
+      temperature: 0,
+    });
     const prompt = `The user ${userFullName} has a passion for ${jobTitle}. Below is their job experience. Use this data as given, without placeholders unless information is missing.
 
 Job Experience:
@@ -41,7 +44,7 @@ Generate a JSON object that reflects the user's experience with the following st
 - **jobExperience**: An array where each item is an object with:
   - **jobTitle**: Provided job title.
   - **companyName**: Provided company name.
-  - **userRoleDescription**: An array of 4+ bullet points summarizing key responsibilities and achievements from jobDescription.
+  - **userRoleDescription**: An array of 3-5 bullet points summarizing key responsibilities and achievements from jobDescription.
   - **startDate**: Provided start date (jobStartDate).
   - **endDate**: Provided end date (jobEndDate).
 

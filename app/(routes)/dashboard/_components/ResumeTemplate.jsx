@@ -29,8 +29,12 @@ const ResumeTemplate = forwardRef((props, ref) => {
   const chatOutput = useStore((state) => state.chatOutput);
 
   const [dataJobExperience, setDataJobExperience] = useState();
-  const [objective, setObjective] = useState("");
-  const [skills, setSkills] = useState([]);
+  const objective = useStore((state) => state.objective);
+  const setObjective = useStore((state) => state.setObjective);
+  const skills = useStore((state) => state.skills);
+  const setSkills = useStore((state) => state.setSkills);
+  // const [objective, setObjective] = useState("");
+  // const [skills, setSkills] = useState([]);
 
   useEffect(() => {
     if (chatOutput) {

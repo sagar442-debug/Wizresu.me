@@ -55,6 +55,8 @@ const page = () => {
   const userLanguage = useStore((state) => state.userLanguage);
   const jobDescription = useStore((state) => state.jobDescription);
   const [resumeData, setResumeData] = useState();
+  const objective = useStore((state) => state.objective);
+  const skills = useStore((state) => state.skills);
   const chatOutput = useStore((state) => state.chatOutput);
   const { user, isLoaded } = useUser();
   const [resumeName, setResumeName] = useState("");
@@ -99,6 +101,8 @@ const page = () => {
     setResumeData({
       clerkId: user?.id,
       resumeTitle: resumeName,
+      skills,
+      objective,
       jobTitle,
       jobDescription,
       userFullName,
