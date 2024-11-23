@@ -367,9 +367,9 @@ const ResumeTemplate = forwardRef((props, ref) => {
             </section>
             <section className="skills-section text-left my-3 border-b pb-3 mb-2 border-[#adadad]">
               <h1 className="font-bold mb-2 tracking-widest">Skills</h1>
-              <p className="w-44 text-[10px] space-x-2">
+              <p className="w-44 text-[10px] ">
                 {skills?.map((skill, i) => (
-                  <span>
+                  <span className="">
                     {skill}
                     {i < skills.length - 1 && ", "}
                   </span>

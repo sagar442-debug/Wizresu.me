@@ -11,6 +11,7 @@ const stripePromise = loadStripe(
 );
 
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const professionalKey = process.env.NEXT_PUBLIC_PROFESSIONAL_PRICE;
 
 const Exclusive = () => {
   const router = useRouter();
@@ -40,7 +41,7 @@ const Exclusive = () => {
       body: JSON.stringify({
         item,
         userEmail: email,
-        subscriptionId: "professional",
+        subscriptionId: professionalKey,
       }),
     });
 

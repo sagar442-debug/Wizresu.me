@@ -11,6 +11,7 @@ const stripePromise = loadStripe(
 );
 
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+const premiumKey = process.env.NEXT_PUBLIC_PREMIUM_PRICE;
 
 const Premium = () => {
   const router = useRouter();
@@ -23,7 +24,6 @@ const Premium = () => {
     image: "https://via.placeholder.com/150",
     quantity: 1,
   };
-
   const handleCheckout = async () => {
     setLoading(true);
     if (!user) {
@@ -41,7 +41,7 @@ const Premium = () => {
       body: JSON.stringify({
         item,
         userEmail: email,
-        subscriptionId: "premium",
+        subscriptionId: premiumKey,
       }),
     });
 

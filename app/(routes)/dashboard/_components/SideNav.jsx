@@ -45,6 +45,7 @@ function SideNav() {
   const onRouting = (routeName) => {
     if (pathname !== `${routeName}`) {
       setRoute(routeName);
+      console.log(routeName);
     } else {
       setRoute("");
     }
@@ -98,7 +99,7 @@ function SideNav() {
           >
             <Link
               href={"/dashboard"}
-              onClick={() => onRouting("dashboard")}
+              onClick={() => onRouting("/dashboard")}
               className={`${
                 lgScreen ? "p-2 lg:w-10" : "lg:p-4 "
               } relative flex lg:gap-0 xl:gap-3 p-2 sm:p-2 hover:shadow-md transition-all xl:p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden`}
@@ -118,7 +119,7 @@ function SideNav() {
             </Link>
             <Link
               href={"/dashboard"}
-              onClick={() => onRouting("dashboard")}
+              onClick={() => onRouting("/dashboard")}
               className={`flex gap-3 hover:shadow-md transition-all p-4 ${
                 pathname.startsWith("/dashboard/create-new-resume")
                   ? "font-bold"
