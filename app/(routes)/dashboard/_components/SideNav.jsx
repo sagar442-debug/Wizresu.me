@@ -177,18 +177,17 @@ function SideNav() {
               href={"/dashboard/user-profile"}
               className="flex gap-3  hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
             >
-              {/*
-               */}
+              {/* <CircleUser width={24} height={30} /> */}
               {user ? (
                 <Image
-                  className="rounded-full"
+                  className="rounded-full h-[30px] w-[30px] p-0 "
                   height={30}
-                  width={24}
+                  width={30}
                   src={user?.imageUrl}
                   alt="profile-picture"
                 />
               ) : (
-                <CircleUser width={30} />
+                <CircleUser width={24} height={30} />
               )}
 
               <span

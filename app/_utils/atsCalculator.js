@@ -112,16 +112,13 @@ export const useAtsCalculator = () => {
           "score": 5
         }
       ],
-      "totalScore": 0,
-      "percentageMatch": 0
+      "totalKeywordWeight": 100,
+      "userKeywordsWeight":20,
+      "percentageMatch": 20
       "recommendedKeywords":["","",""],
       "recommendedSentences:["Gained proficiency in Svelte framework.","Learned about building CI/CD pipeline",""]
     }
-        Before giving output make to mark according to following criterias :
-        Keyword Matching: 40%
-        Formatting and Structure: 20%
-        Action Verb Usage: 20%
-        Quantifiable Results: 20%
+        
 
   `;
 
