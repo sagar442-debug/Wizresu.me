@@ -121,6 +121,9 @@ export const useAtsCalculator = () => {
       "recommendedSentences:["","","","","","",""]
 
     }
+
+    The recommended sentences should be the sentences user should include in their resume which are only relevant to their previous work experience.
+
  **High priority: if the same resume was provided provide the same output each time.**        
 
   `;
