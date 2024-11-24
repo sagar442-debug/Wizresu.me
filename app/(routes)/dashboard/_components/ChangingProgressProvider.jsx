@@ -2,26 +2,22 @@ import React from "react";
 
 class ChangingProgressProvider extends React.Component {
   static defaultProps = {
-    interval: 100, // Interval in milliseconds (100ms will give a faster animation)
+    interval: 100, // Interval in milliseconds
   };
 
   state = {
     currentValue: 0, // Start at 0
   };
 
+  componentDidUpdate(prevProps) {
+    // Restart animation if the `value` prop changes
+    if (prevProps.value !== this.props.value) {
+      this.startAnimation();
+    }
+  }
+
   componentDidMount() {
-    // Start an interval to increment the progress value
-    this.intervalId = setInterval(() => {
-      // If currentValue is less than the target value, increment by 1
-      if (this.state.currentValue < this.props.value) {
-        this.setState((prevState) => ({
-          currentValue: prevState.currentValue + 1,
-        }));
-      } else {
-        // Clear the interval once the target value is reached
-        clearInterval(this.intervalId);
-      }
-    }, this.props.interval);
+    this.startAnimation();
   }
 
   componentWillUnmount() {
@@ -29,6 +25,26 @@ class ChangingProgressProvider extends React.Component {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
+  }
+
+  startAnimation() {
+    // Clear any existing interval
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+
+    // Reset currentValue to 0 and start incrementing towards the new value
+    this.setState({ currentValue: 0 }, () => {
+      this.intervalId = setInterval(() => {
+        if (this.state.currentValue < this.props.value) {
+          this.setState((prevState) => ({
+            currentValue: prevState.currentValue + 1,
+          }));
+        } else {
+          clearInterval(this.intervalId);
+        }
+      }, this.props.interval);
+    });
   }
 
   render() {

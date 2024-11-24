@@ -22,7 +22,7 @@ const useStore = create((set) => ({
   resumeRef: null,
   initialTap: false,
   atsScore: null,
-  resumeScanData: [],
+  resumeScanData: {},
 
   // Actions to update the state
   setInitialTap: (tap) => set((state) => ({ initialTap: tap })),

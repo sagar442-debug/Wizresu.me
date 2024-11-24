@@ -118,9 +118,10 @@ export const useAtsCalculator = () => {
       "userKeywordsWeight":20,
       "percentageMatch": 20
       "recommendedKeywords":["","",""],
-      "recommendedSentences:["Gained proficiency in Svelte framework.","Learned about building CI/CD pipeline",""]
+      "recommendedSentences:["","","","","","",""]
+
     }
-        
+ **High priority: if the same resume was provided provide the same output each time.**        
 
   `;
 
@@ -152,6 +153,7 @@ export const useAtsCalculator = () => {
       //   console.log("Total weight", total);
       //   console.log("User score", userScore);
       console.log("Match Percent", matchPercent);
+      return jsonData;
       setAtsScore(jsonData.percentageMatch);
     } catch (error) {
       console.error("Failed to generate ATS data:", error);

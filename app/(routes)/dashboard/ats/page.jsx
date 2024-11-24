@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/card";
 import AnimatedProgressProvider from "../_components/AnimatedProgressProvider";
 import ChangingProgressProvider from "../_components/ChangingProgressProvider";
+import { ClipLoader } from "react-spinners";
 export const runtime = "edge";
 const page = () => {
   const atsScore = useStore((state) => state.atsScore);
@@ -28,13 +29,33 @@ const page = () => {
   const resumeScanData = useStore((state) => state.resumeScanData);
   const [atsPercent, setAtsPercent] = useState(0);
   const [scanLoader, setScanLoader] = useState(false);
+  const [atsData, setAtsData] = useState({});
+  const colors = ["#ff0000", "#e0a500", , "#01dd6f", "#0000ff"]; // red, blue, yellow, green
+  const [currentColorIndex, setCurrentColorIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentColorIndex((prevIndex) => (prevIndex + 1) % colors.length); // Cycle through the colors
+    }, 1000); // Change color every 1 second
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, [colors.length]);
 
   const onScan = async () => {
     setScanLoader(true);
-    await generateAtsScore();
-    console.log("This is gemini data", geminiData);
+    const response = await generateAtsScore();
+    setResumeScanData(response);
+    setAtsData(response);
+    const score = Math.round(response.percentageMatch);
+    setAtsPercent(score);
+    console.log("This is gemini data", response);
     setScanLoader(false);
   };
+
+  const onClicking = () => {
+    console.log(atsData.recommendedKeywords);
+  };
+
   const value = 50;
   return (
     <div className="ml-10">
@@ -46,18 +67,22 @@ const page = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-center space-x-4">
+            <div className="text-center space-x-2">
               <button
                 disabled={scanLoader}
                 onClick={onScan}
-                class="max-w-[120px] bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+                className={`${
+                  scanLoader ? "bg-gray-400" : "bg-blue-500"
+                } max-w-[120px] text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition duration-300`}
               >
                 Upload your resume!
               </button>
               <button
                 disabled={scanLoader}
                 onClick={onScan}
-                class="max-w-[120px] bg-gray-500 text-white font-semibold py-2 px-4 rounded hover:bg-gray-600 transition duration-300"
+                className={`${
+                  scanLoader ? "bg-gray-400" : "bg-gray-500"
+                } max-w-[120px] bg-gray-500 text-white font-semibold py-2 px-4 rounded hover:bg-gray-600 transition duration-300`}
               >
                 Select your resume
               </button>
@@ -77,39 +102,54 @@ const page = () => {
             </ChangingProgressProvider>
           </CardContent>
         </Card>
-        <Card className="w-[350px]">
+        <Card className="min-w-[350px]">
           <CardHeader>
             <CardTitle>Suggestions</CardTitle>
           </CardHeader>
-          <CardContent>
-            <CardDescription className="font-semibold ">
-              Keywords:
-            </CardDescription>
-            <div className="grid grid-cols-4 text-sm text-center gap-3 text-white mt-2">
-              <h1 className="px-2 py-1 bg-[#5abe70fb] rounded-xl hover:bg-[#4caa60fb] duration-200 transition-all ">
-                Svelte
-              </h1>
-              <h1 className="px-2 py-1 bg-[#5abe70fb] rounded-xl hover:bg-[#4caa60fb] duration-200 transition-all">
-                Svelte
-              </h1>
-              <h1 className="px-2 py-1 bg-[#5abe70fb] rounded-xl hover:bg-[#4caa60fb] duration-200 transition-all">
-                Svelte
-              </h1>
-              <h1 className="px-2 py-1 bg-[#5abe70fb] rounded-xl hover:bg-[#4caa60fb] duration-200 transition-all">
-                Svelte
-              </h1>
+          {scanLoader ? (
+            <div className="flex items-center justify-center mt-32 w-full ">
+              <ClipLoader
+                className="transition-all duration-75"
+                color={colors[currentColorIndex]}
+                size={100}
+              />
             </div>
-          </CardContent>
-          <CardContent>
-            <CardDescription className="font-semibold ">
-              Phrases:
-            </CardDescription>
-            <div className="space-y-2 text-sm text-white mt-2">
-              <h1 className="px-2 py-1 bg-[#50af7ffb] hover:bg-[#409c6efb] rounded-xl duration-200 transition-all">
-                Gained proficiency in Svelte framework.
-              </h1>
-            </div>
-          </CardContent>
+          ) : (
+            ""
+          )}
+
+          {atsData && Object.keys(atsData).length > 0 ? (
+            <CardContent>
+              <CardDescription className="font-semibold ">
+                Keywords:
+              </CardDescription>
+              <div className="grid grid-cols-3 text-sm text-center gap-3 text-white mt-2">
+                {atsData.recommendedKeywords.map((keyword) => (
+                  <h1 className="px-2 py-1 min-w-20 bg-[#5abe70fb] rounded-xl hover:bg-[#4caa60fb] duration-200 transition-all ">
+                    {keyword}
+                  </h1>
+                ))}
+              </div>
+            </CardContent>
+          ) : (
+            ""
+          )}
+          {atsData && Object.keys(atsData).length > 0 ? (
+            <CardContent>
+              <CardDescription className="font-semibold ">
+                Phrases:
+              </CardDescription>
+              <div className="space-y-2 text-sm text-white mt-2">
+                {atsData.recommendedSentences.map((sentence) => (
+                  <h1 className="px-2 py-1 bg-[#50af7ffb] hover:bg-[#409c6efb] rounded-xl duration-200 transition-all">
+                    {sentence}
+                  </h1>
+                ))}
+              </div>
+            </CardContent>
+          ) : (
+            ""
+          )}
         </Card>
       </div>
     </div>
