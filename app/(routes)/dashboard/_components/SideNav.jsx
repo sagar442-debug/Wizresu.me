@@ -136,7 +136,7 @@ function SideNav() {
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
-                } lg:text-base xl:text-xl`}
+                } lg:text-base xl:text-lg`}
               >
                 Home
               </span>
@@ -155,23 +155,35 @@ function SideNav() {
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
-                } lg:text-base xl:text-xl`}
+                } lg:text-base xl:text-lg`}
               >
                 Resumes
               </span>
             </Link>
             <Link
+              onClick={() => onRouting("/dashboard/ats")}
               href={"/dashboard/ats"}
               className="flex gap-3  hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
             >
-              <ScanText width={30} className="" />
+              {route == "/dashboard/ats" ? (
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <ScanText width={30} className="" />
+              )}
+
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
-                } lg:text-base xl:text-xl`}
+                } lg:text-base xl:text-lg`}
               >
                 ATS
               </span>
+
+              <span
+                className={`${
+                  lgScreen ? "hidden" : ""
+                } lg:text-base xl:text-lg`}
+              ></span>
             </Link>
             <Link
               href={"/dashboard/user-profile"}
@@ -193,7 +205,7 @@ function SideNav() {
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
-                } lg:text-base xl:text-xl`}
+                } lg:text-base xl:text-lg`}
               >
                 Profile
               </span>
@@ -212,7 +224,7 @@ function SideNav() {
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
-                } lg:text-base xl:text-xl`}
+                } lg:text-base xl:text-lg`}
               >
                 Sign Out
               </span>
@@ -272,21 +284,21 @@ export function smallScreenNav() {
               } items-center text-[#555] hover:bg-[#dfdfdf] rounded`}
             >
               <House width={30} className="" />
-              <span className="lg:text-base xl:text-xl">Home</span>
+              <span className="lg:text-base xl:text-lg">Home</span>
             </Link>
             <Link
               href={"/dashboard/resumes"}
               className="flex gap-3 hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
             >
               <Blocks width={30} className="" />
-              <span className="lg:text-base xl:text-xl">Resumes</span>
+              <span className="lg:text-base xl:text-lg">Resumes</span>
             </Link>
             <Link
               href={"/dashboard"}
               className="flex gap-3  hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
             >
               <History width={30} className="" />
-              <span className="lg:text-base xl:text-xl">History</span>
+              <span className="lg:text-base xl:text-lg">History</span>
             </Link>
             <SignOutButton />
           </div>
