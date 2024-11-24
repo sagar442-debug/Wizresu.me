@@ -14,6 +14,8 @@ export const useAtsCalculator = () => {
   const chatOutput = useStore((state) => state.chatOutput);
   const atsScore = useStore((state) => state.atsScore);
   const setAtsScore = useStore((state) => state.setAtsScore);
+  const resumeScanData = useStore((state) => state.resumeScanData);
+  const setResumeScanData = useStore((state) => state.setResumeScanData);
   const [geminiData, setGeminiData] = useState(null);
 
   const generateAtsScore = async () => {
@@ -133,6 +135,7 @@ export const useAtsCalculator = () => {
       }
       const jsonData = JSON.parse(cleanedResultText);
       setGeminiData(resultText);
+      setResumeScanData(jsonData);
       console.log("Generated Data:", jsonData);
       const total = jsonData.keywords.reduce(
         (total, item) => total + item.weight,

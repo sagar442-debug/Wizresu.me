@@ -22,6 +22,7 @@ const useStore = create((set) => ({
   resumeRef: null,
   initialTap: false,
   atsScore: null,
+  resumeScanData: [],
 
   // Actions to update the state
   setInitialTap: (tap) => set((state) => ({ initialTap: tap })),
@@ -31,6 +32,10 @@ const useStore = create((set) => ({
   setObjective: (objective) =>
     set((state) => ({
       objective: objective,
+    })),
+  setResumeScanData: (data) =>
+    set(() => ({
+      resumeScanData: data,
     })),
   setJobDescription: (description) =>
     set((state) => ({ jobDescription: description })),
