@@ -127,7 +127,7 @@ function SideNav() {
                   : "font-medium"
               } items-center text-[#555] hover:bg-[#dfdfdf] rounded`}
             >
-              {route == "dashboard" ? (
+              {route == "/dashboard" ? (
                 <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
               ) : (
                 <House width={30} className="" />
@@ -186,29 +186,34 @@ function SideNav() {
               ></span>
             </Link>
             <Link
+              onClick={() => onRouting("/dashboard/user-profile")}
               href={"/dashboard/user-profile"}
               className="flex gap-3  hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
             >
-              {/* <CircleUser width={24} height={30} /> */}
-              {user ? (
-                <Image
-                  className="rounded-full h-[30px] w-[30px] p-0 "
-                  height={30}
-                  width={30}
-                  src={user?.imageUrl}
-                  alt="profile-picture"
-                />
+              {route == "/dashboard/user-profile" ? (
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
               ) : (
-                <CircleUser width={24} height={30} />
+                <div className="flex gap-3 items-center">
+                  {user ? (
+                    <Image
+                      className="rounded-full h-[30px] w-[30px] p-0 "
+                      height={30}
+                      width={30}
+                      src={user?.imageUrl}
+                      alt="profile-picture"
+                    />
+                  ) : (
+                    <CircleUser width={24} height={30} />
+                  )}
+                  <span
+                    className={`${
+                      lgScreen ? "hidden" : ""
+                    } lg:text-base xl:text-lg`}
+                  >
+                    Profile
+                  </span>
+                </div>
               )}
-
-              <span
-                className={`${
-                  lgScreen ? "hidden" : ""
-                } lg:text-base xl:text-lg`}
-              >
-                Profile
-              </span>
             </Link>
 
             <button
