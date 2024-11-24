@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/card";
 import AnimatedProgressProvider from "../_components/AnimatedProgressProvider";
 import ChangingProgressProvider from "../_components/ChangingProgressProvider";
+export const runtime = "edge";
 const page = () => {
   const atsScore = useStore((state) => state.atsScore);
   const { generateAtsScore, geminiData } = useAtsCalculator();
