@@ -1,15 +1,27 @@
 "use client";
 import { CardTitle } from "@/components/ui/card";
+import useStore from "@/store/useStore";
 import React, { useEffect, useState } from "react";
 
-const LanguagesInfo = ({ languageData }) => {
+const LanguagesInfo = ({ languageData, save }) => {
   const [languageDetail, setLanguageDetail] = useState([]);
+  const setUserLanguage = useStore((state) => state.setUserLanguage);
 
   useEffect(() => {
     if (languageData?.length) {
       setLanguageDetail([...languageData]);
     }
   }, [languageData]);
+
+  useEffect(() => {
+    if (save == true) {
+      whenSave();
+    }
+  }, [save]);
+
+  const whenSave = () => {
+    setUserLanguage(languageDetail);
+  };
   return (
     <div>
       <section className="mt-4">

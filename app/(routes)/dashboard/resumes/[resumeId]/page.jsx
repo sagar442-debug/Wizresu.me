@@ -22,6 +22,7 @@ const page = () => {
   const [resumeDetail, setResumeDetail] = useState({});
   const [loader, setLoader] = useState(true);
   const [resumeTitle, setResumeTitle] = useState();
+  const [onSave, setOnSave] = useState(false);
 
   useEffect(() => {
     if (user?.id) {
@@ -47,6 +48,11 @@ const page = () => {
     } catch (error) {
       console.log("Server error", error.message);
     }
+  };
+
+  const justSave = (e) => {
+    e.preventDefault();
+    setOnSave(true);
   };
 
   return (
@@ -76,6 +82,7 @@ const page = () => {
               </div>
 
               <PersonalInfoData
+                save={onSave}
                 fullName={resumeDetail?.userFullName}
                 emailAddress={resumeDetail?.userEmailAddress}
                 phoneNumber={resumeDetail?.userPhoneNumber}
@@ -83,11 +90,20 @@ const page = () => {
                 address={resumeDetail?.userAddress}
                 objectiveText={resumeDetail?.objective}
               />
-              <EducationInfo educationData={resumeDetail?.userDegree} />
-              <LanguagesInfo languageData={resumeDetail?.userLanguage} />
-              <JobInfo jobData={resumeDetail?.jobExperience} />
+              <EducationInfo
+                save={onSave}
+                educationData={resumeDetail?.userDegree}
+              />
+              <LanguagesInfo
+                save={onSave}
+                languageData={resumeDetail?.userLanguage}
+              />
+              <JobInfo save={onSave} jobData={resumeDetail?.jobExperience} />
               <div className="flex space-x-2 items-center">
-                <button className="bg-[#3b82f6] p-2 duration-100 text-sm transition-all flex items-center gap-2  text-white mt-2 rounded-[5px] hover:bg-[#5b9aff]">
+                <button
+                  onClick={justSave}
+                  className="bg-[#3b82f6] p-2 duration-100 text-sm transition-all flex items-center gap-2  text-white mt-2 rounded-[5px] hover:bg-[#5b9aff]"
+                >
                   <Save />
                   <span>Save</span>
                 </button>

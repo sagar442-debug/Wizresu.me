@@ -12,6 +12,7 @@ const PersonalInfoData = ({
   address,
   website,
   objectiveText,
+  save,
 }) => {
   const userFullName = useStore((state) => state.userFullName);
   const userEmailAddress = useStore((state) => state.userEmailAddress);
@@ -38,6 +39,9 @@ const PersonalInfoData = ({
     console.log(objectiveText);
     setObjective(objectiveText);
   }, []);
+  useEffect(() => {
+    console.log(save);
+  }, [save]);
 
   return (
     <div>

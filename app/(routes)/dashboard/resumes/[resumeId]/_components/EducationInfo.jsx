@@ -5,7 +5,7 @@ import useStore from "@/store/useStore";
 import React, { useEffect, useState } from "react";
 import { IoAddCircleOutline } from "react-icons/io5";
 
-const EducationInfo = ({ educationData }) => {
+const EducationInfo = ({ educationData, save }) => {
   const setUserDegree = useStore((state) => state.setUserDegree);
   const setUserLanguage = useStore((state) => state.setUserLanguage);
   const [userEducationInfo, setUserEducationInfo] = useState([]);
@@ -24,6 +24,15 @@ const EducationInfo = ({ educationData }) => {
   useEffect(() => {
     setUserEducationInfo(educationData);
   }, []);
+  useEffect(() => {
+    if (save == true) {
+      whenSave();
+    }
+  }, [save]);
+
+  const whenSave = () => {
+    setUserDegree(userEducationInfo);
+  };
 
   return (
     <div>

@@ -15,7 +15,7 @@ import { useDataGenerator } from "@/app/_utils/dataGenerator";
 import { useRouter, usePathname } from "next/navigation";
 import { Settings } from "lucide-react";
 
-const JobInfo = ({ jobData }) => {
+const JobInfo = ({ jobData, save }) => {
   const loading = useStore((state) => state.loading);
   const setLoading = useStore((state) => state.setLoading);
   const router = useRouter();
@@ -23,27 +23,7 @@ const JobInfo = ({ jobData }) => {
   const { generateData } = useDataGenerator();
   const setJobExperience = useStore((state) => state.setJobExperience);
   const jobExperience = useStore((state) => state.jobExperience);
-  const [jobTitle, setJobTitle] = useState("");
-  const [jobCompany, setJobCompany] = useState("");
-  const [jobStartDate, setJobStartDate] = useState("");
-  const [jobEndDate, setJobEndDate] = useState("");
-  const [jobDescription, setJobDescription] = useState("");
-  const [addMore, setAddMore] = useState(false);
-  const jobTitle2 = useStore((state) => state.jobTitle);
   const [jobDetails, setJobDetails] = useState([]);
-
-  const onJobExperienceSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setJobExperience({
-      jobTitle,
-      jobCompany,
-      jobStartDate,
-      jobEndDate,
-      jobDescription,
-    });
-    router.push(`${pathname}/download-resume`);
-  };
 
   // Run generateData whenever jobExperience changes
   useEffect(() => {
@@ -59,6 +39,16 @@ const JobInfo = ({ jobData }) => {
     console.log(jobData);
     setJobDetails(jobData);
   }, []);
+
+  useEffect(() => {
+    if (save == true) {
+      whenSave();
+    }
+  }, [save]);
+
+  const whenSave = () => {
+    setJobExperience(jobDetails);
+  };
 
   return (
     <div className="mt-4">
@@ -201,7 +191,7 @@ const JobInfo = ({ jobData }) => {
             ))}
             <button
               type="button"
-              className="bg-[#3b82f6] text-sm flex items-center gap-x-2 duration-100 transition-all group p-3 text-white hover:bg-[#5b9aff]"
+              className="bg-[#3b82f6] text-sm flex items-center gap-x-2 duration-100 transition-all group p-2 text-white hover:bg-[#5b9aff]"
             >
               <Settings className="group-hover:rotate-90 duration-200" />
               <span>Regenerate</span>
