@@ -8,6 +8,9 @@ import PersonalInfoData from "./_components/PersonalInfoData";
 import EducationInfo from "./_components/EducationInfo";
 import LanguagesInfo from "./_components/LanguagesInfo";
 import JobInfo from "./_components/JobInfo";
+import { Trash2 } from "lucide-react";
+import { Save } from "lucide-react";
+
 export const runtime = "edge";
 
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -46,7 +49,7 @@ const page = () => {
 
   return (
     <div>
-      <Card className="max-w-[600px] overflow-y-scroll h-[90vh]">
+      <Card className="lg:w-[500px] overflow-y-scroll h-[90vh]">
         <CardHeader>
           <CardTitle className="">Update Your Resume</CardTitle>
         </CardHeader>
@@ -62,6 +65,16 @@ const page = () => {
               <EducationInfo />
               <LanguagesInfo />
               <JobInfo />
+              <div className="flex space-x-2 items-center">
+                <button className="bg-[#3b82f6] p-2 duration-100 transition-all flex items-center gap-2  text-white mt-2 rounded-[5px] hover:bg-[#5b9aff]">
+                  <Save />
+                  <span>Save</span>
+                </button>
+                <button className="bg-[#b42929] flex items-center gap-2 p-2 duration-100 transition-all text-white mt-2 rounded-[5px] hover:bg-[#e74646]">
+                  <Trash2 className="" />
+                  <span>Delete</span>
+                </button>
+              </div>
             </CardContent>
           )}
         </div>

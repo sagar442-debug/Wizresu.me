@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { useDataGenerator } from "@/app/_utils/dataGenerator";
 import { useRouter, usePathname } from "next/navigation";
+import { Settings } from "lucide-react";
 
 const JobInfo = () => {
   const loading = useStore((state) => state.loading);
@@ -120,20 +121,30 @@ const JobInfo = () => {
         </div>
         <div>
           <label className="sr-only" htmlFor="email">
-            Email
+            Job Description
           </label>
-          <textarea
+          <input
+            className="w-full rounded-lg border border-gray-200 p-3 text-sm "
+            placeholder="Description Line"
+            type="text"
+          />
+          <button className="bg-[#3b82f6] text-sm flex gap-2 items-center duration-100 transition-all group p-2 text-white mt-2  hover:bg-[#5b9aff]">
+            <Settings className="group-hover:rotate-90 duration-200" />
+            <span>Regenerate</span>
+          </button>
+
+          {/* <textarea
             className="w-full rounded-lg border resize-none border-gray-200 p-3 text-sm"
             placeholder="Job Description"
             rows="10"
             id="Job Description"
             onChange={(e) => setJobDescription(e.target.value)}
-          ></textarea>
+          ></textarea> */}
         </div>
       </form>
       <Button
         onClick={onAddMore}
-        className={`hover:bg-gray-100 gap-2 ${addMore ? "hidden" : ""}`}
+        className={`hover:bg-gray-100 my-4 gap-2 ${addMore ? "hidden" : ""}`}
       >
         <IoAddCircleOutline className="text-lg" />
         <span>Add More</span>
@@ -194,6 +205,7 @@ const JobInfo = () => {
           <label className="sr-only" htmlFor="email">
             Email
           </label>
+
           <textarea
             className="w-full rounded-lg border resize-none border-gray-200 p-3 text-sm"
             placeholder="Job Description"
