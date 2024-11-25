@@ -84,14 +84,14 @@ const page = () => {
                 objective={resumeDetail?.objective}
               />
               <EducationInfo educationData={resumeDetail?.userDegree} />
-              <LanguagesInfo />
-              <JobInfo />
+              <LanguagesInfo languageData={resumeDetail?.userLanguage} />
+              <JobInfo jobData={resumeDetail?.jobExperience} />
               <div className="flex space-x-2 items-center">
-                <button className="bg-[#3b82f6] p-2 duration-100 transition-all flex items-center gap-2  text-white mt-2 rounded-[5px] hover:bg-[#5b9aff]">
+                <button className="bg-[#3b82f6] p-2 duration-100 text-sm transition-all flex items-center gap-2  text-white mt-2 rounded-[5px] hover:bg-[#5b9aff]">
                   <Save />
                   <span>Save</span>
                 </button>
-                <button className="bg-[#b42929] flex items-center gap-2 p-2 duration-100 transition-all text-white mt-2 rounded-[5px] hover:bg-[#e74646]">
+                <button className="bg-[#b42929] flex items-center text-sm gap-2 p-2 duration-100 transition-all text-white mt-2 rounded-[5px] hover:bg-[#e74646]">
                   <Trash2 className="" />
                   <span>Delete</span>
                 </button>

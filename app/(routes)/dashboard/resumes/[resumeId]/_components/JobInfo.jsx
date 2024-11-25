@@ -15,7 +15,7 @@ import { useDataGenerator } from "@/app/_utils/dataGenerator";
 import { useRouter, usePathname } from "next/navigation";
 import { Settings } from "lucide-react";
 
-const JobInfo = () => {
+const JobInfo = ({ jobData }) => {
   const loading = useStore((state) => state.loading);
   const setLoading = useStore((state) => state.setLoading);
   const router = useRouter();
@@ -30,6 +30,7 @@ const JobInfo = () => {
   const [jobDescription, setJobDescription] = useState("");
   const [addMore, setAddMore] = useState(false);
   const jobTitle2 = useStore((state) => state.jobTitle);
+  const [jobDetails, setJobDetails] = useState([]);
 
   const onJobExperienceSubmit = (e) => {
     e.preventDefault();
@@ -54,167 +55,89 @@ const JobInfo = () => {
     setLoading(false);
   }, []);
 
-  const onAddMore = (e) => {
-    e.preventDefault();
-    setAddMore(true);
-    setJobExperience({
-      jobTitle,
-      jobCompany,
-      jobStartDate,
-      jobEndDate,
-      jobDescription,
-    });
-  };
+  useEffect(() => {
+    console.log(jobData);
+    setJobDetails(jobData);
+  }, []);
+
   return (
     <div className="mt-4">
       <CardTitle className="mb-4">Job Experience</CardTitle>
-      <form className="space-y-4 ">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div>
-            <label className="sr-only" htmlFor="email">
-              Job Title/ Project title 1
-            </label>
-            <input
-              className="w-full rounded-lg border border-gray-200 p-3 text-sm"
-              placeholder="Job title 1"
-              type="text"
-              id="full-name"
-              onChange={(e) => setJobTitle(e.target.value)}
-            />
+      {jobDetails?.map((data) => (
+        <form className="space-y-4 ">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-2">
+            <div>
+              <label className="sr-only" htmlFor="email">
+                Job Title/ Project title 1
+              </label>
+              <input
+                className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                placeholder="Job title 1"
+                type="text"
+                id="full-name"
+                onChange={(e) => setJobTitle(e.target.value)}
+              />
+            </div>
+            <div>
+              <label className="sr-only" htmlFor="email">
+                Company Name 1
+              </label>
+              <input
+                className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                placeholder="Company Name 1"
+                type="text"
+                id="full-name"
+                onChange={(e) => setJobCompany(e.target.value)}
+              />
+            </div>
+            <div>
+              <label className="sr-only" htmlFor="email">
+                Start Date
+              </label>
+              <input
+                className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                placeholder="Start Date"
+                type="text"
+                id="full-name"
+                onChange={(e) => setJobStartDate(e.target.value)}
+              />
+            </div>
+            <div>
+              <label className="sr-only" htmlFor="email">
+                End Date
+              </label>
+              <input
+                className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                placeholder="End Date"
+                type="text"
+                id="full-name"
+                onChange={(e) => setJobEndDate(e.target.value)}
+              />
+            </div>
           </div>
           <div>
             <label className="sr-only" htmlFor="email">
-              Company Name 1
+              Job Description
             </label>
-            <input
-              className="w-full rounded-lg border border-gray-200 p-3 text-sm"
-              placeholder="Company Name 1"
-              type="text"
-              id="full-name"
-              onChange={(e) => setJobCompany(e.target.value)}
-            />
+            {data?.jobDescription?.map((item) => (
+              <div className="flex items-center my-2">
+                <input
+                  className="w-full rounded-lg border border-gray-200 p-3 text-sm "
+                  placeholder="Description Line"
+                  type="text"
+                />
+                <button className="bg-[#3b82f6] text-sm flex items-center duration-100 transition-all group p-3 text-white   hover:bg-[#5b9aff]">
+                  <Settings className="group-hover:rotate-90 duration-200" />
+                </button>
+              </div>
+            ))}
+            <button className="bg-[#3b82f6] text-sm flex items-center gap-x-2 duration-100 transition-all group p-3 text-white   hover:bg-[#5b9aff]">
+              <Settings className="group-hover:rotate-90 duration-200" />
+              <span>Regenerate All</span>
+            </button>
           </div>
-          <div>
-            <label className="sr-only" htmlFor="email">
-              Start Date
-            </label>
-            <input
-              className="w-full rounded-lg border border-gray-200 p-3 text-sm"
-              placeholder="Start Date"
-              type="text"
-              id="full-name"
-              onChange={(e) => setJobStartDate(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="sr-only" htmlFor="email">
-              End Date
-            </label>
-            <input
-              className="w-full rounded-lg border border-gray-200 p-3 text-sm"
-              placeholder="End Date"
-              type="text"
-              id="full-name"
-              onChange={(e) => setJobEndDate(e.target.value)}
-            />
-          </div>
-        </div>
-        <div>
-          <label className="sr-only" htmlFor="email">
-            Job Description
-          </label>
-          <input
-            className="w-full rounded-lg border border-gray-200 p-3 text-sm "
-            placeholder="Description Line"
-            type="text"
-          />
-          <button className="bg-[#3b82f6] text-sm flex gap-2 items-center duration-100 transition-all group p-2 text-white mt-2  hover:bg-[#5b9aff]">
-            <Settings className="group-hover:rotate-90 duration-200" />
-            <span>Regenerate</span>
-          </button>
-
-          {/* <textarea
-            className="w-full rounded-lg border resize-none border-gray-200 p-3 text-sm"
-            placeholder="Job Description"
-            rows="10"
-            id="Job Description"
-            onChange={(e) => setJobDescription(e.target.value)}
-          ></textarea> */}
-        </div>
-      </form>
-      <Button
-        onClick={onAddMore}
-        className={`hover:bg-gray-100 my-4 gap-2 ${addMore ? "hidden" : ""}`}
-      >
-        <IoAddCircleOutline className="text-lg" />
-        <span>Add More</span>
-      </Button>
-      {/* Experience 2 */}
-      <form action="#" className={`space-y-4 ${addMore ? "" : "hidden"}`}>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div>
-            <label className="sr-only" htmlFor="email">
-              Job Title/ Project title 2
-            </label>
-            <input
-              className="w-full rounded-lg border border-gray-200 p-3 text-sm"
-              placeholder="Job title"
-              type="text"
-              id="full-name"
-              onChange={(e) => setJobTitle(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="sr-only" htmlFor="email">
-              Company Name 2
-            </label>
-            <input
-              className="w-full rounded-lg border border-gray-200 p-3 text-sm"
-              placeholder="Company Name 2"
-              type="text"
-              id="full-name"
-              onChange={(e) => setJobCompany(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="sr-only" htmlFor="email">
-              Start Date
-            </label>
-            <input
-              className="w-full rounded-lg border border-gray-200 p-3 text-sm"
-              placeholder="Start Date"
-              type="text"
-              id="full-name"
-              onChange={(e) => setJobStartDate(e.target.value)}
-            />
-          </div>
-          <div>
-            <label className="sr-only" htmlFor="email">
-              End Date
-            </label>
-            <input
-              className="w-full rounded-lg border border-gray-200 p-3 text-sm"
-              placeholder="End Date"
-              type="text"
-              id="full-name"
-              onChange={(e) => setJobEndDate(e.target.value)}
-            />
-          </div>
-        </div>
-        <div>
-          <label className="sr-only" htmlFor="email">
-            Email
-          </label>
-
-          <textarea
-            className="w-full rounded-lg border resize-none border-gray-200 p-3 text-sm"
-            placeholder="Job Description"
-            rows="10"
-            id="Job Description"
-            onChange={(e) => setJobDescription(e.target.value)}
-          ></textarea>
-        </div>
-      </form>
+        </form>
+      ))}
     </div>
   );
 };
