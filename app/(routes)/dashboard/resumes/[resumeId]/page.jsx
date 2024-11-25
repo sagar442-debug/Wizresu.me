@@ -21,6 +21,8 @@ const page = () => {
   const router = useRouter();
   const [resumeDetail, setResumeDetail] = useState({});
   const [loader, setLoader] = useState(true);
+  const [resumeTitle, setResumeTitle] = useState();
+
   useEffect(() => {
     if (user?.id) {
       fetchResumeDetails();
@@ -39,7 +41,7 @@ const page = () => {
         return;
       }
       const data = await response.json();
-      setResumeDetail(data);
+      setResumeDetail(data.resumeDetails);
       console.log("Success fetching the resume!!", data.resumeDetails);
       setLoader(false);
     } catch (error) {
@@ -61,8 +63,27 @@ const page = () => {
             </CardContent>
           ) : (
             <CardContent>
-              <PersonalInfoData />
-              <EducationInfo />
+              <div className="mb-4">
+                <label className="sr-only" htmlFor="email">
+                  Resume Title
+                </label>
+                <input
+                  className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                  placeholder="Resume Title"
+                  type="text"
+                  value={resumeDetail?.resumeTitle}
+                />
+              </div>
+
+              <PersonalInfoData
+                fullName={resumeDetail?.userFullName}
+                emailAddress={resumeDetail?.userEmailAddress}
+                phoneNumber={resumeDetail?.userPhoneNumber}
+                website={resumeDetail?.userPhoneNumber}
+                address={resumeDetail?.userAddress}
+                objective={resumeDetail?.objective}
+              />
+              <EducationInfo educationData={resumeDetail?.userDegree} />
               <LanguagesInfo />
               <JobInfo />
               <div className="flex space-x-2 items-center">
