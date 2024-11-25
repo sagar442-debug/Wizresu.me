@@ -81,7 +81,7 @@ const page = () => {
                 phoneNumber={resumeDetail?.userPhoneNumber}
                 website={resumeDetail?.userPhoneNumber}
                 address={resumeDetail?.userAddress}
-                objective={resumeDetail?.objective}
+                objectiveText={resumeDetail?.objective}
               />
               <EducationInfo educationData={resumeDetail?.userDegree} />
               <LanguagesInfo languageData={resumeDetail?.userLanguage} />

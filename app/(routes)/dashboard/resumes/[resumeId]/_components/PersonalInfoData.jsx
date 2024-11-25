@@ -11,7 +11,7 @@ const PersonalInfoData = ({
   phoneNumber,
   address,
   website,
-  objective,
+  objectiveText,
 }) => {
   const userFullName = useStore((state) => state.userFullName);
   const userEmailAddress = useStore((state) => state.userEmailAddress);
@@ -24,6 +24,9 @@ const PersonalInfoData = ({
   const setUserPhoneNumber = useStore((state) => state.setUserPhoneNumber);
   const setUserWebsite = useStore((state) => state.setUserWebsite);
   const setUserAddress = useStore((state) => state.setUserAddress);
+  const objective = useStore((state) => state.objective);
+  const setObjective = useStore((state) => state.setObjective);
+
   const [userObjective, setUserObjective] = useState("");
 
   useEffect(() => {
@@ -32,7 +35,8 @@ const PersonalInfoData = ({
     setUserPhoneNumber(phoneNumber);
     setUserAddress(address);
     setUserWebsite(website);
-    setUserObjective(objective);
+    console.log(objectiveText);
+    setObjective(objectiveText);
   }, []);
 
   return (
@@ -78,7 +82,7 @@ const PersonalInfoData = ({
                 type="text"
                 id="phone"
                 onChange={(e) => setUserPhoneNumber(e.target.value)}
-                value={phoneNumber}
+                value={userPhoneNumber}
               />
             </div>
             <div>
@@ -104,7 +108,7 @@ const PersonalInfoData = ({
                 type="tel"
                 id="phone"
                 onChange={(e) => setUserAddress(e.target.value)}
-                value={address}
+                value={userAddress}
               />
             </div>
             <div></div>
@@ -117,7 +121,7 @@ const PersonalInfoData = ({
                 placeholder="Objective"
                 type="tel"
                 id="phone"
-                onChange={(e) => setUserAddress(e.target.value)}
+                onChange={(e) => setObjective(e.target.value)}
                 value={objective}
               />
               <button className="bg-[#3b82f6]  text-sm flex gap-2 items-center duration-100 transition-all group p-2 text-white mt-2  hover:bg-[#5b9aff]">

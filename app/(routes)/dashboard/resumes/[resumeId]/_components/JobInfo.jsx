@@ -63,77 +63,148 @@ const JobInfo = ({ jobData }) => {
   return (
     <div className="mt-4">
       <CardTitle className="mb-4">Job Experience</CardTitle>
-      {jobDetails?.map((data) => (
-        <form className="space-y-4 ">
+      {jobDetails?.map((data, index) => (
+        <form className="space-y-4" key={index}>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mt-2">
             <div>
-              <label className="sr-only" htmlFor="email">
-                Job Title/ Project title 1
+              <label className="sr-only" htmlFor={`jobTitle-${index}`}>
+                Job Title/Project Title
               </label>
               <input
                 className="w-full rounded-lg border border-gray-200 p-3 text-sm"
-                placeholder="Job title 1"
+                placeholder="Job Title"
                 type="text"
-                id="full-name"
-                onChange={(e) => setJobTitle(e.target.value)}
+                id={`jobTitle-${index}`}
+                value={data.jobTitle || ""}
+                onChange={(e) =>
+                  setJobDetails((prev) =>
+                    prev.map((job, jobIndex) =>
+                      jobIndex === index
+                        ? { ...job, jobTitle: e.target.value }
+                        : job
+                    )
+                  )
+                }
               />
             </div>
             <div>
-              <label className="sr-only" htmlFor="email">
-                Company Name 1
+              <label className="sr-only" htmlFor={`jobCompany-${index}`}>
+                Company Name
               </label>
               <input
                 className="w-full rounded-lg border border-gray-200 p-3 text-sm"
-                placeholder="Company Name 1"
+                placeholder="Company Name"
                 type="text"
-                id="full-name"
-                onChange={(e) => setJobCompany(e.target.value)}
+                id={`jobCompany-${index}`}
+                value={data.jobCompany || ""}
+                onChange={(e) =>
+                  setJobDetails((prev) =>
+                    prev.map((job, jobIndex) =>
+                      jobIndex === index
+                        ? { ...job, jobCompany: e.target.value }
+                        : job
+                    )
+                  )
+                }
               />
             </div>
             <div>
-              <label className="sr-only" htmlFor="email">
+              <label className="sr-only" htmlFor={`jobStartDate-${index}`}>
                 Start Date
               </label>
               <input
                 className="w-full rounded-lg border border-gray-200 p-3 text-sm"
                 placeholder="Start Date"
                 type="text"
-                id="full-name"
-                onChange={(e) => setJobStartDate(e.target.value)}
+                id={`jobStartDate-${index}`}
+                value={data.jobStartDate || ""}
+                onChange={(e) =>
+                  setJobDetails((prev) =>
+                    prev.map((job, jobIndex) =>
+                      jobIndex === index
+                        ? { ...job, jobStartDate: e.target.value }
+                        : job
+                    )
+                  )
+                }
               />
             </div>
             <div>
-              <label className="sr-only" htmlFor="email">
+              <label className="sr-only" htmlFor={`jobEndDate-${index}`}>
                 End Date
               </label>
               <input
                 className="w-full rounded-lg border border-gray-200 p-3 text-sm"
                 placeholder="End Date"
                 type="text"
-                id="full-name"
-                onChange={(e) => setJobEndDate(e.target.value)}
+                id={`jobEndDate-${index}`}
+                value={data.jobEndDate || ""}
+                onChange={(e) =>
+                  setJobDetails((prev) =>
+                    prev.map((job, jobIndex) =>
+                      jobIndex === index
+                        ? { ...job, jobEndDate: e.target.value }
+                        : job
+                    )
+                  )
+                }
               />
             </div>
           </div>
           <div>
-            <label className="sr-only" htmlFor="email">
+            <label className="sr-only" htmlFor={`jobDescription-${index}`}>
               Job Description
             </label>
-            {data?.jobDescription?.map((item) => (
-              <div className="flex items-center my-2">
+            {data.jobDescription?.map((desc, descIndex) => (
+              <div className="flex items-center my-2 space-x-2" key={descIndex}>
                 <input
-                  className="w-full rounded-lg border border-gray-200 p-3 text-sm "
+                  className="w-full rounded-lg border border-gray-200 p-3 text-sm"
                   placeholder="Description Line"
                   type="text"
+                  value={desc || ""}
+                  onChange={(e) =>
+                    setJobDetails((prev) =>
+                      prev.map((job, jobIndex) =>
+                        jobIndex === index
+                          ? {
+                              ...job,
+                              jobDescription: job.jobDescription.map((d, i) =>
+                                i === descIndex ? e.target.value : d
+                              ),
+                            }
+                          : job
+                      )
+                    )
+                  }
                 />
-                <button className="bg-[#3b82f6] text-sm flex items-center duration-100 transition-all group p-3 text-white   hover:bg-[#5b9aff]">
+                <button
+                  type="button"
+                  className="bg-[#3b82f6] text-sm flex items-center duration-100 transition-all group p-3 text-white hover:bg-[#5b9aff]"
+                  onClick={() =>
+                    setJobDetails((prev) =>
+                      prev.map((job, jobIndex) =>
+                        jobIndex === index
+                          ? {
+                              ...job,
+                              jobDescription: job.jobDescription.filter(
+                                (_, i) => i !== descIndex
+                              ),
+                            }
+                          : job
+                      )
+                    )
+                  }
+                >
                   <Settings className="group-hover:rotate-90 duration-200" />
                 </button>
               </div>
             ))}
-            <button className="bg-[#3b82f6] text-sm flex items-center gap-x-2 duration-100 transition-all group p-3 text-white   hover:bg-[#5b9aff]">
+            <button
+              type="button"
+              className="bg-[#3b82f6] text-sm flex items-center gap-x-2 duration-100 transition-all group p-3 text-white hover:bg-[#5b9aff]"
+            >
               <Settings className="group-hover:rotate-90 duration-200" />
-              <span>Regenerate All</span>
+              <span>Regenerate</span>
             </button>
           </div>
         </form>
