@@ -16,6 +16,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import Link from "next/link";
 export const runtime = "edge";
 
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -95,7 +96,7 @@ export default function Page() {
   };
 
   return (
-    <div className="overflow-x-auto max-w-[1000px] rounded-lg lg:ml-20 mr-2">
+    <div className="overflow-x-auto max-w-[1000px] rounded-lg  mr-2 ">
       <div className="border border-gray-200">
         <div className="relative">
           <label for="Search" className="sr-only">
@@ -170,9 +171,9 @@ export default function Page() {
                     {resume.jobTitle || "N/A"}
                   </td>
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700 flex space-x-2">
-                    <button>
+                    <Link href={`/dashboard/resumes/${resume?._id}`}>
                       <RefreshCcw width={20} />
-                    </button>
+                    </Link>
                     <button>
                       <Trash2 width={20} />
                     </button>

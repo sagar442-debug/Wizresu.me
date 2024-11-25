@@ -52,6 +52,15 @@ function SideNav() {
     }
   };
 
+  const onQuickBuild = (routeName) => {
+    if (pathname !== `${routeName}`) {
+      setRoute(routeName);
+      console.log(routeName);
+    } else {
+      setRoute("");
+    }
+  };
+
   return (
     <div className="fixed z-50">
       <div
@@ -98,12 +107,11 @@ function SideNav() {
           <div
             className={`${lgScreen ? "items-center" : ""} my-2 flex flex-col`}
           >
-            <Link
-              href={"/dashboard"}
-              onClick={() => onRouting("/dashboard")}
+            <div
+              onClick={() => onQuickBuild("/dashboard")}
               className={`${
                 lgScreen ? "p-2 lg:w-10" : "lg:p-4 "
-              } relative flex lg:gap-0 xl:gap-3 p-2 sm:p-2 hover:shadow-md transition-all xl:p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden`}
+              } relative flex cursor-pointer lg:gap-0 xl:gap-3 p-2 sm:p-2 hover:shadow-md transition-all xl:p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden`}
             >
               <Wand className="animate-pulse lg:w-8" />
 
@@ -117,7 +125,7 @@ function SideNav() {
 
               {/* Shine effect */}
               <span className="shine-effect"></span>
-            </Link>
+            </div>
             <Link
               href={"/dashboard"}
               onClick={() => onRouting("/dashboard")}
@@ -268,10 +276,7 @@ export function smallScreenNav() {
         </Link>
         <div className="px-10 ">
           <div className="my-2 flex flex-col">
-            <Link
-              href={"/dashboard"}
-              className="relative flex lg:gap-1 xl:gap-3 hover:shadow-md transition-all p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden"
-            >
+            <div className="relative flex lg:gap-1 xl:gap-3 hover:shadow-md transition-all p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden">
               <Wand width={30} className="animate-pulse lg:w-8" />
               <span className="lg:text-base xl:text-lg font-semibold">
                 Quick Build
@@ -279,7 +284,7 @@ export function smallScreenNav() {
 
               {/* Shine effect */}
               <span className="shine-effect"></span>
-            </Link>
+            </div>
             <Link
               href={"/dashboard"}
               className={`flex gap-3 hover:shadow-md transition-all p-4 ${
