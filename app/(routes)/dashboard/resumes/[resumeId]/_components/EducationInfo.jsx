@@ -32,6 +32,7 @@ const EducationInfo = ({ educationData, save }) => {
 
   const whenSave = () => {
     setUserDegree(userEducationInfo);
+    console.log(userEducationInfo);
   };
 
   return (

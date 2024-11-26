@@ -28,8 +28,6 @@ const PersonalInfoData = ({
   const objective = useStore((state) => state.objective);
   const setObjective = useStore((state) => state.setObjective);
 
-  const [userObjective, setUserObjective] = useState("");
-
   useEffect(() => {
     setUserFullName(fullName);
     setUserEmailAddress(emailAddress);

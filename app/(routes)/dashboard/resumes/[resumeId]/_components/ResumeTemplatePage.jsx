@@ -4,12 +4,6 @@ import { CiGlobe } from "react-icons/ci";
 import { FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import { FaMapMarker } from "react-icons/fa";
-import { Progress } from "@/components/ui/progress";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { Button } from "@/components/ui/button";
-import { MdDownloadForOffline } from "react-icons/md";
 import useStore from "@/store/useStore";
 
 const ResumeTemplatePage = forwardRef((props, ref) => {
@@ -34,14 +28,26 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
   const skills = useStore((state) => state.skills);
   const setSkills = useStore((state) => state.setSkills);
 
-  useEffect(() => {
-    if (chatOutput) {
-      setDataJobExperience(chatOutput.jobExperience);
-      setObjective(chatOutput.objective);
-      setSkills(chatOutput.skills);
+  const [resumeDetail, setResumeDetail] = useState();
+  const fetchResumeDetails = async () => {
+    setLoader(true);
+    try {
+      const response = await fetch(
+        `${apiUrl}resume/detail?resumeId=${resumeId}&clerkId=${user?.id}`
+      );
+      if (!response.ok) {
+        console.log("Error fetching the data!!");
+        router.push("/not-found");
+        return;
+      }
+      const data = await response.json();
+      setResumeDetail(data.resumeDetails);
+      console.log("Success fetching the resume!!", data.resumeDetails);
+      setLoader(false);
+    } catch (error) {
+      console.log("Server error", error.message);
     }
-    setResumeRef(resumeRef);
-  }, [chatOutput]);
+  };
 
   return (
     <div className="max-w-[40rem]">
@@ -104,7 +110,7 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
               <h1 className="font-bold mb-2 tracking-widest">Skills</h1>
               <p className="w-44 text-[10px] space-x-2">
                 {skills?.map((skill, i) => (
-                  <span>
+                  <span key={i}>
                     {skill}
                     {i < skills.length - 1 && ", "}{" "}
                   </span>
@@ -144,7 +150,7 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
             <section className="skills-section text-left mt-3 border-b border-[#adadad] pb-4">
               <h1 className="font-bold mb-2 tracking-widest">Education</h1>
               <ul className="text-xs space-y-6 ">
-                {userDegree.map((degree, i) => (
+                {userDegree?.map((degree, i) => (
                   <li key={i} className="flex flex-col ">
                     <span>{degree.degreeName}</span>
                     <span className="text-sm font-bold tracking-tighter">
@@ -155,7 +161,7 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
                   </li>
                 ))}
 
-                {userDegree.length === 0 ? (
+                {userDegree?.length === 0 ? (
                   <li className="flex flex-col ">
                     <span>Degree Name</span>
                     <span className="text-sm font-bold tracking-tighter">
@@ -174,7 +180,7 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
             <section className="language-section text-left mt-3  border-[#adadad] pb-2 ">
               <h1 className="font-bold mb-2 tracking-widest">Language</h1>
               <ul className="text-xs space-y-2 ">
-                {userLanguage.map((language, i) => (
+                {userLanguage?.map((language, i) => (
                   <li className="flex gap-2 items-center justify-between  ">
                     <span>{language.languageName}</span>
                     <div className="w-full bg-gray-700/20 rounded-full h-2">
@@ -473,7 +479,7 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
               </h1>
 
               {dataJobExperience?.map((exp, i) => (
-                <div className="experience-1 mb-10">
+                <div key={i} className="experience-1 mb-10">
                   <h1 className="text-base my-2">{exp.jobTitle}</h1>
                   <span className="flex justify-between my-2 mr-4">
                     <h1 className="text-sm tracking-tighter">
@@ -485,7 +491,7 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
                   </span>
                   <ol className="text-xs tracking-tighter space-y-1  pr-5">
                     {exp?.userRoleDescription?.map((jobExp, i) => (
-                      <li>
+                      <li key={i}>
                         <span className="text-sm">&#8226; </span>
                         {jobExp}
                       </li>

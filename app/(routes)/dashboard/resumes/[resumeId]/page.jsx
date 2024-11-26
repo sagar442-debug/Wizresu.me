@@ -82,7 +82,7 @@ const page = () => {
               </div>
 
               <PersonalInfoData
-                save={onSave}
+                // save={onSave}
                 fullName={resumeDetail?.userFullName}
                 emailAddress={resumeDetail?.userEmailAddress}
                 phoneNumber={resumeDetail?.userPhoneNumber}
@@ -94,11 +94,8 @@ const page = () => {
                 save={onSave}
                 educationData={resumeDetail?.userDegree}
               />
-              <LanguagesInfo
-                save={onSave}
-                languageData={resumeDetail?.userLanguage}
-              />
-              <JobInfo save={onSave} jobData={resumeDetail?.jobExperience} />
+              <LanguagesInfo languageData={resumeDetail?.userLanguage} />
+              <JobInfo jobData={resumeDetail?.jobExperience} />
               <div className="flex space-x-2 items-center">
                 <button
                   onClick={justSave}

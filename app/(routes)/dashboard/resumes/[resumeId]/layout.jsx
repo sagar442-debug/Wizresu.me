@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import ResumeTemplatePage from "./_components/ResumeTemplatePage";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
