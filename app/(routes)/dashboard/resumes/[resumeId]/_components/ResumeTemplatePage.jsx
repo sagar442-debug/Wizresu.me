@@ -21,6 +21,7 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
   const jobDescription = useStore((state) => state.jobDescription);
   const jobExperience = useStore((state) => state.jobExperience);
   const chatOutput = useStore((state) => state.chatOutput);
+  const [loader, setLoader] = useState(false);
 
   const [dataJobExperience, setDataJobExperience] = useState();
   const objective = useStore((state) => state.objective);
@@ -29,6 +30,11 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
   const setSkills = useStore((state) => state.setSkills);
 
   const [resumeDetail, setResumeDetail] = useState();
+
+  useEffect(() => {
+    fetchResumeDetails();
+  }, []);
+
   const fetchResumeDetails = async () => {
     setLoader(true);
     try {

@@ -43,6 +43,7 @@ const page = () => {
       }
       const data = await response.json();
       setResumeDetail(data.resumeDetails);
+      setResumeTitle(data.resumeDetails.resumeTitle);
       console.log("Success fetching the resume!!", data.resumeDetails);
       setLoader(false);
     } catch (error) {
@@ -77,7 +78,8 @@ const page = () => {
                   className="w-full rounded-lg border border-gray-200 p-3 text-sm"
                   placeholder="Resume Title"
                   type="text"
-                  value={resumeDetail?.resumeTitle}
+                  value={resumeTitle}
+                  onChange={(e) => setResumeTitle(e.target.value)}
                 />
               </div>
 

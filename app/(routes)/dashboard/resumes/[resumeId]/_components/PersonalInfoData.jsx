@@ -5,6 +5,8 @@ import { Wand } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Settings } from "lucide-react";
 
+const apiUrl = process.env.NEXT_BACKEND_URL;
+
 const PersonalInfoData = ({
   fullName,
   emailAddress,
@@ -37,9 +39,6 @@ const PersonalInfoData = ({
     console.log(objectiveText);
     setObjective(objectiveText);
   }, []);
-  useEffect(() => {
-    console.log(save);
-  }, [save]);
 
   return (
     <div>
