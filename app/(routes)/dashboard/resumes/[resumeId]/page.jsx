@@ -44,7 +44,7 @@ const page = () => {
       const data = await response.json();
       setResumeDetail(data.resumeDetails);
       setResumeTitle(data.resumeDetails.resumeTitle);
-      console.log("Success fetching the resume!!", data.resumeDetails);
+      // console.log("Success fetching the resume!!", data.resumeDetails);
       setLoader(false);
     } catch (error) {
       console.log("Server error", error.message);

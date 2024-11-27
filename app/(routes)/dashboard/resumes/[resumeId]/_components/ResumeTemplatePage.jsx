@@ -5,8 +5,14 @@ import { FaPhone } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import { FaMapMarker } from "react-icons/fa";
 import useStore from "@/store/useStore";
+import { useParams } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
+
+const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const ResumeTemplatePage = forwardRef((props, ref) => {
+  const params = useParams();
+  const { user, isLoaded } = useUser();
   const resumeRef = useRef();
   const initialTap = useStore((state) => state.initialTap);
   const setResumeRef = useStore((state) => state.setResumeRef);
@@ -33,13 +39,14 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
 
   useEffect(() => {
     fetchResumeDetails();
-  }, []);
+    console.log(user);
+  }, [user, isLoaded]);
 
   const fetchResumeDetails = async () => {
     setLoader(true);
     try {
       const response = await fetch(
-        `${apiUrl}resume/detail?resumeId=${resumeId}&clerkId=${user?.id}`
+        `${apiUrl}resume/detail?resumeId=${params.resumeId}&clerkId=${user?.id}`
       );
       if (!response.ok) {
         console.log("Error fetching the data!!");

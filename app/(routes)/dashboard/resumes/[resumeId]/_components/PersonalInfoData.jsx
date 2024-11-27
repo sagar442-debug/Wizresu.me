@@ -36,7 +36,6 @@ const PersonalInfoData = ({
     setUserPhoneNumber(phoneNumber);
     setUserAddress(address);
     setUserWebsite(website);
-    console.log(objectiveText);
     setObjective(objectiveText);
   }, []);
 
