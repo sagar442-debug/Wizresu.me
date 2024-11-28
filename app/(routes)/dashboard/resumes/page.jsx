@@ -22,6 +22,7 @@ export const runtime = "edge";
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export default function Page() {
+  const [loadingResumeId, setLoadingResumeId] = useState(null);
   const { isSignedIn, user, isLoaded } = useUser();
   const [resumeDetails, setResumeDetails] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -93,6 +94,10 @@ export default function Page() {
   const handlePageChange = (page) => {
     if (page < 1 || page > totalPages) return;
     setCurrentPage(page);
+  };
+
+  const handleNavigation = (id) => {
+    setLoadingResumeId(id);
   };
 
   return (
@@ -172,8 +177,18 @@ export default function Page() {
                     {resume.jobTitle || "N/A"}
                   </td>
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700 flex space-x-2">
-                    <Link href={`/dashboard/resumes/${resume?._id}`}>
-                      <RefreshCcw width={20} />
+                    <Link
+                      href={`/dashboard/resumes/${resume?._id}`}
+                      onClick={() => handleNavigation(resume._id)}
+                    >
+                      <RefreshCcw
+                        width={20}
+                        className={`transition-transform duration-500 ${
+                          loadingResumeId === resume._id
+                            ? "animate-spin-reverse"
+                            : ""
+                        }`}
+                      />
                     </Link>
                     <button>
                       <Trash2 width={20} />
