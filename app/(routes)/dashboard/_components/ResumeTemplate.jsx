@@ -211,7 +211,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
               <h1 className="text-base font-semibold tracking-wider mb-2">
                 Profile
               </h1>
-              <p className="text-[9px] xl:text-[10px] 2xl:text-xs">
+              <p className="text-[9px] xl:text-[9px] 2xl:text-xs">
                 {objective?.length > 3
                   ? objective
                   : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit! Porro dolorum reprehenderit eius nulla, eligendi facere reiciendis distinctio, assumenda cupiditate earum voluptatibus placeat! Mollitia nihil aspernatur voluptas saepe animi, reiciendis voluptatum nemo eveniet voluptates dolorum? Natus nihil reiciendis adipisci?"}
@@ -224,16 +224,16 @@ const ResumeTemplate = forwardRef((props, ref) => {
 
               {dataJobExperience?.map((exp, i) => (
                 <div className="experience-1 mb-10">
-                  <h1 className="text-xs xl:text-sm my-2">{exp.jobTitle}</h1>
+                  <h1 className="text-xs 2xl:text-sm my-2">{exp.jobTitle}</h1>
                   <span className="flex justify-between my-1  xl:my-2 mr-4">
                     <h1 className="text-[10px] xl:text-xs tracking-tighter">
                       {exp.companyName}
                     </h1>
-                    <h1 className="text-[10px] xl:text-xs">
+                    <h1 className="text-[10px] 2xl:text-xs">
                       {exp.startDate} - {exp.endDate}
                     </h1>
                   </span>
-                  <ol className="text-xs tracking-tighter  pr-5">
+                  <ol className="text-[10px] 2xl:text-xs tracking-tighter  pr-5">
                     {exp?.userRoleDescription?.map((jobExp, i) => (
                       <li>
                         <span className="text-sm p-0 m-0"> &#8226; </span>
@@ -247,16 +247,16 @@ const ResumeTemplate = forwardRef((props, ref) => {
               {Object.keys(chatOutput).length == 0 ? (
                 <>
                   <div className="experience-1 mb-10">
-                    <h1 className="text-xs xl:text-sm my-1  xl:my-2">
+                    <h1 className="text-xs 2xl:text-sm my-1  xl:my-2">
                       Your Job Position Here
                     </h1>
                     <span className="flex justify-between my-1 xl:my-2 mr-4">
                       <h1 className="text-[10px] xl:text-xs tracking-tighter">
                         Company Name
                       </h1>
-                      <h1 className="text-[10px] xl:text-xs">2020-2024</h1>
+                      <h1 className="text-[10px] 2xl:text-xs">2020-2024</h1>
                     </span>
-                    <ol className="text-[10px] xl:text-xs tracking-tighter space-y-0 xl:space-y-1">
+                    <ol className="text-[10px] 2xl:text-xs tracking-tighter space-y-0 xl:space-y-1">
                       <li>
                         <span className="text-sm"> &#8226;</span>Lorem ipsum
                         dolor sit amet, consectetur adipisicing elit.
@@ -286,16 +286,16 @@ const ResumeTemplate = forwardRef((props, ref) => {
                     </ol>
                   </div>
                   <div className="experience-1 mb-10">
-                    <h1 className="text-xs xl:text-sm my-1  xl:my-2">
+                    <h1 className="text-xs 2xl:text-sm my-1  xl:my-2">
                       Your Job Position Here
                     </h1>
                     <span className="flex justify-between my-1 xl:my-2 mr-4">
                       <h1 className="text-[10px] xl:text-xs tracking-tighter">
                         Company Name
                       </h1>
-                      <h1 className="text-[10px] xl:text-xs">2020-2024</h1>
+                      <h1 className="text-[10px] 2xl:text-xs">2020-2024</h1>
                     </span>
-                    <ol className="text-[10px] xl:text-xs tracking-tighter space-y-0 xl:space-y-1">
+                    <ol className="text-[10px] 2xl:text-xs tracking-tighter space-y-0 xl:space-y-1">
                       <li>
                         <span className="text-sm"> &#8226;</span>Lorem ipsum
                         dolor sit amet, consectetur adipisicing elit.
