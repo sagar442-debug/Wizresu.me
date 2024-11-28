@@ -99,9 +99,10 @@ function Workspace() {
         {resumeLoading ? (
           <LoadingResumeCard />
         ) : (
-          totalResume?.map((resume, i) => (
-            <ResumeCards key={i} resume={resume} />
-          ))
+          totalResume
+            ?.slice()
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .map((resume, i) => <ResumeCards key={i} resume={resume} />)
         )}
       </div>
     </div>
