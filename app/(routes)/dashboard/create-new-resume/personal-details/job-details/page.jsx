@@ -31,6 +31,7 @@ const page = () => {
   const [jobEndDate, setJobEndDate] = useState("");
   const [jobDescription, setJobDescription] = useState("");
   const [addMore, setAddMore] = useState(false);
+  const [addMoreJob, setAddMoreJob] = useState(2);
   const jobTitle2 = useStore((state) => state.jobTitle);
 
   const onJobExperienceSubmit = (e) => {
@@ -68,7 +69,20 @@ const page = () => {
       jobEndDate,
       jobDescription,
     });
+    setAddMoreJob(2);
   };
+
+  const onMoreJob = (e) => {
+    setAddMoreJob(3);
+    setJobExperience({
+      jobTitle,
+      jobCompany,
+      jobStartDate,
+      jobEndDate,
+      jobDescription,
+    });
+  };
+
   return (
     <div>
       <div className="rounded min-w-[40rem] min-h-[80vh]">
@@ -166,6 +180,82 @@ const page = () => {
                 <div>
                   <label className="sr-only" htmlFor="email">
                     Company Name 2
+                  </label>
+                  <input
+                    className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                    placeholder="Company Name 2"
+                    type="text"
+                    id="full-name"
+                    onChange={(e) => setJobCompany(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="sr-only" htmlFor="email">
+                    Start Date
+                  </label>
+                  <input
+                    className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                    placeholder="Start Date"
+                    type="text"
+                    id="full-name"
+                    onChange={(e) => setJobStartDate(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="sr-only" htmlFor="email">
+                    End Date
+                  </label>
+                  <input
+                    className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                    placeholder="End Date"
+                    type="text"
+                    id="full-name"
+                    onChange={(e) => setJobEndDate(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="sr-only" htmlFor="email">
+                  Email
+                </label>
+                <textarea
+                  className="w-full rounded-lg border resize-none border-gray-200 p-3 text-sm"
+                  placeholder="Job Description"
+                  rows="10"
+                  id="Job Description"
+                  onChange={(e) => setJobDescription(e.target.value)}
+                ></textarea>
+              </div>
+            </form>
+            <Button
+              onClick={onMoreJob}
+              className={`hover:bg-gray-100 gap-2 ${
+                addMoreJob == 2 && addMore == true ? "" : "hidden"
+              }`}
+            >
+              <IoAddCircleOutline className="text-lg" />
+              <span>Add More</span>
+            </Button>
+            <form
+              action="#"
+              className={`space-y-4 ${addMoreJob > 2 ? "" : "hidden"}`}
+            >
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="sr-only" htmlFor="email">
+                    Job Title/ Project title 3
+                  </label>
+                  <input
+                    className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                    placeholder="Job title"
+                    type="text"
+                    id="full-name"
+                    onChange={(e) => setJobTitle(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="sr-only" htmlFor="email">
+                    Company Name 3
                   </label>
                   <input
                     className="w-full rounded-lg border border-gray-200 p-3 text-sm"

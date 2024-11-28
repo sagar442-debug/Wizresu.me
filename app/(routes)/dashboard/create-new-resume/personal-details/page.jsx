@@ -32,6 +32,7 @@ const Page = () => {
   const setUserAddress = useStore((state) => state.setUserAddress);
   const setUserDegree = useStore((state) => state.setUserDegree);
   const setUserLanguage = useStore((state) => state.setUserLanguage);
+  const jobTitle = useStore((state) => state.jobTitle);
 
   const userFullName = useStore((state) => state.userFullName);
   const userEmailAddress = useStore((state) => state.userEmailAddress);
@@ -60,6 +61,12 @@ const Page = () => {
 
   const [languageName4, setLanguageName4] = useState("");
   const [languagePercentage4, setLanguagePercentage4] = useState("");
+
+  // useEffect(() => {
+  //   if (jobTitle.length < 1) {
+  //     router.push("/dashboard/create-new-resume");
+  //   }
+  // }, []);
 
   useEffect(() => {
     setPreviousPage("/dashboard/create-new-resume/");

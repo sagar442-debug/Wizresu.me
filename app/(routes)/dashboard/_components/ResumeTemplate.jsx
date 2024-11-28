@@ -33,8 +33,6 @@ const ResumeTemplate = forwardRef((props, ref) => {
   const setObjective = useStore((state) => state.setObjective);
   const skills = useStore((state) => state.skills);
   const setSkills = useStore((state) => state.setSkills);
-  // const [objective, setObjective] = useState("");
-  // const [skills, setSkills] = useState([]);
 
   useEffect(() => {
     if (chatOutput) {
@@ -201,7 +199,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                     className="flex gap-2 items-center justify-between  "
                   >
                     <span>{language.languageName}</span>
-                    <div className="w-full bg-gray-700/20 rounded-full h-2">
+                    <div className="w-full bg-gray-700/20 rounded-full h-2 ">
                       <div
                         className="bg-gray-500 h-2 rounded-full transition-all duration-500 ease-in-out"
                         style={{ width: `${language.languagePercentage}%` }}
@@ -478,9 +476,9 @@ const ResumeTemplate = forwardRef((props, ref) => {
                     className="flex gap-2 items-center justify-between  "
                   >
                     <span>{language.languageName}</span>
-                    <div className="w-full bg-gray-700/20 rounded-full h-2  relative flex flex-col items-center justify-center ">
+                    <div className="w-full bg-gray-700/20 rounded-full h-2 mt-3 relative flex flex-col items-center justify-center ">
                       <div
-                        className="bg-gray-500 h-2 absolute left-0  rounded-full transition-allduration-500 ease-in-out"
+                        className="bg-gray-500 h-2 absolute left-0 top-0  rounded-full transition-allduration-500 ease-in-out"
                         style={{ width: `${language.languagePercentage}%` }}
                       ></div>
                     </div>
