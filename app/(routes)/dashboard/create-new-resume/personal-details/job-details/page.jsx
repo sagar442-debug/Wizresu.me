@@ -49,7 +49,9 @@ const page = () => {
   // Run generateData whenever jobExperience changes
   useEffect(() => {
     if (jobExperience && jobExperience.length > 0) {
+      setLoading(true);
       generateData();
+      setLoading(false);
     }
   }, [jobExperience]);
   useEffect(() => {

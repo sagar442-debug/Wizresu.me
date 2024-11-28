@@ -40,6 +40,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
     if (chatOutput) {
       setDataJobExperience(chatOutput.jobExperience);
       setObjective(chatOutput.objective);
+      console.log(chatOutput.skills);
       setSkills(chatOutput.skills);
     }
     setResumeRef(resumeRef);
@@ -69,7 +70,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
               <ul className="text-xs space-y-2 ">
                 <li className="flex gap-2 items-center">
                   <FaPhone size={10} className="" />
-                  <span className="text-[8px] xl:text-xs">
+                  <span className="text-[8px] xl:text-[10px]  2xl:text-xs">
                     {userPhoneNumber.length > "3"
                       ? userPhoneNumber
                       : "403-123-1234"}
@@ -77,7 +78,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                 </li>
                 <li className="flex gap-2 items-center ">
                   <IoIosMail />
-                  <span className="text-[8px] break-words">
+                  <span className="text-[10px] break-words">
                     {userEmailAddress.length > 3
                       ? userEmailAddress
                       : "sagarsapkota0987@gmail.com"}
@@ -87,7 +88,9 @@ const ResumeTemplate = forwardRef((props, ref) => {
                   <li className="flex gap-2 ">
                     <CiGlobe className="" />
 
-                    <span className="text-[8px] xl:text-xs">{userWebsite}</span>
+                    <span className="text-[8px] xl:text-[10px]  2xl:text-xs">
+                      {userWebsite}
+                    </span>
                   </li>
                 ) : (
                   ""
@@ -97,7 +100,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                   <li className="flex gap-2 ">
                     <FaMapMarker size={10} className="mt-0.5" />
 
-                    <span className="text-[8px] xl:text-xs">
+                    <span className="text-[8px] xl:text-[10px]  2xl:text-xs">
                       {" "}
                       {userAddress}
                     </span>
@@ -108,19 +111,19 @@ const ResumeTemplate = forwardRef((props, ref) => {
               </ul>
             </section>
             <section className="skills-section text-left my-3 border-b pb-3 mb-2 border-[#adadad]">
-              <h1 className="font-bold mb-2 tracking-widest text-sm xl:text-base">
+              <h1 className="font-bold mb-2 tracking-widest text-sm 2xl:text-base">
                 Skills
               </h1>
-              <p className="w-44 text-[8px] xl:text-[10px] space-x-2">
+              <p className="w-44 text-[9px]  xl:text-[10px] ">
                 {skills?.map((skill, i) => (
-                  <span>
+                  <span key={i}>
                     {skill}
                     {i < skills.length - 1 && ", "}{" "}
                   </span>
                 ))}
               </p>
               {Object.keys(chatOutput).length == 0 ? (
-                <ul className="text-[8px] xl:text-xs grid gap-1 grid-cols-3">
+                <ul className="text-[8px] xl:text-[10px] 2xl:text-xs grid gap-1 grid-cols-3">
                   <li className="flex ">
                     <span>Sql</span>
                   </li>
@@ -157,16 +160,16 @@ const ResumeTemplate = forwardRef((props, ref) => {
               <ul className="text-xs space-y-6 ">
                 {userDegree.map((degree, i) => (
                   <li key={i} className="flex flex-col ">
-                    <span className="text-[10px] xl:text-xs">
+                    <span className="text-[10px] 2xl:text-xs">
                       {degree.degreeName}
                     </span>
-                    <span className="text-xs xl:text-sm font-bold tracking-tighter">
+                    <span className="text-xs 2xl:text-sm font-bold tracking-tighter">
                       {degree.degreeInstitution}
                     </span>
-                    <span className="text-[10px] xl:text-xs">
+                    <span className="text-[10px] 2xl:text-xs">
                       {degree.degreeEndDate}
                     </span>
-                    <p className="text-[10px] xl:text-xs mt-1">
+                    <p className="text-[10px] 2xl:text-xs mt-1">
                       {degree.shortDesc}
                     </p>
                   </li>
@@ -174,12 +177,12 @@ const ResumeTemplate = forwardRef((props, ref) => {
 
                 {userDegree.length === 0 ? (
                   <li className="flex flex-col ">
-                    <span className="text-[10px] xl:text-xs">Degree Name</span>
-                    <span className="text-xs xl:text-sm font-bold tracking-tighter">
+                    <span className="text-[10px] 2xl:text-xs">Degree Name</span>
+                    <span className="text-xs 2xl:text-sm font-bold tracking-tighter">
                       Institution Name
                     </span>
-                    <span className="text-[10px] xl:text-xs">2024-08-08</span>
-                    <p className="text-[10px] xl:text-xs mt-1">
+                    <span className="text-[10px] 2xl:text-xs">2024-08-08</span>
+                    <p className="text-[10px] 2xl:text-xs mt-1">
                       You will be able to see the updated degree in next page!
                     </p>
                   </li>
@@ -189,10 +192,15 @@ const ResumeTemplate = forwardRef((props, ref) => {
               </ul>
             </section>
             <section className="language-section text-left mt-3  border-[#adadad] pb-2 ">
-              <h1 className="font-bold mb-2 tracking-widest">Language</h1>
+              <h1 className="font-bold mb-2 tracking-widest text-sm xl:text-base">
+                Language
+              </h1>
               <ul className="text-xs space-y-2 ">
                 {userLanguage.map((language, i) => (
-                  <li className="flex gap-2 items-center justify-between  ">
+                  <li
+                    key={i}
+                    className="flex gap-2 items-center justify-between  "
+                  >
                     <span>{language.languageName}</span>
                     <div className="w-full bg-gray-700/20 rounded-full h-2">
                       <div
@@ -223,7 +231,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
               </h1>
 
               {dataJobExperience?.map((exp, i) => (
-                <div className="experience-1 mb-10">
+                <div key={i} className="experience-1 mb-10">
                   <h1 className="text-xs 2xl:text-sm my-2">{exp.jobTitle}</h1>
                   <span className="flex justify-between my-1  xl:my-2 mr-4">
                     <h1 className="text-[10px] xl:text-xs tracking-tighter">
@@ -235,7 +243,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                   </span>
                   <ol className="text-[10px] 2xl:text-xs tracking-tighter  pr-5">
                     {exp?.userRoleDescription?.map((jobExp, i) => (
-                      <li>
+                      <li key={i}>
                         <span className="text-sm p-0 m-0"> &#8226; </span>
                         {jobExp}
                       </li>
@@ -395,7 +403,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
               <h1 className="font-bold mb-2 tracking-widest">Skills</h1>
               <p className="w-44 text-[10px] ">
                 {skills?.map((skill, i) => (
-                  <span className="">
+                  <span key={i} className="">
                     {skill}
                     {i < skills.length - 1 && ", "}
                   </span>
@@ -466,7 +474,10 @@ const ResumeTemplate = forwardRef((props, ref) => {
               <h1 className="font-bold mb-2 tracking-widest">Language</h1>
               <ul className="text-xs space-y-2 ">
                 {userLanguage.map((language, i) => (
-                  <li className="flex gap-2 items-center justify-between  ">
+                  <li
+                    key={i}
+                    className="flex gap-2 items-center justify-between  "
+                  >
                     <span>{language.languageName}</span>
                     <div className="w-full bg-gray-700/20 rounded-full h-2  relative flex flex-col items-center justify-center ">
                       <div
@@ -497,7 +508,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
               </h1>
 
               {dataJobExperience?.map((exp, i) => (
-                <div className="experience-1 mb-10">
+                <div key={i} className="experience-1 mb-10">
                   <h1 className="text-base my-2">{exp.jobTitle}</h1>
                   <span className="flex justify-between my-2 mr-4">
                     <h1 className="text-sm tracking-tighter">
@@ -509,7 +520,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                   </span>
                   <ol className="text-xs tracking-tighter space-y-1  pr-5">
                     {exp?.userRoleDescription?.map((jobExp, i) => (
-                      <li>
+                      <li key={i}>
                         <span className="text-sm">&#8226; </span>
                         {jobExp}
                       </li>

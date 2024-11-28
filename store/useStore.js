@@ -58,12 +58,10 @@ const useStore = create((set) => ({
         },
       ],
     })),
-  setSkills: (skill) =>
-    set((state) => ({
-      skills: state.skills.includes(skill)
-        ? state.skills
-        : [...state.skills, skill],
-    })),
+  setSkills: (newSkills) =>
+    set({
+      skills: newSkills,
+    }),
   setUserLanguage: (language) =>
     set((state) => ({
       userLanguage: [
