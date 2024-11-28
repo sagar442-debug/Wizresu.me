@@ -97,6 +97,7 @@ export default function Page() {
 
   return (
     <div className="overflow-x-auto max-w-[1000px] rounded-lg  mr-2 ">
+      <h1 className="text-4xl tracking-wide font-bold mb-5">Saved Resume</h1>
       <div className="border border-gray-200">
         <div className="relative">
           <label for="Search" className="sr-only">

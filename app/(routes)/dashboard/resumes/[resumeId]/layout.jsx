@@ -10,6 +10,7 @@ const layout = ({ children }) => {
       <Link href={"/dashboard/resumes"} className="hover:underline">
         Go Back
       </Link>
+
       <div className="flex space-x-10  ">
         <div>{children}</div>
         <Card>
