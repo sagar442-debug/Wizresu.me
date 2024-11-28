@@ -27,6 +27,7 @@ export default function Page() {
   const [resumeDetails, setResumeDetails] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; // Number of items per page
+  const [premiumMsg, setPremiumMsg] = useState("");
 
   useEffect(() => {
     fetchUserResume();
@@ -103,6 +104,7 @@ export default function Page() {
   return (
     <div className="overflow-x-auto max-w-[1000px] rounded-lg  mr-2 ">
       <h1 className="text-4xl tracking-wide font-bold mb-5">Saved Resume</h1>
+      <p>This is a wizresu.me premium feature</p>
       <div className="border border-gray-200">
         <div className="relative">
           <label for="Search" className="sr-only">
@@ -164,27 +166,27 @@ export default function Page() {
             // If resumes are available, show the resume details
             <tbody className="divide-y divide-gray-200">
               {currentResumes.map((resume) => (
-                <tr key={resume.id}>
+                <tr key={resume?.id}>
                   <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                    {resume.resumeTitle || "Unknown"}
+                    {resume?.resumeTitle || "Unknown"}
                   </td>
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                    {resume.createdAt
-                      ? format(new Date(resume.createdAt), "yyyy-MM-dd")
+                    {resume?.createdAt
+                      ? format(new Date(resume?.createdAt), "yyyy-MM-dd")
                       : "N/A"}
                   </td>
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                    {resume.jobTitle || "N/A"}
+                    {resume?.jobTitle || "N/A"}
                   </td>
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700 flex space-x-2">
                     <Link
                       href={`/dashboard/resumes/${resume?._id}`}
-                      onClick={() => handleNavigation(resume._id)}
+                      onClick={() => handleNavigation(resume?._id)}
                     >
                       <RefreshCcw
                         width={20}
                         className={`transition-transform duration-500 ${
-                          loadingResumeId === resume._id
+                          loadingResumeId === resume?._id
                             ? "animate-spin-reverse"
                             : ""
                         }`}
