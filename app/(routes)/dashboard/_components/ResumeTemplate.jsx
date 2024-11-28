@@ -40,7 +40,6 @@ const ResumeTemplate = forwardRef((props, ref) => {
     if (chatOutput) {
       setDataJobExperience(chatOutput.jobExperience);
       setObjective(chatOutput.objective);
-      console.log(chatOutput.skills);
       setSkills(chatOutput.skills);
     }
     setResumeRef(resumeRef);
@@ -481,7 +480,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                     <span>{language.languageName}</span>
                     <div className="w-full bg-gray-700/20 rounded-full h-2  relative flex flex-col items-center justify-center ">
                       <div
-                        className="bg-gray-500 h-2 absolute top-1 left-0  rounded-full transition-allduration-500 ease-in-out"
+                        className="bg-gray-500 h-2 absolute left-0  rounded-full transition-allduration-500 ease-in-out"
                         style={{ width: `${language.languagePercentage}%` }}
                       ></div>
                     </div>

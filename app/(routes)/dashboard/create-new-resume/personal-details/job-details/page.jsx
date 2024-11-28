@@ -46,7 +46,6 @@ const page = () => {
     router.push(`${pathname}/download-resume`);
   };
 
-  // Run generateData whenever jobExperience changes
   useEffect(() => {
     if (jobExperience && jobExperience.length > 0) {
       setLoading(true);
@@ -54,6 +53,7 @@ const page = () => {
       setLoading(false);
     }
   }, [jobExperience]);
+
   useEffect(() => {
     setLoading(false);
   }, []);
