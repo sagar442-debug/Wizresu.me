@@ -14,9 +14,10 @@ export const useDataGenerator = () => {
   const setChatOutput = useStore((state) => state.setChatOutput);
   const chatOutput = useStore((state) => state.chatOutput);
   const [geminiData, setGeminiData] = useState();
-
+  const setLoadingChat = useStore((state) => state.setLoadingChat);
   // Function to generate data using GoogleGenerativeAI
   const generateData = async () => {
+    setLoadingChat(true);
     const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
     const model = genAI.getGenerativeModel({
       model: "gemini-1.5-flash",
@@ -65,8 +66,10 @@ Avoid Complex Language: Use simple, clear language that's easy for the ATS to un
       const parsedData = await JSON.parse(cleanedText);
       setChatOutput(parsedData);
       console.log(parsedData);
+      setLoadingChat(false);
     } catch (error) {
       console.error("Failed to generate data:", error);
+      setLoadingChat(false);
     }
   };
 
