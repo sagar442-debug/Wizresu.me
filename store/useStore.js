@@ -23,8 +23,10 @@ const useStore = create((set) => ({
   initialTap: false,
   atsScore: null,
   resumeScanData: {},
+  loadingChat: false,
 
   // Actions to update the state
+  setLoadingChat: (loader) => set((state) => ({ loadingChat: loader })),
   setInitialTap: (tap) => set((state) => ({ initialTap: tap })),
   setResumeRef: (ref) => set((state) => ({ resumeRef: ref })),
   setLoading: (loading) => set((state) => ({ loading: loading })),

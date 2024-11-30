@@ -17,8 +17,10 @@ export const useAtsCalculator = () => {
   const resumeScanData = useStore((state) => state.resumeScanData);
   const setResumeScanData = useStore((state) => state.setResumeScanData);
   const [geminiData, setGeminiData] = useState(null);
+  const setLoadingChat = useStore((state) => state.setLoadingChat);
 
   const generateAtsScore = async () => {
+    setLoadingChat(true);
     const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
     const schema = {
       description:
@@ -156,10 +158,12 @@ export const useAtsCalculator = () => {
       //   console.log("Total weight", total);
       //   console.log("User score", userScore);
       console.log("Match Percent", matchPercent);
+      setLoadingChat(false);
       return jsonData;
       setAtsScore(jsonData.percentageMatch);
     } catch (error) {
       console.error("Failed to generate ATS data:", error);
+      setLoadingChat(false);
     }
   };
 

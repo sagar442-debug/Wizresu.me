@@ -33,6 +33,7 @@ const page = () => {
   const [addMore, setAddMore] = useState(false);
   const [addMoreJob, setAddMoreJob] = useState(2);
   const jobTitle2 = useStore((state) => state.jobTitle);
+  const loadingChat = useStore((state) => state.loadingChat);
 
   const onJobExperienceSubmit = (e) => {
     e.preventDefault();
@@ -305,14 +306,16 @@ const page = () => {
             </form>
           </CardContent>
           <CardFooter>
-            <Link href="/dashboard/create-new-resume/personal-details">
+            <Link
+              onClick={onJobExperienceSubmit}
+              href="/dashboard/create-new-resume/personal-details/job-details/download-resume"
+            >
               <Button
-                onClick={onJobExperienceSubmit}
                 className=" hover:bg-blue-400 rounded hover:text-white shadow border "
                 variant="ghost"
-                diabled={loading}
+                disabled={loading || loadingChat}
               >
-                {loading ? (
+                {loading || loadingChat ? (
                   <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
                 ) : (
                   ""

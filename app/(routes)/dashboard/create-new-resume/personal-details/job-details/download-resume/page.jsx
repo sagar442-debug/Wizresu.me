@@ -63,6 +63,7 @@ const page = () => {
   const [buttonDisable, setButtonDisable] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Basic");
   const [sub, setSub] = useState();
+  const loadingChat = useStore((state) => state.loadingChat);
 
   useEffect(() => {
     if (Object.keys(jobExperience).length === 0) {
@@ -169,6 +170,9 @@ const page = () => {
   //     setInitialTap(false);
   //     setLoading(false);
   // };
+  useEffect(() => {
+    console.log(loadingChat);
+  }, [loadingChat]);
   const handleDownloadPdf = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -290,9 +294,9 @@ const page = () => {
               className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg"
               variant="secondary"
               onClick={handleDownloadPdf}
-              disabled={loading}
+              disabled={loading || loadingChat}
             >
-              {loading ? (
+              {loading || loadingChat ? (
                 <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
               ) : (
                 ""
