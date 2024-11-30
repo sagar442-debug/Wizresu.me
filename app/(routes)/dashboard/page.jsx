@@ -22,7 +22,7 @@ const Dashboard = () => {
   const setUserLanguage = useStore((state) => state.setUserLanguage);
   const setJobExperience = useStore((state) => state.setJobExperience);
   const setChatOutput = useStore((state) => state.setChatOutput);
-
+  const userDegree = useStore((state) => state.userDegree);
   const resetAllState = () => {
     setInitialTap(null);
     setResumeRef(null);
@@ -31,12 +31,18 @@ const Dashboard = () => {
     setObjective("");
     setResumeScanData(null);
     setJobDescription("");
+    console.log(userDegree);
+    setUserDegree([]);
+    console.log(userDegree);
     setUserFullName("");
     setUserEmailAddress("");
     setUserPhoneNumber("");
     setUserWebsite("");
     setUserAddress("");
     setSkills([]);
+    setUserLanguage([]);
+    setJobExperience([]);
+    setChatOutput([]);
   };
 
   useEffect(() => {

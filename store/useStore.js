@@ -50,15 +50,18 @@ const useStore = create((set) => ({
   setAtsScore: (score) => set((state) => ({ atsScore: score })),
   setUserDegree: (degree) =>
     set((state) => ({
-      userDegree: [
-        ...state.userDegree,
-        {
-          degreeName: degree.degreeName,
-          degreeInstitution: degree.degreeInstitution,
-          degreeEndDate: degree.degreeEndDate,
-          shortDesc: degree.shortDesc,
-        },
-      ],
+      userDegree:
+        Array.isArray(degree) && degree.length === 0
+          ? []
+          : [
+              ...state.userDegree,
+              {
+                degreeName: degree.degreeName,
+                degreeInstitution: degree.degreeInstitution,
+                degreeEndDate: degree.degreeEndDate,
+                shortDesc: degree.shortDesc,
+              },
+            ],
     })),
   setSkills: (newSkills) =>
     set({
@@ -66,26 +69,32 @@ const useStore = create((set) => ({
     }),
   setUserLanguage: (language) =>
     set((state) => ({
-      userLanguage: [
-        ...state.userLanguage,
-        {
-          languageName: language.languageName,
-          languagePercentage: language.languagePercentage,
-        },
-      ],
+      userLanguage:
+        Array.isArray(language) && language.length === 0
+          ? [] // Reset userLanguage to an empty array if language is empty
+          : [
+              ...state.userLanguage,
+              {
+                languageName: language.languageName,
+                languagePercentage: language.languagePercentage,
+              },
+            ],
     })),
   setJobExperience: (job) =>
     set((state) => ({
-      jobExperience: [
-        ...state.jobExperience,
-        {
-          jobTitle: job.jobTitle,
-          jobCompany: job.jobCompany,
-          jobStartDate: job.jobStartDate,
-          jobEndDate: job.jobEndDate,
-          jobDescription: job.jobDescription,
-        },
-      ],
+      jobExperience:
+        Array.isArray(job) && job.length === 0
+          ? [] // Reset jobExperience to an empty array if job is empty
+          : [
+              ...state.jobExperience,
+              {
+                jobTitle: job.jobTitle,
+                jobCompany: job.jobCompany,
+                jobStartDate: job.jobStartDate,
+                jobEndDate: job.jobEndDate,
+                jobDescription: job.jobDescription,
+              },
+            ],
     })),
   setChatOutput: (chat) => set((state) => ({ chatOutput: chat })),
 }));
