@@ -39,7 +39,6 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
 
   useEffect(() => {
     fetchResumeDetails();
-    console.log(user);
   }, [user, isLoaded]);
 
   const fetchResumeDetails = async () => {
@@ -55,7 +54,7 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
       }
       const data = await response.json();
       setResumeDetail(data.resumeDetails);
-      console.log("Success fetching the resume!!", data.resumeDetails);
+      // console.log("Success fetching the resume!!", data.resumeDetails);
       setLoader(false);
     } catch (error) {
       console.log("Server error", error.message);
@@ -130,15 +129,15 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
               <h1 className="font-bold mb-2 tracking-widest text-sm 2xl:text-base">
                 Skills
               </h1>
-              <p className="w-44 text-[8px] xl:text-[10px] 2xl:text-[10px] space-x-2">
-                {skills?.map((skill, i) => (
+              <p className="w-44 text-[8px] xl:text-[10px] 2xl:text-[10px]">
+                {resumeDetail?.skills?.map((skill, i) => (
                   <span>
                     {skill}
-                    {i < skills.length - 1 && ", "}{" "}
+                    {i < resumeDetail?.skills.length - 1 && ", "}{" "}
                   </span>
                 ))}
               </p>
-              {Object.keys(chatOutput).length == 0 ? (
+              {resumeDetail?.length == 0 ? (
                 <ul className="text-[8px] xl:text-[10px] 2xl:text-xs grid gap-1 grid-cols-3">
                   <li className="flex ">
                     <span>Sql</span>
@@ -174,7 +173,7 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
                 Education
               </h1>
               <ul className="text-xs space-y-6 ">
-                {userDegree.map((degree, i) => (
+                {resumeDetail?.userDegree.map((degree, i) => (
                   <li key={i} className="flex flex-col ">
                     <span className="text-[10px] 2xl:text-xs">
                       {degree.degreeName}
@@ -191,7 +190,7 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
                   </li>
                 ))}
 
-                {userDegree.length === 0 ? (
+                {resumeDetail?.userDegree.length === 0 ? (
                   <li className="flex flex-col ">
                     <span className="text-[10px] 2xl:text-xs">Degree Name</span>
                     <span className="text-xs 2xl:text-sm font-bold tracking-tighter">
@@ -212,7 +211,7 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
                 Language
               </h1>
               <ul className="text-xs space-y-2 ">
-                {userLanguage.map((language, i) => (
+                {resumeDetail?.userLanguage.map((language, i) => (
                   <li className="flex gap-2 items-center justify-between  ">
                     <span>{language.languageName}</span>
                     <div className="w-full bg-gray-700/20 rounded-full h-2">
@@ -243,19 +242,19 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
                 Work Experience
               </h1>
 
-              {dataJobExperience?.map((exp, i) => (
+              {resumeDetail?.jobExperience?.map((exp, i) => (
                 <div className="experience-1 mb-10">
                   <h1 className="text-xs 2xl:text-sm my-2">{exp.jobTitle}</h1>
                   <span className="flex justify-between my-1  xl:my-2 mr-4">
                     <h1 className="text-[10px] xl:text-xs tracking-tighter">
-                      {exp.companyName}
+                      {exp.jobCompany}
                     </h1>
                     <h1 className="text-[10px] 2xl:text-xs">
-                      {exp.startDate} - {exp.endDate}
+                      {exp.jobStartDate} - {exp.jobEndDate}
                     </h1>
                   </span>
                   <ol className="text-[10px] 2xl:text-xs tracking-tighter  pr-5">
-                    {exp?.userRoleDescription?.map((jobExp, i) => (
+                    {exp?.jobDescription?.map((jobExp, i) => (
                       <li>
                         <span className="text-sm p-0 m-0"> &#8226; </span>
                         {jobExp}
@@ -265,7 +264,7 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
                 </div>
               ))}
 
-              {Object.keys(chatOutput).length == 0 ? (
+              {resumeDetail?.length == 0 ? (
                 <>
                   <div className="experience-1 mb-10">
                     <h1 className="text-xs 2xl:text-sm my-1  xl:my-2">
