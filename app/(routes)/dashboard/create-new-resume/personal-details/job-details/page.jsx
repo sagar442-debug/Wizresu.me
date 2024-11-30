@@ -84,6 +84,27 @@ const page = () => {
     });
   };
 
+  const onAddeJob4 = () => {
+    setAddMoreJob(4);
+    setJobExperience({
+      jobTitle,
+      jobCompany,
+      jobStartDate,
+      jobEndDate,
+      jobDescription,
+    });
+  };
+  const onAddeJob5 = () => {
+    setAddMoreJob(5);
+    setJobExperience({
+      jobTitle,
+      jobCompany,
+      jobStartDate,
+      jobEndDate,
+      jobDescription,
+    });
+  };
+
   return (
     <div>
       <div className="rounded min-w-[40rem] min-h-[80vh]">
@@ -304,16 +325,174 @@ const page = () => {
                 ></textarea>
               </div>
             </form>
+            <Button
+              onClick={onAddeJob4}
+              className={`hover:bg-gray-100 gap-2 ${
+                addMoreJob == 3 && addMore == true ? "" : "hidden"
+              }`}
+            >
+              <IoAddCircleOutline className="text-lg" />
+              <span>Add More 4</span>
+            </Button>
+            <form
+              action="#"
+              className={`space-y-4 ${addMoreJob > 3 ? "" : "hidden"}`}
+            >
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="sr-only" htmlFor="email">
+                    Job Title/ Project title 3
+                  </label>
+                  <input
+                    className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                    placeholder="Job title"
+                    type="text"
+                    id="full-name"
+                    onChange={(e) => setJobTitle(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="sr-only" htmlFor="email">
+                    Company Name 3
+                  </label>
+                  <input
+                    className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                    placeholder="Company Name 2"
+                    type="text"
+                    id="full-name"
+                    onChange={(e) => setJobCompany(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="sr-only" htmlFor="email">
+                    Start Date
+                  </label>
+                  <input
+                    className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                    placeholder="Start Date"
+                    type="text"
+                    id="full-name"
+                    onChange={(e) => setJobStartDate(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="sr-only" htmlFor="email">
+                    End Date
+                  </label>
+                  <input
+                    className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                    placeholder="End Date"
+                    type="text"
+                    id="full-name"
+                    onChange={(e) => setJobEndDate(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="sr-only" htmlFor="email">
+                  Email
+                </label>
+                <textarea
+                  className="w-full rounded-lg border resize-none border-gray-200 p-3 text-sm"
+                  placeholder="Job Description"
+                  rows="10"
+                  id="Job Description"
+                  onChange={(e) => setJobDescription(e.target.value)}
+                ></textarea>
+              </div>
+            </form>
+            <Button
+              onClick={onAddeJob5}
+              className={`hover:bg-gray-100 gap-2 ${
+                addMoreJob == 4 && addMore == true ? "" : "hidden"
+              }`}
+            >
+              <IoAddCircleOutline className="text-lg" />
+              <span>Add More 4</span>
+            </Button>
+            <form
+              action="#"
+              className={`space-y-4 ${addMoreJob > 4 ? "" : "hidden"}`}
+            >
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="sr-only" htmlFor="email">
+                    Job Title/ Project title 3
+                  </label>
+                  <input
+                    className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                    placeholder="Job title"
+                    type="text"
+                    id="full-name"
+                    onChange={(e) => setJobTitle(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="sr-only" htmlFor="email">
+                    Company Name 3
+                  </label>
+                  <input
+                    className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                    placeholder="Company Name 2"
+                    type="text"
+                    id="full-name"
+                    onChange={(e) => setJobCompany(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="sr-only" htmlFor="email">
+                    Start Date
+                  </label>
+                  <input
+                    className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                    placeholder="Start Date"
+                    type="text"
+                    id="full-name"
+                    onChange={(e) => setJobStartDate(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="sr-only" htmlFor="email">
+                    End Date
+                  </label>
+                  <input
+                    className="w-full rounded-lg border border-gray-200 p-3 text-sm"
+                    placeholder="End Date"
+                    type="text"
+                    id="full-name"
+                    onChange={(e) => setJobEndDate(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="sr-only" htmlFor="email">
+                  Email
+                </label>
+                <textarea
+                  className="w-full rounded-lg border resize-none border-gray-200 p-3 text-sm"
+                  placeholder="Job Description"
+                  rows="10"
+                  id="Job Description"
+                  onChange={(e) => setJobDescription(e.target.value)}
+                ></textarea>
+              </div>
+            </form>
           </CardContent>
           <CardFooter>
             <Link
               onClick={onJobExperienceSubmit}
               href="/dashboard/create-new-resume/personal-details/job-details/download-resume"
+              className={`${
+                loading || loadingChat || jobExperience.length < 1
+                  ? "cursor-not-allowed opacity-50" // Disabled appearance
+                  : "cursor-pointer" // Active appearance
+              }`}
             >
               <Button
+                onClick={onJobExperienceSubmit}
                 className=" hover:bg-blue-400 rounded hover:text-white shadow border "
                 variant="ghost"
-                disabled={loading || loadingChat}
+                disabled={loading || loadingChat || jobExperience.length < 1}
               >
                 {loading || loadingChat ? (
                   <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
