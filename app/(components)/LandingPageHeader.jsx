@@ -108,7 +108,7 @@ const LandingPageHeader = () => {
           </p>
 
           {user ? (
-            <Link onClick={onDashboardClick} href={"/dashboard"}>
+            <Link className="" onClick={onDashboardClick} href={"/dashboard"}>
               <button
                 disabled={loading}
                 className={`font-semibold ${

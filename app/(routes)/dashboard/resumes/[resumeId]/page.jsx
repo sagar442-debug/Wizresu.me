@@ -84,7 +84,7 @@ const page = () => {
               </div>
 
               <PersonalInfoData
-                // save={onSave}
+                save={onSave}
                 fullName={resumeDetail?.userFullName}
                 emailAddress={resumeDetail?.userEmailAddress}
                 phoneNumber={resumeDetail?.userPhoneNumber}
@@ -106,7 +106,7 @@ const page = () => {
                   <Save />
                   <span>Save</span>
                 </button>
-                <button className="bg-[#b42929] flex items-center text-sm gap-2 p-2 duration-100 transition-all text-white mt-2 rounded-[5px] hover:bg-[#e74646]">
+                <button className="bg-[#be2f2f] flex items-center text-sm gap-2 p-2 duration-100 transition-all text-white mt-2 rounded-[5px] hover:bg-[#e74646]">
                   <Trash2 className="" />
                   <span>Delete</span>
                 </button>
