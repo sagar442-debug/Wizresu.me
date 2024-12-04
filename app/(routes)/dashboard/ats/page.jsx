@@ -1,7 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAtsCalculator } from "@/app/_utils/atsCalculator";
 import useStore from "@/store/useStore";
+import { CloudUpload } from "lucide-react";
+import { ListTodo } from "lucide-react";
+
 import {
   CircularProgressbar,
   CircularProgressbarWithChildren,
@@ -23,6 +26,8 @@ import { ClipLoader } from "react-spinners";
 export const runtime = "edge";
 const page = () => {
   const atsScore = useStore((state) => state.atsScore);
+  const fileInputRef = useRef(null);
+
   const { generateAtsScore, geminiData } = useAtsCalculator();
   const setAtsScore = useStore((state) => state.setAtsScore);
   const setResumeScanData = useStore((state) => state.setResumeScanData);
@@ -56,6 +61,20 @@ const page = () => {
     console.log(atsData.recommendedKeywords);
   };
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      console.log("Selected file:", file); // Log file details
+      // Perform upload logic here
+    }
+  };
+
+  const handleButtonClick = () => {
+    if (!scanLoader) {
+      fileInputRef.current.click(); // Programmatically trigger the file input
+    }
+  };
+
   const value = 50;
   return (
     <div className="ml-10">
@@ -66,25 +85,37 @@ const page = () => {
               Calculate you ATS
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="text-center space-x-2">
+          <CardContent className="flex justify-center">
+            <div className=" space-y-2">
               <button
                 disabled={scanLoader}
-                onClick={onScan}
+                onClick={handleButtonClick}
                 className={`${
-                  scanLoader ? "bg-gray-400" : "bg-blue-500"
-                } max-w-[120px] text-white font-semibold py-2 px-4 rounded hover:bg-blue-600 transition duration-300`}
+                  scanLoader ? "bg-gray-400" : "bg-[#3b82f6]"
+                } w-64 space-x-2 text-white font-semibold py-2 px-4 rounded flex items-center justify-center hover:bg-blue-600 transition duration-300`}
               >
-                Upload your resume!
+                <span>
+                  <CloudUpload />
+                </span>
+                <span>Upload your resume!</span>
               </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".pdf,.doc,.docx"
+                onChange={handleFileChange}
+                className="hidden" // Hide the input
+              />
               <button
                 disabled={scanLoader}
-                onClick={onScan}
                 className={`${
                   scanLoader ? "bg-gray-400" : "bg-gray-500"
-                } max-w-[120px] bg-gray-500 text-white font-semibold py-2 px-4 rounded hover:bg-gray-600 transition duration-300`}
+                } w-64 bg-gray-500 text-white font-semibold py-2 px-4 rounded flex space-x-2 hover:bg-gray-600 transition duration-300`}
               >
-                Select your resume
+                <span>
+                  <ListTodo />
+                </span>
+                <span>Select your resume</span>
               </button>
             </div>
           </CardContent>
@@ -102,7 +133,7 @@ const page = () => {
             </ChangingProgressProvider>
           </CardContent>
         </Card>
-        <Card className="min-w-[350px]">
+        <Card className="w-[600px]">
           <CardHeader>
             <CardTitle>Suggestions</CardTitle>
           </CardHeader>
