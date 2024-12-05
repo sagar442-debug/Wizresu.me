@@ -4,6 +4,8 @@ import { useAtsCalculator } from "@/app/_utils/atsCalculator";
 import useStore from "@/store/useStore";
 import { CloudUpload } from "lucide-react";
 import { ListTodo } from "lucide-react";
+import { Briefcase } from "lucide-react";
+import { ScanText } from "lucide-react";
 
 import {
   CircularProgressbar,
@@ -23,6 +25,19 @@ import {
 import AnimatedProgressProvider from "../_components/AnimatedProgressProvider";
 import ChangingProgressProvider from "../_components/ChangingProgressProvider";
 import { ClipLoader } from "react-spinners";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { DialogClose } from "@radix-ui/react-dialog";
 export const runtime = "edge";
 const page = () => {
   const atsScore = useStore((state) => state.atsScore);
@@ -92,7 +107,7 @@ const page = () => {
                 onClick={handleButtonClick}
                 className={`${
                   scanLoader ? "bg-gray-400" : "bg-[#3b82f6]"
-                } w-64 space-x-2 text-white font-semibold py-2 px-4 rounded flex items-center justify-center hover:bg-blue-600 transition duration-300`}
+                } w-full space-x-2 text-white font-semibold py-2 px-4 rounded flex items-center justify-center hover:bg-blue-600 transition duration-300`}
               >
                 <span>
                   <CloudUpload />
@@ -109,14 +124,74 @@ const page = () => {
               <button
                 disabled={scanLoader}
                 className={`${
-                  scanLoader ? "bg-gray-400" : "bg-gray-500"
-                } w-64 bg-gray-500 text-white font-semibold py-2 px-4 rounded flex space-x-2 hover:bg-gray-600 transition duration-300`}
+                  scanLoader ? "bg-gray-400" : "bg-[#3aaa5c]"
+                } w-full  text-white font-semibold py-2 px-4 rounded flex space-x-2 hover:bg-[#31a353d8] transition duration-300`}
               >
                 <span>
                   <ListTodo />
                 </span>
                 <span>Select your resume</span>
               </button>
+              <div className="flex gap-2">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button
+                      className="px-2 flex gap-2 bg-[#3b82f6] text-white py-2 font-semibold rounded transition duration-300 hover:bg-[#3b7df6d3] "
+                      variant="outline"
+                    >
+                      <span>
+                        <Briefcase />
+                      </span>
+                      <span>Job Details</span>
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>Job details</DialogTitle>
+                      <DialogDescription>
+                        Provide the job details of the job that you are applying
+                        to!!
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4 ">
+                      <div className="grid grid-cols-4 items-center justify-start gap-4">
+                        <Label className="text-right">Job title</Label>
+                        <input
+                          type="text"
+                          className="outline-none p-2 border w-60 rounded"
+                        />
+                      </div>
+                      <div className="grid grid-cols-4 justify-start gap-4">
+                        <Label className="text-right">Description</Label>
+                        <textarea
+                          type="text"
+                          rows={10}
+                          className="outline-none p-2 border w-60 rounded"
+                        />
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <button
+                          className="px-3 border text-black flex gap-2 hover:bg-[#3b82f6] hover:text-white py-1  rounded transition duration-300 "
+                          type="submit"
+                        >
+                          Save
+                        </button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+                <button
+                  className="px-2 flex gap-2 bg-[#b68832] text-white py-2 font-semibold rounded transition duration-300 hover:bg-[#c49236cc] "
+                  variant="outline"
+                >
+                  <span>
+                    <ScanText />
+                  </span>
+                  <span>Scan</span>
+                </button>
+              </div>
             </div>
           </CardContent>
           <CardContent>
