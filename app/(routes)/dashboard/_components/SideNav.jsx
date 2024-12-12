@@ -107,8 +107,9 @@ function SideNav() {
           <div
             className={`${lgScreen ? "items-center" : ""} my-2 flex flex-col`}
           >
-            <div
-              onClick={() => onQuickBuild("/dashboard")}
+            <Link
+              href={"/dashboard/quick-build"}
+              onClick={() => onQuickBuild("/dashboard/quick-build")}
               className={`${
                 lgScreen ? "p-2 lg:w-10" : "lg:p-4 "
               } relative flex cursor-pointer lg:gap-0 xl:gap-3 p-2 sm:p-2 hover:shadow-md transition-all xl:p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden`}
@@ -125,7 +126,7 @@ function SideNav() {
 
               {/* Shine effect */}
               <span className="shine-effect"></span>
-            </div>
+            </Link>
             <Link
               href={"/dashboard"}
               onClick={() => onRouting("/dashboard")}
