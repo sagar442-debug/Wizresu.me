@@ -37,7 +37,7 @@ const page = () => {
 
   useEffect(() => {
     console.log(value);
-  }, [setValue]);
+  }, [value]);
 
   const extractResumes = async () => {
     try {
@@ -85,7 +85,7 @@ const page = () => {
         return [
           ...prevFrameworks,
           {
-            value: resumeInfo.resumeTitle,
+            value: resumeInfo._id,
             label: resumeInfo.resumeTitle,
           },
         ];
