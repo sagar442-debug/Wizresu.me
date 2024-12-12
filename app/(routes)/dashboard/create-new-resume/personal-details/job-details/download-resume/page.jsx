@@ -113,7 +113,7 @@ const page = () => {
       userAddress,
       userDegree,
       userLanguage,
-      jobExperience,
+      jobExperience: chatOutput.jobExperience,
     });
   }, [isLoaded, resumeName]);
 
@@ -268,6 +268,7 @@ const page = () => {
         },
         body: JSON.stringify(resumeData),
       });
+      console.log(response);
       if (!response.ok) {
         setButtonDisable(false);
         setErrorMessage(response.statusText);

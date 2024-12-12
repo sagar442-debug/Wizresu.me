@@ -29,7 +29,7 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
   const chatOutput = useStore((state) => state.chatOutput);
   const [loader, setLoader] = useState(false);
 
-  const [dataJobExperience, setDataJobExperience] = useState();
+  const [dataJobExperience, setDataJobExperience] = useState([]);
   const objective = useStore((state) => state.objective);
   const setObjective = useStore((state) => state.setObjective);
   const skills = useStore((state) => state.skills);
@@ -54,6 +54,7 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
       }
       const data = await response.json();
       setResumeDetail(data.resumeDetails);
+      setDataJobExperience(data.resumeDetails.jobExperience);
       // console.log("Success fetching the resume!!", data.resumeDetails);
       setLoader(false);
     } catch (error) {
@@ -247,14 +248,14 @@ const ResumeTemplatePage = forwardRef((props, ref) => {
                   <h1 className="text-xs 2xl:text-sm my-2">{exp.jobTitle}</h1>
                   <span className="flex justify-between my-1  xl:my-2 mr-4">
                     <h1 className="text-[10px] xl:text-xs tracking-tighter">
-                      {exp.jobCompany}
+                      {exp.companyName}
                     </h1>
                     <h1 className="text-[10px] 2xl:text-xs">
-                      {exp.jobStartDate} - {exp.jobEndDate}
+                      {exp.startDate} - {exp.endDate}
                     </h1>
                   </span>
                   <ol className="text-[10px] 2xl:text-xs tracking-tighter  pr-5">
-                    {exp?.jobDescription?.map((jobExp, i) => (
+                    {exp?.userRoleDescription?.map((jobExp, i) => (
                       <li>
                         <span className="text-sm p-0 m-0"> &#8226; </span>
                         {jobExp}

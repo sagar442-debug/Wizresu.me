@@ -38,6 +38,7 @@ const JobInfo = ({ jobData, save }) => {
   useEffect(() => {
     console.log(jobData);
     setJobDetails(jobData);
+    setJobExperience(jobData);
   }, []);
 
   useEffect(() => {
@@ -86,12 +87,12 @@ const JobInfo = ({ jobData, save }) => {
                 placeholder="Company Name"
                 type="text"
                 id={`jobCompany-${index}`}
-                value={data.jobCompany || ""}
+                value={data.companyName || ""}
                 onChange={(e) =>
                   setJobDetails((prev) =>
                     prev.map((job, jobIndex) =>
                       jobIndex === index
-                        ? { ...job, jobCompany: e.target.value }
+                        ? { ...job, companyName: e.target.value }
                         : job
                     )
                   )
@@ -107,12 +108,12 @@ const JobInfo = ({ jobData, save }) => {
                 placeholder="Start Date"
                 type="text"
                 id={`jobStartDate-${index}`}
-                value={data.jobStartDate || ""}
+                value={data.startDate || ""}
                 onChange={(e) =>
                   setJobDetails((prev) =>
                     prev.map((job, jobIndex) =>
                       jobIndex === index
-                        ? { ...job, jobStartDate: e.target.value }
+                        ? { ...job, startDate: e.target.value }
                         : job
                     )
                   )
@@ -128,12 +129,12 @@ const JobInfo = ({ jobData, save }) => {
                 placeholder="End Date"
                 type="text"
                 id={`jobEndDate-${index}`}
-                value={data.jobEndDate || ""}
+                value={data.endDate || ""}
                 onChange={(e) =>
                   setJobDetails((prev) =>
                     prev.map((job, jobIndex) =>
                       jobIndex === index
-                        ? { ...job, jobEndDate: e.target.value }
+                        ? { ...job, endDate: e.target.value }
                         : job
                     )
                   )
@@ -145,7 +146,7 @@ const JobInfo = ({ jobData, save }) => {
             <label className="sr-only" htmlFor={`jobDescription-${index}`}>
               Job Description
             </label>
-            {data.jobDescription?.map((desc, descIndex) => (
+            {data.userRoleDescription?.map((desc, descIndex) => (
               <div className="flex items-center my-2 space-x-2" key={descIndex}>
                 <input
                   className="w-full rounded-lg border border-gray-200 p-3 text-sm"
@@ -158,8 +159,8 @@ const JobInfo = ({ jobData, save }) => {
                         jobIndex === index
                           ? {
                               ...job,
-                              jobDescription: job.jobDescription.map((d, i) =>
-                                i === descIndex ? e.target.value : d
+                              userRoleDescription: job.userRoleDescription.map(
+                                (d, i) => (i === descIndex ? e.target.value : d)
                               ),
                             }
                           : job
@@ -176,7 +177,7 @@ const JobInfo = ({ jobData, save }) => {
                         jobIndex === index
                           ? {
                               ...job,
-                              jobDescription: job.jobDescription.filter(
+                              jobDescription: job.userRoleDescription.filter(
                                 (_, i) => i !== descIndex
                               ),
                             }

@@ -10,6 +10,7 @@ import LanguagesInfo from "./_components/LanguagesInfo";
 import JobInfo from "./_components/JobInfo";
 import { Trash2 } from "lucide-react";
 import { Save } from "lucide-react";
+import useStore from "@/store/useStore";
 
 export const runtime = "edge";
 
@@ -23,6 +24,7 @@ const page = () => {
   const [loader, setLoader] = useState(true);
   const [resumeTitle, setResumeTitle] = useState();
   const [onSave, setOnSave] = useState(false);
+  const setJobExperience = useStore((state) => state.setJobExperience);
 
   useEffect(() => {
     if (user?.id) {
@@ -44,6 +46,7 @@ const page = () => {
       const data = await response.json();
       setResumeDetail(data.resumeDetails);
       setResumeTitle(data.resumeDetails.resumeTitle);
+      setJobExperience(data.resumeDetails.jobExperience);
       // console.log("Success fetching the resume!!", data.resumeDetails);
       setLoader(false);
     } catch (error) {
