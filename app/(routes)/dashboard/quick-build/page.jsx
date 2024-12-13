@@ -48,6 +48,7 @@ const page = () => {
   const setUserLanguage = useStore((state) => state.setUserLanguage);
   const setJobExperience = useStore((state) => state.setJobExperience);
   const [noResume, setNoResume] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
     setObjective("");
     setJobDescription("");
@@ -133,6 +134,21 @@ const page = () => {
     setLoading(true);
     try {
       await generateData();
+      const response = await fetch(`${apiUrl}resume/update-quick-builds`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          clerkId: user.id,
+        }),
+      });
+      if (!response.ok) {
+        const data = await response.json();
+        setErrorMessage(data.message || "An error occurred.");
+        return;
+      }
+
       setLoading(false);
       router.push(
         "/dashboard/create-new-resume/personal-details/job-details/download-resume"
@@ -203,6 +219,14 @@ const page = () => {
         {noResume ? (
           <p className="text-sm font-semibold text-red-500 tracking-wider">
             You need to create at least one resume to use this feature!
+          </p>
+        ) : (
+          ""
+        )}
+
+        {errorMessage.length > 1 ? (
+          <p className="text-sm font-semibold text-red-500 tracking-wider">
+            {errorMessage}
           </p>
         ) : (
           ""

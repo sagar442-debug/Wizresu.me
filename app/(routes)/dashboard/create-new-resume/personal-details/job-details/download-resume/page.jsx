@@ -274,7 +274,12 @@ const page = () => {
       });
       console.log(response);
       if (!response.ok) {
-        setButtonDisable(false);
+        if (response.status == 403) {
+          let data = await response.json();
+          setErrorMessage(data.message);
+          setButtonDisable(false);
+          return;
+        }
         setErrorMessage(response.statusText);
         throw new Error(`Error: ${response.statusText}`);
       }
@@ -321,36 +326,16 @@ const page = () => {
                     </Button>
                   </DialogTrigger>
                 ))} */}
-              {sub == process.env.NEXT_PUBLIC_PREMIUM_PRICE ||
-              (sub == process.env.NEXT_PUBLIC_PROFESSIONAL_PRICE &&
-                isLoaded) ? (
-                <DialogTrigger asChild>
-                  <Button
-                    className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg space-x-2"
-                    variant="secondary"
-                  >
-                    <FaRegBookmark />
-                    <span>Save</span>
-                  </Button>
-                </DialogTrigger>
-              ) : (
-                <HoverCard>
-                  <HoverCardTrigger>
-                    <Button
-                      className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg space-x-2"
-                      variant="secondary"
-                      disabled
-                    >
-                      <Lock width={16} />
 
-                      <span>Save</span>
-                    </Button>
-                  </HoverCardTrigger>
-                  <HoverCardContent>
-                    Get the premium subscription to save your resumes
-                  </HoverCardContent>
-                </HoverCard>
-              )}
+              <DialogTrigger asChild>
+                <Button
+                  className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg space-x-2"
+                  variant="secondary"
+                >
+                  <FaRegBookmark />
+                  <span>Save</span>
+                </Button>
+              </DialogTrigger>
 
               <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
