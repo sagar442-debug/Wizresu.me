@@ -16,7 +16,7 @@ const layout = ({ children }) => {
           Go Back
         </span>
       </Link>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center xl:ml-20 mt-5">
         <div className="md:flex md:gap-2 md:flex-col lg:flex lg:flex-row lg:gap-2 xl:gap-5 ">
           {children}
           <div className=" rounded max-w-[40rem] text-center mr-4">

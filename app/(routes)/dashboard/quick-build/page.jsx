@@ -18,6 +18,10 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useUser } from "@clerk/nextjs";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import JobDetail from "./(component)/JobDetail";
+import { ReloadIcon } from "@radix-ui/react-icons";
+import useStore from "@/store/useStore";
 
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -27,6 +31,19 @@ const page = () => {
   const { user, isLoaded, isSignedIn } = useUser();
   const [searchQuery, setSearchQuery] = useState("");
   const [frameworks, setFrameWorks] = useState([]);
+  const [loading, setLoading] = useState(false);
+  //   const setJobTitle = useStore((state) => state.setJobTitle);
+  const setObjective = useStore((state) => state.setObjective);
+  const setJobDescription = useStore((state) => state.setJobDescription);
+  const setUserFullName = useStore((state) => state.setUserFullName);
+  const setUserEmailAddress = useStore((state) => state.setUserEmailAddress);
+  const setUserPhoneNumber = useStore((state) => state.setUserPhoneNumber);
+  const setUserWebsite = useStore((state) => state.setUserWebsite);
+  const setUserAddress = useStore((state) => state.setUserAddress);
+  const setUserDegree = useStore((state) => state.setUserDegree);
+  const setSkills = useStore((state) => state.setSkills);
+  const setUserLanguage = useStore((state) => state.setUserLanguage);
+  const setJobExperience = useStore((state) => state.setJobExperience);
 
   useEffect(() => {
     if (user) {
@@ -77,9 +94,7 @@ const page = () => {
       }
       const resumeInfo = data.resumeDetails;
       setFrameWorks((prevFrameworks) => {
-        if (
-          prevFrameworks.some((item) => item.value === resumeInfo.resumeTitle)
-        ) {
+        if (prevFrameworks.some((item) => item.value === resumeInfo._id)) {
           return prevFrameworks; // Return the previous state if duplicate
         }
         return [
@@ -91,6 +106,35 @@ const page = () => {
         ];
       });
     } catch (error) {
+      console.error("Error fetching resume details:", error);
+    }
+  };
+
+  const onQuickBuild = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `${apiUrl}resume/detail?resumeId=${value}&clerkId=${user.id}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch resume details");
+      }
+      const data = await response.json();
+      console.log(data.resumeDetails);
+      const resumeInfo = data.resumeDetails;
+      setObjective(resumeInfo.objective);
+      setUserFullName(resumeInfo.userFullName);
+      setUserEmailAddress(resumeInfo.userEmailAddress);
+      setUserPhoneNumber(resumeInfo.userPhoneNumber);
+      setUserWebsite(resumeInfo?.userWebsite);
+      setUserAddress(resumeInfo.userAddress);
+      setUserDegree(resumeInfo.userDegree);
+      setSkills(resumeInfo.skills);
+      setUserLanguage(resumeInfo.userLanguage);
+      setJobExperience(resumeInfo.jobExperience);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
       console.error("Error fetching resume details:", error);
     }
   };
@@ -163,6 +207,27 @@ const page = () => {
             </Command>
           </PopoverContent>
         </Popover>
+        <div className="mt-10">
+          <Card className="border-none shadow-none max-w-[300px]">
+            <CardHeader className="p-0">
+              <CardTitle className="text-xl">Job Details</CardTitle>
+            </CardHeader>
+            <JobDetail noChange={true} />
+            <Button
+              disabled={loading || value.length == 0}
+              onClick={onQuickBuild}
+              className="mt-6 hover:bg-blue-400 rounded hover:text-white shadow border"
+              variant="ghost"
+            >
+              {loading ? (
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                ""
+              )}
+              One Click Build
+            </Button>
+          </Card>
+        </div>
       </div>
     </div>
   );

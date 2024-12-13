@@ -100,19 +100,6 @@ const JobDetail = ({ noChange }) => {
                 value={jobDescription}
               ></textarea>
             </div>
-            <Button
-              disabled={loading}
-              className="mt-6 hover:bg-blue-400 rounded hover:text-white shadow border"
-              variant="ghost"
-              onClick={handleSubmit}
-            >
-              {loading ? (
-                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-              ) : (
-                ""
-              )}
-              Proceed
-            </Button>
           </form>
         </section>
       </div>
