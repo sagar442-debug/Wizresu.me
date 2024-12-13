@@ -275,14 +275,17 @@ function SideNav() {
               lgScreen ? "lg:left-6" : "lg:left-4"
             } xl:left-3 bottom-10 lg:w-60 xl:w-60 flex gap-1 items-center cursor-pointer`}
           >
-            <ChartNoAxesColumnIncreasing color="#4e2ec2" />
-            <h1
-              className={`${
-                lgScreen ? "hidden" : ""
-              } transition-all duration-500 underline text-[#4e2ec2] text-sm `}
-            >
-              Upgrade for more premium features
-            </h1>
+            <Link className="flex" href={"/#pricing"}>
+              <ChartNoAxesColumnIncreasing color="#4e2ec2" />
+
+              <h1
+                className={`${
+                  lgScreen ? "hidden" : ""
+                } transition-all duration-500 underline text-[#4e2ec2] text-sm `}
+              >
+                Upgrade for more premium features
+              </h1>
+            </Link>
           </div>
         )}
       </div>
