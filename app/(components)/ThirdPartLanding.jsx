@@ -15,7 +15,6 @@ const ThirdPartLanding = () => {
         <div className="mt-28 grid grid-cols-1 md:grid-cols-1 mx-auto gap-10 lg:gap-4 lg:flex lg:justify-center lg:space-x-12">
           <BasicCard />
           <Premium />
-          <Exclusive />
         </div>
       </div>
     </div>

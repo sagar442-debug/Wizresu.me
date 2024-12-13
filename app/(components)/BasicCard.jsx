@@ -8,26 +8,26 @@ const BasicCard = () => {
     <div className="px-12 py-6 space-y-5 bg-white w-[400px] md:rounded-xl shadow-xl ">
       <div>
         <h1 className="text-xl font-semibold">Basic</h1>
-        <p>For Starters</p>
+        <p>Limited Features</p>
         <h1 className="text-3xl font-semibold mt-5">$0</h1>
       </div>
       <div className="">
         <ul className="space-y-3 mt-10">
           <li className="flex gap-2">
             <FaCheckCircle className="mt-1" />
-            <span>Max 14 resumes per week.</span>
+            <span>Create Unlimited Resumes.</span>
           </li>
           <li className="flex gap-2 ">
             <FaCheckCircle className="mt-1" />
-            <span>Max 3 resumes uploads.</span>
+            <span>Only 5 One Click Resume Build.</span>
           </li>
           <li className="flex gap-2 ">
             <FaCheckCircle className="mt-1" />
-            <span>Daily limitations on multiple jobs.</span>
+            <span>Only 1 Resume Save.</span>
           </li>
           <li className="flex gap-2 ">
             <FaCheckCircle className="mt-1" />
-            <span>ATS calculator.</span>
+            <span>10 ATS calculations per day.</span>
           </li>
         </ul>
       </div>

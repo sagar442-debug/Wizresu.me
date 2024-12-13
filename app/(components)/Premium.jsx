@@ -58,7 +58,7 @@ const Premium = () => {
     <div className="px-12 py-6 space-y-5 bg-[#242842] text-white w-[400px] md:rounded-xl shadow-xl ">
       <div>
         <h1 className="text-xl font-semibold">Premium</h1>
-        <p>For Experienced</p>
+        <p>Unlimited Features</p>
         <h1 className="text-3xl font-semibold mt-5 ">
           <span className="line-through   opacity-70">$2.99 </span>
           <span className="tracking-widest ml-2 text-lg text-white font-semibold ">
@@ -75,27 +75,23 @@ const Premium = () => {
         <ul className="space-y-3 mt-10">
           <li className="flex gap-2">
             <FaCheckCircle className="mt-1" />
-            <span>Unlimited resumes.</span>
+            <span>Create Unlimited resumes.</span>
           </li>
           <li className="flex gap-2 ">
             <FaCheckCircle className="mt-1" />
-            <span>Max 10 personal resume upload saves.</span>
+            <span>Unlimited Resume Saves.</span>
           </li>
           <li className="flex gap-2 ">
             <FaCheckCircle className="mt-1" />
-            <span>Daily limitations on multiple jobs.</span>
+            <span>Unlimited One Click Resume Build.</span>
           </li>
           <li className="flex gap-2 ">
             <FaCheckCircle className="mt-1" />
-            <span>Unlimited text regeneration.</span>
+            <span>Unlimited ATS Calculations.</span>
           </li>
           <li className="flex gap-2 ">
             <FaCheckCircle className="mt-1" />
-            <span>Limited Resume saves.</span>
-          </li>
-          <li className="flex gap-2 ">
-            <FaCheckCircle className="mt-1" />
-            <span>Unlimited ATS calculator.</span>
+            <span>Edit Saved Resumes Unlocked.</span>
           </li>
         </ul>
       </div>

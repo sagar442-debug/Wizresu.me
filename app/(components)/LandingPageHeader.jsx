@@ -99,12 +99,12 @@ const LandingPageHeader = () => {
       <div className="flex lg:justify-between md:mt-0 lg:mt-5 md:px-10 xl:px-0 sm:items-center md:items-start">
         <div className="w-[40rem]">
           <h1 className=" md:mt-20 sm:mt-10 text-2xl md:text-2xl lg:text-5xl font-bold  text-[#2a2663]">
-            Optimize Your Resume In Seconds!
+            ATS-Friendly Resumes in One Click
           </h1>
           <p className="text-[#2a2663] text-sm leading-none md:text-lg my-5 lg:leading-10 ">
-            Simply provide the job description and upload your old resume or
-            provide your details, and we'll craft the perfect match—maximizing
-            your <strong>ATS</strong> score to help you land the job.
+            Don't waste time customizing your resume for every job. With just
+            one click, we create an ATS-optimized resume with score tailored to
+            your details—fast, easy, and efficient.
           </p>
 
           {user ? (
