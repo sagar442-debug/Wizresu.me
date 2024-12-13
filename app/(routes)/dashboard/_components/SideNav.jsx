@@ -20,12 +20,14 @@ import { ScanText } from "lucide-react";
 
 import { ReloadIcon } from "@radix-ui/react-icons";
 
+const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 function SideNav() {
   const { signOut } = useClerk();
   const params = useParams();
   const pathname = usePathname();
   const { isSignedIn, user, isLoaded } = useUser();
   const [lgScreen, setLgScreen] = useState(false);
+  const [premium, setPremium] = useState(false);
   const [route, setRoute] = useState("");
   useEffect(() => {
     setRoute("");
@@ -46,7 +48,6 @@ function SideNav() {
   const onRouting = (routeName) => {
     if (pathname !== `${routeName}`) {
       setRoute(routeName);
-      console.log(routeName);
     } else {
       setRoute("");
     }
@@ -55,9 +56,30 @@ function SideNav() {
   const onQuickBuild = (routeName) => {
     if (pathname !== `${routeName}`) {
       setRoute(routeName);
-      console.log(routeName);
     } else {
       setRoute("");
+    }
+  };
+
+  useEffect(() => {
+    fetchUserDetails();
+  }, [isSignedIn]);
+
+  const fetchUserDetails = async () => {
+    try {
+      const response = await fetch(
+        `${apiUrl}users/get-user?clerkId=${encodeURIComponent(user.id)}`
+      );
+      const userData = await response.json();
+      const subscription = userData.userData.subscription;
+      if (
+        subscription == process.env.NEXT_PUBLIC_PREMIUM_PRICE ||
+        subscription == NEXT_PUBLIC_PROFESSIONAL_PRICE
+      ) {
+        setPremium(true);
+      }
+    } catch (error) {
+      console.error("Error fetching user details:", error);
     }
   };
 
@@ -245,82 +267,27 @@ function SideNav() {
             </button>
           </div>
         </div>
-        <div
-          className={`absolute ${
-            lgScreen ? "lg:left-6" : "lg:left-4"
-          } xl:left-3 bottom-10 lg:w-60 xl:w-60 flex gap-1 items-center cursor-pointer`}
-        >
-          <ChartNoAxesColumnIncreasing color="#4e2ec2" />
-          <h1
-            className={`${
-              lgScreen ? "hidden" : ""
-            } transition-all duration-500 underline text-[#4e2ec2] text-sm `}
+        {premium ? (
+          ""
+        ) : (
+          <div
+            className={`absolute ${
+              lgScreen ? "lg:left-6" : "lg:left-4"
+            } xl:left-3 bottom-10 lg:w-60 xl:w-60 flex gap-1 items-center cursor-pointer`}
           >
-            Upgrade for more premium features
-          </h1>
-        </div>
+            <ChartNoAxesColumnIncreasing color="#4e2ec2" />
+            <h1
+              className={`${
+                lgScreen ? "hidden" : ""
+              } transition-all duration-500 underline text-[#4e2ec2] text-sm `}
+            >
+              Upgrade for more premium features
+            </h1>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 export default SideNav;
-
-export function smallScreenNav() {
-  const pathname = usePathname();
-  return (
-    <div className="fixed">
-      <div className="lg:w-64 xl:w-80 bg-[#f1f1f1] h-[100vh] shadow-2xl flex flex-col">
-        <Link href={"/dashboard"} className="py-4 px-10">
-          <Logo />
-          <hr className=" mt-2 border " />
-        </Link>
-        <div className="px-10 ">
-          <div className="my-2 flex flex-col">
-            <div className="relative flex lg:gap-1 xl:gap-3 hover:shadow-md transition-all p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden">
-              <Wand width={30} className="animate-pulse lg:w-8" />
-              <span className="lg:text-base xl:text-lg font-semibold">
-                Quick Build
-              </span>
-
-              {/* Shine effect */}
-              <span className="shine-effect"></span>
-            </div>
-            <Link
-              href={"/dashboard"}
-              className={`flex gap-3 hover:shadow-md transition-all p-4 ${
-                pathname.startsWith("/dashboard/create-new-resume")
-                  ? "font-bold"
-                  : "font-medium"
-              } items-center text-[#555] hover:bg-[#dfdfdf] rounded`}
-            >
-              <House width={30} className="" />
-              <span className="lg:text-base xl:text-lg">Home</span>
-            </Link>
-            <Link
-              href={"/dashboard/resumes"}
-              className="flex gap-3 hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
-            >
-              <Blocks width={30} className="" />
-              <span className="lg:text-base xl:text-lg">Resumes</span>
-            </Link>
-            <Link
-              href={"/dashboard"}
-              className="flex gap-3  hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
-            >
-              <History width={30} className="" />
-              <span className="lg:text-base xl:text-lg">History</span>
-            </Link>
-            <SignOutButton />
-          </div>
-        </div>
-        <div className="absolute left-3  bottom-10 lg:w-60 xl:w-60 flex gap-1 items-center cursor-pointer">
-          <ChartNoAxesColumnIncreasing color="#4e2ec2" />
-          <h1 className="underline text-[#4e2ec2] text-[8px] ">
-            Upgrade for more premium features
-          </h1>
-        </div>
-      </div>
-    </div>
-  );
-}

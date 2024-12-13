@@ -117,6 +117,10 @@ const page = () => {
     });
   }, [isLoaded, resumeName]);
 
+  useEffect(() => {
+    console.log(jobExperience);
+  }, []);
+
   const inititalTap = useStore((state) => state.initialTap);
   const setInitialTap = useStore((state) => state.setInitialTap);
   //   const handleDownloadPdf = async (e) => {

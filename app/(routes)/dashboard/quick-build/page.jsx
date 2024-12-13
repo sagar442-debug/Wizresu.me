@@ -22,6 +22,8 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import JobDetail from "./(component)/JobDetail";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import useStore from "@/store/useStore";
+import { useDataGenerator } from "@/app/_utils/dataGenerator";
+import { useRouter } from "next/navigation";
 
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -32,7 +34,8 @@ const page = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [frameworks, setFrameWorks] = useState([]);
   const [loading, setLoading] = useState(false);
-  //   const setJobTitle = useStore((state) => state.setJobTitle);
+  const { generateData } = useDataGenerator();
+  const router = useRouter();
   const setObjective = useStore((state) => state.setObjective);
   const setJobDescription = useStore((state) => state.setJobDescription);
   const setUserFullName = useStore((state) => state.setUserFullName);
@@ -44,6 +47,19 @@ const page = () => {
   const setSkills = useStore((state) => state.setSkills);
   const setUserLanguage = useStore((state) => state.setUserLanguage);
   const setJobExperience = useStore((state) => state.setJobExperience);
+  const [noResume, setNoResume] = useState(false);
+  useEffect(() => {
+    setObjective("");
+    setJobDescription("");
+    setUserDegree([]);
+    setUserFullName("");
+    setUserEmailAddress("");
+    setUserPhoneNumber("");
+    setUserWebsite("");
+    setUserAddress("");
+    setSkills([]);
+    setUserLanguage([]);
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -68,6 +84,9 @@ const page = () => {
       }
       const userDetails = await response.json();
       const resumeList = userDetails.userData.resumes;
+      if (resumeList.length == 0) {
+        setNoResume(true);
+      }
       await Promise.all(resumeList.map((item) => fetchResumeDetails(item)));
     } catch (error) {
       console.error("Error fetching user details:", error);
@@ -113,8 +132,21 @@ const page = () => {
   const onQuickBuild = async () => {
     setLoading(true);
     try {
+      await generateData();
+      setLoading(false);
+      router.push(
+        "/dashboard/create-new-resume/personal-details/job-details/download-resume"
+      );
+    } catch (error) {
+      setLoading(false);
+      console.error("Error fetching resume details:", error);
+    }
+  };
+
+  const onSelectingResume = async (currentValue) => {
+    try {
       const response = await fetch(
-        `${apiUrl}resume/detail?resumeId=${value}&clerkId=${user.id}`
+        `${apiUrl}resume/detail?resumeId=${currentValue}&clerkId=${user.id}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch resume details");
@@ -131,8 +163,16 @@ const page = () => {
       setUserDegree(resumeInfo.userDegree);
       setSkills(resumeInfo.skills);
       setUserLanguage(resumeInfo.userLanguage);
-      setJobExperience(resumeInfo.jobExperience);
       setLoading(false);
+      resumeInfo.jobExperience.forEach((job) => {
+        setJobExperience({
+          jobTitle: job.jobTitle,
+          jobCompany: job.companyName,
+          jobStartDate: job.startDate,
+          jobEndDate: job.endDate,
+          jobDescription: job.userRoleDescription,
+        });
+      });
     } catch (error) {
       setLoading(false);
       console.error("Error fetching resume details:", error);
@@ -145,13 +185,29 @@ const page = () => {
         <h1 className="text-2xl font-bold  tracking-wider">
           Select your saved resume!
         </h1>
-        <p className="text-sm font-semibold text-gray-500 tracking-wider">
+        <p className="text-xs font-semibold text-gray-500 tracking-wider">
+          {/* Who has time to tweak their resume every time they apply for a job?
+          Let’s face it—your dream role won’t wait while you wrestle with bullet
+          points. Create a resume on the go and focus on landing the gig, not
+          formatting the doc! */}
+          This is a premium feature from Wizresume
+        </p>
+        <p className="text-lg font-semibold text-gray-500 mt-4 tracking-wider">
           {/* Who has time to tweak their resume every time they apply for a job?
           Let’s face it—your dream role won’t wait while you wrestle with bullet
           points. Create a resume on the go and focus on landing the gig, not
           formatting the doc! */}
           Build Resume In One Click
         </p>
+
+        {noResume ? (
+          <p className="text-sm font-semibold text-red-500 tracking-wider">
+            You need to create at least one resume to use this feature!
+          </p>
+        ) : (
+          ""
+        )}
+
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button
@@ -186,9 +242,10 @@ const page = () => {
                         className="cursor-pointer"
                         key={framework.value}
                         value={framework.value}
-                        onSelect={(currentValue) => {
-                          setValue(currentValue === value ? "" : currentValue); // Toggle value
+                        onSelect={async (currentValue) => {
+                          setValue(currentValue === value ? "" : currentValue);
                           setOpen(false);
+                          await onSelectingResume(currentValue);
                         }}
                       >
                         <Check

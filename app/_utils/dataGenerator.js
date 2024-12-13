@@ -65,7 +65,6 @@ Avoid Complex Language: Use simple, clear language that's easy for the ATS to un
       const cleanedText = resultText.replace("generatedText: ", "");
       const parsedData = await JSON.parse(cleanedText);
       setChatOutput(parsedData);
-      console.log(parsedData);
       setLoadingChat(false);
     } catch (error) {
       console.error("Failed to generate data:", error);
