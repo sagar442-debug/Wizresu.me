@@ -148,8 +148,6 @@ const page = () => {
         setErrorMessage(data.message || "An error occurred.");
         return;
       }
-
-      setLoading(false);
       router.push(
         "/dashboard/create-new-resume/personal-details/job-details/download-resume"
       );
@@ -178,8 +176,12 @@ const page = () => {
       setUserAddress(resumeInfo.userAddress);
       setUserDegree(resumeInfo.userDegree);
       setSkills(resumeInfo.skills);
-      setUserLanguage(resumeInfo.userLanguage);
-      setLoading(false);
+      resumeInfo.userLanguage.forEach((language) => {
+        setUserLanguage({
+          languageName: language.languageName,
+          languagePercentage: language.languagePercentage,
+        });
+      });
       resumeInfo.jobExperience.forEach((job) => {
         setJobExperience({
           jobTitle: job.jobTitle,
@@ -189,6 +191,7 @@ const page = () => {
           jobDescription: job.userRoleDescription,
         });
       });
+      setLoading(false);
     } catch (error) {
       setLoading(false);
       console.error("Error fetching resume details:", error);
