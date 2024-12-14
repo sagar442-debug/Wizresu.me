@@ -7,8 +7,6 @@ import { ListTodo } from "lucide-react";
 import { Briefcase } from "lucide-react";
 import { ScanText } from "lucide-react";
 import pdfToText from "react-pdftotext";
-import { pdfjs } from "pdfjs-dist";
-
 import {
   CircularProgressbar,
   CircularProgressbarWithChildren,
@@ -40,8 +38,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { pdfjs } from "pdfjs-dist"; // Import pdf.js
 
 export const runtime = "edge";
+
+const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const Page = () => {
   const atsScore = useStore((state) => state.atsScore);
@@ -90,18 +91,31 @@ const Page = () => {
     setAddedResume(false);
   };
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     console.log("Done");
     const file = event.target.files[0];
     if (file) {
-      pdfToText(file)
-        .then((text) => {
-          setResumeDetail(text);
-        })
-        .catch((error) => {
-          console.error("Failed to extract text from pdf", error);
-          alert("Failed to extract text from the PDF. Please try again.");
+      // Create a FormData object to send the file
+      const formData = new FormData();
+      formData.append("file", file); // The field name should match the backend
+
+      try {
+        const response = await fetch(`${apiUrl}pdf/upload-pdf`, {
+          method: "POST",
+          body: formData,
         });
+        if (response.ok) {
+          const data = await response.json();
+          setResumeDetail(data.pdfText);
+          console.log("Extracted Text:", data.pdfText);
+        } else {
+          console.error("Error uploading PDF:", response.statusText);
+          alert("Failed to extract text from the PDF. Please try again.");
+        }
+      } catch (error) {
+        console.error("Failed to send file:", error);
+        alert("Failed to upload PDF. Please try again.");
+      }
 
       setAddedResume(true);
     }
