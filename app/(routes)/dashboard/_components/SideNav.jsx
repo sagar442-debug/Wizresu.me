@@ -74,7 +74,7 @@ function SideNav() {
       const subscription = userData.userData.subscription;
       if (
         subscription == process.env.NEXT_PUBLIC_PREMIUM_PRICE ||
-        subscription == NEXT_PUBLIC_PROFESSIONAL_PRICE
+        subscription == process.env.NEXT_PUBLIC_PROFESSIONAL_PRICE
       ) {
         setPremium(true);
       }
