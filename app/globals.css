@@ -9,11 +9,18 @@ html {
 
 @media print {
   .resume-template {
-    transform: scale(1.2); /* Scale the content to 120% */
-    transform-origin: top left; /* Ensure the scaling starts from the top-left */
-    width: 83.33%; /* Adjust width to fit A4 after scaling */
-    margin: 0; /* Avoid extra margins */
-    padding: 0; /* Avoid extra padding */
+    transform: scale(1.4);
+    transform-origin: top left; /* Keep scaling origin at top-left */
+    padding-top: 2mm; /* Top padding */
+    padding-bottom: 2mm;
+    width: calc(100% / 1.4); /* Adjust width to fit the scaled size */
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact; /* Preserve colors for printing */
+    print-color-adjust: exact;
   }
 }
 

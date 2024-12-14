@@ -45,15 +45,12 @@ const ResumeTemplate = forwardRef((props, ref) => {
 
   return (
     <div className="max-w-[40rem]">
-      <div
-        ref={ref}
-        className={!initialTap ? "resume-template" : "hidden resume-template"}
-      >
+      <div ref={resumeRef} className="resume-template">
         <div className="title pb-5 mb-2 border-b text-center mt-2">
           <h1 className="text-2xl tracking-widest">
             {userFullName.length > 3 ? userFullName : "Sagar Sapkota"}
           </h1>
-          <p className="text-xs font-medium mt-2 tracking-wide">
+          <p className="text-xs font-medium mt-2 tracking-wide ">
             {jobTitle.length > 3 ? jobTitle : "Software developer"}
           </p>
         </div>
@@ -74,8 +71,8 @@ const ResumeTemplate = forwardRef((props, ref) => {
                   </span>
                 </li>
                 <li className="flex gap-2 items-center ">
-                  <IoIosMail />
-                  <span className="text-[10px] break-words">
+                  <IoIosMail className="" />
+                  <span className="text-[8px] break-words">
                     {userEmailAddress.length > 3
                       ? userEmailAddress
                       : "sagarsapkota0987@gmail.com"}
@@ -83,7 +80,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                 </li>
                 {userWebsite.length > 3 ? (
                   <li className="flex gap-2 ">
-                    <CiGlobe className="" />
+                    <CiGlobe className="mt-0.5" />
 
                     <span className="text-[8px] xl:text-[10px]  2xl:text-xs">
                       {userWebsite}
@@ -337,7 +334,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
           </div>
         </div>
       </div>
-      <div ref={resumeRef} className={initialTap ? "" : "hidden"}>
+      <div className={initialTap ? "hidden" : "hidden"}>
         <div className="title py-5 mb-2  border-b">
           <h1 className="text-2xl tracking-widest">
             {" "}

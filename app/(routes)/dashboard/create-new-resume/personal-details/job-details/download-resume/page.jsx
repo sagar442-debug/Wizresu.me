@@ -35,6 +35,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useTheme } from "next-themes";
 import { useUser } from "@clerk/nextjs";
+import { useReactToPrint } from "react-to-print";
 
 export const runtime = "edge";
 
@@ -177,79 +178,105 @@ const page = () => {
   useEffect(() => {
     console.log(loadingChat);
   }, [loadingChat]);
+  // const handleDownloadPdf = async (e) => {
+  //   setLoading(true);
+  //   e.preventDefault();
+  //   setInitialTap(true);
+
+  //   await new Promise((resolve) => setTimeout(resolve, 200));
+  //   const input = resumeRef.current;
+
+  //   if (!input) {
+  //     console.error("resumeRef is not set or is invalid.");
+  //     setLoading(false);
+  //     return;
+  //   }
+
+  //   const pdf = new jsPDF("p", "mm", "a4");
+  //   const pdfWidth = 210; // A4 width in mm
+  //   const pdfHeight = 297; // A4 height in mm
+  //   const pdfAspectRatio = pdfHeight / pdfWidth; // Aspect ratio of A4
+
+  //   const canvas = await html2canvas(input, { scale: 3 }); // Higher scale for better quality
+  //   const imgWidth = pdfWidth;
+  //   const imgHeight = (canvas.height * imgWidth) / canvas.width; // Scale image height proportionally
+
+  //   const pageHeightInPx = (canvas.width / pdfWidth) * pdfHeight; // Height of one PDF page in pixels
+  //   let heightLeft = canvas.height; // Total canvas height in pixels
+  //   let position = 0; // Start at the top
+
+  //   while (heightLeft > 0) {
+  //     // Render the current portion of the canvas
+  //     const canvasPage = document.createElement("canvas");
+  //     canvasPage.width = canvas.width;
+  //     canvasPage.height = Math.min(pageHeightInPx, heightLeft); // Current page height in pixels
+
+  //     const ctx = canvasPage.getContext("2d");
+  //     ctx.drawImage(
+  //       canvas,
+  //       0,
+  //       position,
+  //       canvas.width,
+  //       canvasPage.height,
+  //       0,
+  //       0,
+  //       canvas.width,
+  //       canvasPage.height
+  //     );
+
+  //     // Convert the page canvas to an image
+  //     const imgData = canvasPage.toDataURL("image/png");
+
+  //     // Add the image to the PDF
+  //     pdf.addImage(
+  //       imgData,
+  //       "PNG",
+  //       0,
+  //       0,
+  //       imgWidth,
+  //       (canvasPage.height * imgWidth) / canvasPage.width
+  //     );
+
+  //     // Move to the next portion
+  //     heightLeft -= pageHeightInPx;
+  //     position += pageHeightInPx;
+
+  //     // Add a new page for the next portion (if necessary)
+  //     if (heightLeft > 0) {
+  //       pdf.addPage();
+  //     }
+  //   }
+
+  //   pdf.save("resume.pdf");
+  //   setInitialTap(false);
+  //   setLoading(false);
+  // };
   const handleDownloadPdf = async (e) => {
-    setLoading(true);
     e.preventDefault();
+    setLoading(true);
     setInitialTap(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 200));
     const input = resumeRef.current;
 
     if (!input) {
-      console.error("resumeRef is not set or is invalid.");
+      console.error("resumeRef is not set or invalid.");
       setLoading(false);
       return;
     }
 
-    const pdf = new jsPDF("p", "mm", "a4");
-    const pdfWidth = 210; // A4 width in mm
-    const pdfHeight = 297; // A4 height in mm
-    const pdfAspectRatio = pdfHeight / pdfWidth; // Aspect ratio of A4
-
-    const canvas = await html2canvas(input, { scale: 3 }); // Higher scale for better quality
-    const imgWidth = pdfWidth;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width; // Scale image height proportionally
-
-    const pageHeightInPx = (canvas.width / pdfWidth) * pdfHeight; // Height of one PDF page in pixels
-    let heightLeft = canvas.height; // Total canvas height in pixels
-    let position = 0; // Start at the top
-
-    while (heightLeft > 0) {
-      // Render the current portion of the canvas
-      const canvasPage = document.createElement("canvas");
-      canvasPage.width = canvas.width;
-      canvasPage.height = Math.min(pageHeightInPx, heightLeft); // Current page height in pixels
-
-      const ctx = canvasPage.getContext("2d");
-      ctx.drawImage(
-        canvas,
-        0,
-        position,
-        canvas.width,
-        canvasPage.height,
-        0,
-        0,
-        canvas.width,
-        canvasPage.height
-      );
-
-      // Convert the page canvas to an image
-      const imgData = canvasPage.toDataURL("image/png");
-
-      // Add the image to the PDF
-      pdf.addImage(
-        imgData,
-        "PNG",
-        0,
-        0,
-        imgWidth,
-        (canvasPage.height * imgWidth) / canvasPage.width
-      );
-
-      // Move to the next portion
-      heightLeft -= pageHeightInPx;
-      position += pageHeightInPx;
-
-      // Add a new page for the next portion (if necessary)
-      if (heightLeft > 0) {
-        pdf.addPage();
-      }
-    }
-
-    pdf.save("resume.pdf");
-    setInitialTap(false);
+    printResume();
     setLoading(false);
+    setInitialTap(false);
   };
+
+  const printResume = useReactToPrint({
+    content: () => resumeRef.current,
+    documentTitle: "resume",
+    onAfterPrint: () => {
+      setInitialTap(false);
+      setLoading(false);
+    },
+  });
 
   const onResumeSave = (e) => {
     e.preventDefault();
@@ -304,7 +331,7 @@ const page = () => {
               className="bg-sky-500 text-white hover:text-black rounded-2xl hover:shadow-lg"
               variant="secondary"
               onClick={handleDownloadPdf}
-              disabled={loading || loadingChat}
+              // disabled={loading || loadingChat}
             >
               {loading || loadingChat ? (
                 <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />

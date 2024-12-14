@@ -6,6 +6,7 @@ import { CloudUpload } from "lucide-react";
 import { ListTodo } from "lucide-react";
 import { Briefcase } from "lucide-react";
 import { ScanText } from "lucide-react";
+import pdfToText from "react-pdftotext";
 
 import {
   CircularProgressbar,
@@ -79,8 +80,10 @@ const page = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      console.log("Selected file:", file); // Log file details
-      // Perform upload logic here
+      console.log("Selected file:", file);
+      pdfToText(file)
+        .then((text) => console.log(text))
+        .catch((error) => console.error("Failed to extract text from pdf"));
     }
   };
 
@@ -117,7 +120,7 @@ const page = () => {
               <input
                 ref={fileInputRef}
                 type="file"
-                accept=".pdf,.doc,.docx"
+                accept=".pdf"
                 onChange={handleFileChange}
                 className="hidden" // Hide the input
               />
