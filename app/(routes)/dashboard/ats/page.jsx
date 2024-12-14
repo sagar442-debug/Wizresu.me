@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAtsCalculator } from "@/app/_utils/atsCalculator";
 import useStore from "@/store/useStore";
-import { CloudUpload } from "lucide-react";
+import { CheckCheck, CloudUpload } from "lucide-react";
 import { ListTodo } from "lucide-react";
 import { Briefcase } from "lucide-react";
 import { ScanText } from "lucide-react";
@@ -54,6 +54,7 @@ const page = () => {
   const colors = ["#ff0000", "#e0a500", , "#01dd6f", "#0000ff"]; // red, blue, yellow, green
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
   const [resumeDetail, setResumeDetail] = useState("");
+  const [addedResume, setAddedResume] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -72,6 +73,7 @@ const page = () => {
     setAtsPercent(score);
     console.log("This is gemini data", response);
     setScanLoader(false);
+    setAddedResume(false);
   };
 
   const onClicking = () => {
@@ -87,6 +89,8 @@ const page = () => {
           setResumeDetail(text);
         })
         .catch((error) => console.error("Failed to extract text from pdf"));
+
+      setAddedResume(true);
     }
   };
 
@@ -115,9 +119,7 @@ const page = () => {
                   scanLoader ? "bg-gray-400" : "bg-[#3b82f6]"
                 } w-full space-x-2 text-white font-semibold py-2 px-4 rounded flex items-center justify-center hover:bg-blue-600 transition duration-300`}
               >
-                <span>
-                  <CloudUpload />
-                </span>
+                <span>{addedResume ? <CheckCheck /> : <CloudUpload />}</span>
                 <span>Upload your resume!</span>
               </button>
               <input
