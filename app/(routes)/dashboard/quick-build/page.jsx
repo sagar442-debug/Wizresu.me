@@ -24,6 +24,7 @@ import { ReloadIcon } from "@radix-ui/react-icons";
 import useStore from "@/store/useStore";
 import { useDataGenerator } from "@/app/_utils/dataGenerator";
 import { useRouter } from "next/navigation";
+export const runtime = "edge";
 
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
