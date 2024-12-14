@@ -43,7 +43,8 @@ export const runtime = "edge";
 const page = () => {
   const atsScore = useStore((state) => state.atsScore);
   const fileInputRef = useRef(null);
-
+  const [jobTitle, setJobTitle] = useState("");
+  const [jobDescription, setJobDescription] = useState("");
   const { generateAtsScore, geminiData } = useAtsCalculator();
   const setAtsScore = useStore((state) => state.setAtsScore);
   const setResumeScanData = useStore((state) => state.setResumeScanData);
@@ -66,7 +67,11 @@ const page = () => {
 
   const onScan = async () => {
     setScanLoader(true);
-    const response = await generateAtsScore(resumeDetail);
+    const response = await generateAtsScore(
+      resumeDetail,
+      jobDescription,
+      jobTitle
+    );
     setResumeScanData(response);
     setAtsData(response);
     const score = Math.round(response.percentageMatch);
@@ -76,16 +81,11 @@ const page = () => {
     setAddedResume(false);
   };
 
-  const onClicking = () => {
-    console.log(atsData.recommendedKeywords);
-  };
-
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       pdfToText(file)
         .then((text) => {
-          console.log(text);
           setResumeDetail(text);
         })
         .catch((error) => console.error("Failed to extract text from pdf"));
@@ -165,6 +165,7 @@ const page = () => {
                       <div className="grid grid-cols-4 items-center justify-start gap-4">
                         <Label className="text-right">Job title</Label>
                         <input
+                          onChange={(e) => setJobTitle(e.target.value)}
                           type="text"
                           className="outline-none p-2 border w-60 rounded"
                         />
@@ -172,6 +173,7 @@ const page = () => {
                       <div className="grid grid-cols-4 justify-start gap-4">
                         <Label className="text-right">Description</Label>
                         <textarea
+                          onChange={(e) => setJobDescription(e.target.value)}
                           type="text"
                           rows={10}
                           className="outline-none p-2 border w-60 rounded"
@@ -239,8 +241,11 @@ const page = () => {
                 Keywords:
               </CardDescription>
               <div className="grid grid-cols-3 text-sm text-center gap-3 text-white mt-2">
-                {atsData.recommendedKeywords.map((keyword) => (
-                  <h1 className="px-2 py-1 min-w-20 bg-[#5abe70fb] rounded-xl hover:bg-[#4caa60fb] duration-200 transition-all ">
+                {atsData.recommendedKeywords.map((keyword, i) => (
+                  <h1
+                    key={i}
+                    className="px-2 py-1 min-w-20 bg-[#5abe70fb] rounded-xl hover:bg-[#4caa60fb] duration-200 transition-all "
+                  >
                     {keyword}
                   </h1>
                 ))}
@@ -255,8 +260,11 @@ const page = () => {
                 Phrases:
               </CardDescription>
               <div className="space-y-2 text-sm text-white mt-2">
-                {atsData.recommendedSentences.map((sentence) => (
-                  <h1 className="px-2 py-1 bg-[#50af7ffb] hover:bg-[#409c6efb] rounded-xl duration-200 transition-all">
+                {atsData.recommendedSentences.map((sentence, i) => (
+                  <h1
+                    key={i}
+                    className="px-2 py-1 bg-[#50af7ffb] hover:bg-[#409c6efb] rounded-xl duration-200 transition-all"
+                  >
                     {sentence}
                   </h1>
                 ))}

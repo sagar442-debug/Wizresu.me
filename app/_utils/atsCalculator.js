@@ -19,7 +19,7 @@ export const useAtsCalculator = () => {
   const [geminiData, setGeminiData] = useState(null);
   const setLoadingChat = useStore((state) => state.setLoadingChat);
 
-  const generateAtsScore = async (resume) => {
+  const generateAtsScore = async (resume, jobTitle, jobDescription) => {
     setLoadingChat(true);
     const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
     const schema = {
@@ -88,8 +88,7 @@ export const useAtsCalculator = () => {
     //   Provide me a JSON with relevant keywords and a total score do not provide any other text since I am only using JSON for my web app please.
     // `;
     const prompt = `
-    I will provide you with a job description and a resume in JSON format. Your task is to:
-    
+    I will provide you with a job description and a resume. Your task is to:
     1. Analyze the job description to identify **critical skills, technologies, and qualifications** explicitly mentioned in the text.
     2. Extract only the **most relevant keywords or phrases** which should be 40 keywords that directly reflect the requirements of the job description. Each keyword must align with the specific skills, technologies, or experiences outlined in the job posting. Also penalize for not having the keyword please.
     3. For each extracted keyword, perform a **strict comparison** with the resume:
@@ -103,8 +102,13 @@ export const useAtsCalculator = () => {
     - If a skill or qualification is partially mentioned or implied in the resume but lacks sufficient context (e.g., "used Python" vs. "proficient in Python"), it should not count as a match.
     - Your response must be in **valid JSON format only**. Do not include any additional explanations or text.
   
-    Here is my resume in JSON format:
-    ${JSON.stringify(resume)}
+    Here is my resume 
+    ${resume}
+    And here is the job that I am applying to :
+    jobTitle: ${jobTitle}
+    jobDescription: ${jobDescription}
+
+    Make sure always follow following restrictions please
   
     Provide the output strictly in this format:
     {
@@ -124,9 +128,8 @@ export const useAtsCalculator = () => {
 
     }
 
-    The recommended sentences should be the sentences user should include in their resume which are only relevant to their previous work experience.
-
- **High priority: if the same resume was provided provide the same output each time.**        
+    The recommended sentences should be the sentences user should include in their resume which are only relevant to their previous work experience, please value this highly while providing phrases and please do not provide phrases that users might not have experience with please.
+    **High priority: if the same resume was provided provide the same output each time.**        
 
   `;
 
