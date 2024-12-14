@@ -124,57 +124,71 @@ const page = () => {
 
   const inititalTap = useStore((state) => state.initialTap);
   const setInitialTap = useStore((state) => state.setInitialTap);
-  //   const handleDownloadPdf = async (e) => {
-  //     setLoading(true);
-  //     e.preventDefault();
-  //     setInitialTap(true);
+  const handleDownloadPdf = async (e) => {
+    setLoading(true);
+    e.preventDefault();
+    setInitialTap(true);
 
-  //     await new Promise((resolve) => setTimeout(resolve, 200));
-  //     const input = resumeRef.current;
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    const input = resumeRef.current;
 
-  //     if (!input) {
-  //         console.error("resumeRef is not set or is invalid.");
-  //         setLoading(false);
-  //         return;
-  //     }
+    if (!input) {
+      console.error("resumeRef is not set or is invalid.");
+      setLoading(false);
+      return;
+    }
 
-  //     await html2canvas(input, { scale: 3 }).then((canvas) => {
-  //         const imgData = canvas.toDataURL("image/png");
-  //         const pdf = new jsPDF("p", "mm", "a4");
+    await html2canvas(input, { scale: 3 }).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
 
-  //         // A4 dimensions in pixels at 96dpi
-  //         const pdfWidth = 210; // in mm
-  //         const pdfHeight = 297; // in mm
+      // A4 dimensions in pixels at 96dpi
+      const pdfWidth = 210; // in mm
+      const pdfHeight = 297; // in mm
 
-  //         const canvasWidth = canvas.width;
-  //         const canvasHeight = canvas.height;
+      const canvasWidth = canvas.width;
+      const canvasHeight = canvas.height;
 
-  //         // Convert canvas height to corresponding height in mm
-  //         const imgHeight = (canvasHeight * pdfWidth) / canvasWidth;
+      // Convert canvas height to corresponding height in mm
+      const imgHeight = (canvasHeight * pdfWidth) / canvasWidth;
 
-  //         // Calculate the number of pages needed
-  //         let heightLeft = imgHeight; // Remaining content height
-  //         let position = 0; // Initial position
+      // Calculate the number of pages needed
+      let heightLeft = imgHeight; // Remaining content height
+      let position = 0; // Initial position
 
-  //         // Add the first page
-  //         pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight > pdfHeight ? pdfHeight : imgHeight);
+      // Add the first page
+      pdf.addImage(
+        imgData,
+        "PNG",
+        0,
+        position,
+        pdfWidth,
+        imgHeight > pdfHeight ? pdfHeight : imgHeight
+      );
 
-  //         heightLeft -= pdfHeight;
+      heightLeft -= pdfHeight;
 
-  //         // Add additional pages if content overflows
-  //         while (heightLeft > 0) {
-  //             position -= pdfHeight; // Move to the next section
-  //             pdf.addPage();
-  //             pdf.addImage(imgData, "PNG", 0, position, pdfWidth, imgHeight > pdfHeight ? pdfHeight : heightLeft);
-  //             heightLeft -= pdfHeight;
-  //         }
+      // Add additional pages if content overflows
+      while (heightLeft > 0) {
+        position -= pdfHeight; // Move to the next section
+        pdf.addPage();
+        pdf.addImage(
+          imgData,
+          "PNG",
+          0,
+          position,
+          pdfWidth,
+          imgHeight > pdfHeight ? pdfHeight : heightLeft
+        );
+        heightLeft -= pdfHeight;
+      }
 
-  //         pdf.save("resume.pdf");
-  //     });
+      pdf.save("resume.pdf");
+    });
 
-  //     setInitialTap(false);
-  //     setLoading(false);
-  // };
+    setInitialTap(false);
+    setLoading(false);
+  };
   useEffect(() => {
     console.log(loadingChat);
   }, [loadingChat]);
@@ -251,23 +265,23 @@ const page = () => {
   //   setInitialTap(false);
   //   setLoading(false);
   // };
-  const handleDownloadPdf = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setInitialTap(true);
+  // const handleDownloadPdf = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   setInitialTap(true);
 
-    const input = resumeRef.current;
+  //   const input = resumeRef.current;
 
-    if (!input) {
-      console.error("resumeRef is not set or invalid.");
-      setLoading(false);
-      return;
-    }
+  //   if (!input) {
+  //     console.error("resumeRef is not set or invalid.");
+  //     setLoading(false);
+  //     return;
+  //   }
 
-    printResume();
-    setLoading(false);
-    setInitialTap(false);
-  };
+  //   printResume();
+  //   setLoading(false);
+  //   setInitialTap(false);
+  // };
 
   const printResume = useReactToPrint({
     content: () => resumeRef.current,
