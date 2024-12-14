@@ -53,6 +53,7 @@ const page = () => {
   const [atsData, setAtsData] = useState({});
   const colors = ["#ff0000", "#e0a500", , "#01dd6f", "#0000ff"]; // red, blue, yellow, green
   const [currentColorIndex, setCurrentColorIndex] = useState(0);
+  const [resumeDetail, setResumeDetail] = useState("");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -64,7 +65,7 @@ const page = () => {
 
   const onScan = async () => {
     setScanLoader(true);
-    const response = await generateAtsScore();
+    const response = await generateAtsScore(resumeDetail);
     setResumeScanData(response);
     setAtsData(response);
     const score = Math.round(response.percentageMatch);
@@ -80,16 +81,18 @@ const page = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      console.log("Selected file:", file);
       pdfToText(file)
-        .then((text) => console.log(text))
+        .then((text) => {
+          console.log(text);
+          setResumeDetail(text);
+        })
         .catch((error) => console.error("Failed to extract text from pdf"));
     }
   };
 
   const handleButtonClick = () => {
     if (!scanLoader) {
-      fileInputRef.current.click(); // Programmatically trigger the file input
+      fileInputRef.current.click();
     }
   };
 
@@ -186,6 +189,7 @@ const page = () => {
                   </DialogContent>
                 </Dialog>
                 <button
+                  onClick={onScan}
                   className="px-2 flex gap-2 bg-[#b68832] text-white py-2 font-semibold rounded transition duration-300 hover:bg-[#c49236cc] "
                   variant="outline"
                 >

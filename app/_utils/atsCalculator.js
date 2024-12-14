@@ -19,7 +19,7 @@ export const useAtsCalculator = () => {
   const [geminiData, setGeminiData] = useState(null);
   const setLoadingChat = useStore((state) => state.setLoadingChat);
 
-  const generateAtsScore = async () => {
+  const generateAtsScore = async (resume) => {
     setLoadingChat(true);
     const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
     const schema = {
@@ -168,100 +168,4 @@ export const useAtsCalculator = () => {
   };
 
   return { generateAtsScore, geminiData };
-};
-
-const resume = {
-  resumeDetails: {
-    _id: "673925b0ecb80780bb60f743",
-    clerkId: "user_2ox22hWvPkBc0FGql9cxd26eRAD",
-    resumeTitle: "Software Developer 2",
-    jobTitle: "Software Engineer",
-    userFullName: "John Doe",
-    userEmailAddress: "john.doe@example.com",
-    userPhoneNumber: "123-456-7890",
-    userWebsite: "https://sagarspk.com.np",
-    userAddress: "123 Main Street, Anytown, CA 12345",
-    userDegree: ["Bachelor of Science in Computer Science"],
-    jobDescription: `About the job
-Role Summary
-
-
-Build reactive database web applications 
-
-
-
-Liquid Analytics is seeking a Senior JavaScript Svelte developer with at least 5 years of experience.
-
-You excel at creating pixel-perfect UI and have a deep understanding of colour, typography, layout, and user experience design.
-As a full-stack developer, you will own end-to-end features and build front-end and server-side components. You have a solid understanding of Python and SQL, the language of data.
-You are adept at real-time web applications using web sockets and WASM. You have strong networking skills, API development (REST, gRPC), and cloud deployment.
-Proficiency with tools like Git, Visual Studio Code, and CI/CD pipelines is essential.
-Mastery in using UX design tools such as Figma is also required.
-You can build and manage your deployments and you can troubleshoot networking issues in the AWS cloud.
-You live where we work.  You can come into our offices near Thornbury, Ontario any day of the week as required.
-
-
-Start by visiting our website. 
-
-
-
-You thrive in a fast-paced environment where delivering functional, user-centric features is key, and you’re comfortable with client interactions.
-
-Your development process begins with thorough requirement analysis and documentation, ensuring clarity and precision in every project. Experience with GitLab monorepos, build systems, and feature flagging is highly desirable.
-
-
-
-Located within 40 minutes of Thornbury, Ontario, this role offers the opportunity to work in an area surrounded by nature. You can enjoy clean air and water in a beautiful environment. You are willing to locate yourself within 40 minutes of our offices so that you can come into the office at any time.
-
-
-
-Qualifications
-
-Outstanding knowledge of Python and Javascript
-Ability to build real-time web applications with web sockets and WASM
-Solid API development experience with REST and gRPC. Experience with CSV, Parquet, JSON, TOML, and YAML data formats
-Mastery of state management with web applications
-Build reusable product UI Components
-Set up, configure, and build Authorization and Authentication into web applications using role/attribute-based access control (RBAC and ABAC)
-Solid understanding of SQL. We think of our UX as DX or Data Experience. We use PostgreSQL for transactional data and DuckDB for analytics data
-Unit test, test automation, and scalability testing of the front-end application
-Solid cloud and networking skills allow you to test and deploy your web application and test harnesses. We use the Playwright and Mocha test frameworks (we are open to other test frameworks)
-You are focused on releasing and shipping features
-You understand the need for a product team to ship functional features rapidly
-You know how to estimate your work
-You can build and manage our Gitlab mono repo
-English is your first programming language
-All code starts with Requirements and Analysis documents
-You are at ease talking directly with clients and users
-You are an expert at using UX design tools such as Figma`,
-    userLanguage: [
-      {
-        English: "99",
-      },
-    ],
-    jobExperience: [
-      {
-        jobCompany: "Tech Solutions Inc.",
-        jobTitle: "Software Developer",
-        jobStartDate: "January 2020",
-        jobEndDate: "Present",
-        jobDescription: [
-          "Designed and implemented new features for the company's core software product.",
-          "Collaborated with cross-functional teams to define project requirements and deliver solutions on time.",
-          "Optimized codebase to improve performance and reduce memory usage.",
-        ],
-      },
-      {
-        jobCompany: "Innovate Labs",
-        jobTitle: "Junior Developer",
-        jobStartDate: "June 2018",
-        jobEndDate: "December 2019",
-        jobDescription: [
-          "Assisted in the development of web applications using JavaScript and Python.",
-          "Maintained code quality through regular testing and debugging.",
-          "Wrote documentation to streamline knowledge sharing among team members.",
-        ],
-      },
-    ],
-  },
 };

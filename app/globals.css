@@ -11,7 +11,6 @@ html {
   .resume-template {
     transform: scale(1.4);
     transform-origin: top left; /* Keep scaling origin at top-left */
-    padding-top: 2mm; /* Top padding */
     padding-bottom: 2mm;
     width: calc(100% / 1.4); /* Adjust width to fit the scaled size */
   }

@@ -72,7 +72,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                 </li>
                 <li className="flex gap-2 items-center ">
                   <IoIosMail className="" />
-                  <span className="text-[8px] break-words">
+                  <span className="text-[8px] xl:text-[10px]  2xl:text-xs break-words">
                     {userEmailAddress.length > 3
                       ? userEmailAddress
                       : "sagarsapkota0987@gmail.com"}
@@ -195,10 +195,10 @@ const ResumeTemplate = forwardRef((props, ref) => {
                     key={i}
                     className="flex gap-2 items-center justify-between  "
                   >
-                    <span>{language.languageName}</span>
-                    <div className="w-full bg-gray-700/20 rounded-full h-2 ">
+                    <span className="text-[10px]">{language.languageName}</span>
+                    <div className="w-full bg-gray-700/20 rounded-full h-[5px] ">
                       <div
-                        className="bg-gray-500 h-2 rounded-full transition-all duration-500 ease-in-out"
+                        className="bg-gray-500 h-[5px] rounded-full transition-all duration-500 ease-in-out"
                         style={{ width: `${language.languagePercentage}%` }}
                       ></div>
                     </div>
@@ -225,7 +225,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
               </h1>
 
               {dataJobExperience?.map((exp, i) => (
-                <div key={i} className="experience-1 mb-10">
+                <div key={i} className="experience-1 mb-5">
                   <h1 className="text-xs 2xl:text-sm my-2">{exp.jobTitle}</h1>
                   <span className="flex justify-between my-1  xl:my-2 mr-4">
                     <h1 className="text-[10px] xl:text-xs tracking-tighter">
@@ -238,7 +238,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                   <ol className="text-[10px] 2xl:text-xs tracking-tighter  pr-5">
                     {exp?.userRoleDescription?.map((jobExp, i) => (
                       <li key={i}>
-                        <span className="text-sm p-0 m-0"> &#8226; </span>
+                        <span className="text-xs p-0 m-0"> &#8226; </span>
                         {jobExp}
                       </li>
                     ))}

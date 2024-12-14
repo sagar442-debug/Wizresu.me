@@ -69,10 +69,6 @@ const page = () => {
     }
   }, [user]);
 
-  useEffect(() => {
-    console.log(value);
-  }, [value]);
-
   const extractResumes = async () => {
     try {
       const response = await fetch(
@@ -166,7 +162,6 @@ const page = () => {
         throw new Error("Failed to fetch resume details");
       }
       const data = await response.json();
-      console.log(data.resumeDetails);
       const resumeInfo = data.resumeDetails;
       setObjective(resumeInfo.objective);
       setUserFullName(resumeInfo.userFullName);
@@ -174,7 +169,14 @@ const page = () => {
       setUserPhoneNumber(resumeInfo.userPhoneNumber);
       setUserWebsite(resumeInfo?.userWebsite);
       setUserAddress(resumeInfo.userAddress);
-      setUserDegree(resumeInfo.userDegree);
+      resumeInfo.userDegree.forEach((degree) => {
+        setUserDegree({
+          degreeName: degree.degreeName,
+          degreeInstitution: degree.degreeInstitution,
+          degreeEndDate: degree.degreeEndDate,
+          shortDesc: degree.shortDesc,
+        });
+      });
       setSkills(resumeInfo.skills);
       resumeInfo.userLanguage.forEach((language) => {
         setUserLanguage({
