@@ -6,7 +6,6 @@ import { CheckCheck, CloudUpload } from "lucide-react";
 import { ListTodo } from "lucide-react";
 import { Briefcase } from "lucide-react";
 import { ScanText } from "lucide-react";
-import pdfToText from "react-pdftotext";
 import {
   CircularProgressbar,
   CircularProgressbarWithChildren,
@@ -22,7 +21,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import AnimatedProgressProvider from "../_components/AnimatedProgressProvider";
 import ChangingProgressProvider from "../_components/ChangingProgressProvider";
 import { ClipLoader } from "react-spinners";
 import {
@@ -34,11 +32,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { pdfjs } from "pdfjs-dist"; // Import pdf.js
 
 export const runtime = "edge";
 
@@ -92,13 +87,10 @@ const Page = () => {
   };
 
   const handleFileChange = async (event) => {
-    console.log("Done");
     const file = event.target.files[0];
     if (file) {
-      // Create a FormData object to send the file
       const formData = new FormData();
-      formData.append("file", file); // The field name should match the backend
-
+      formData.append("file", file);
       try {
         const response = await fetch(`${apiUrl}pdf/upload-pdf`, {
           method: "POST",
@@ -107,7 +99,6 @@ const Page = () => {
         if (response.ok) {
           const data = await response.json();
           setResumeDetail(data.pdfText);
-          console.log("Extracted Text:", data.pdfText);
         } else {
           console.error("Error uploading PDF:", response.statusText);
           alert("Failed to extract text from the PDF. Please try again.");
@@ -116,7 +107,6 @@ const Page = () => {
         console.error("Failed to send file:", error);
         alert("Failed to upload PDF. Please try again.");
       }
-
       setAddedResume(true);
     }
   };
@@ -156,9 +146,11 @@ const Page = () => {
                 className="hidden"
               />
               <button
-                disabled={scanLoader}
+                disabled={scanLoader || addedResume}
                 className={`${
-                  scanLoader ? "bg-gray-400" : "bg-[#3aaa5c]"
+                  scanLoader || addedResume
+                    ? "bg-gray-400 hover:bg-gray-400"
+                    : "bg-[#3aaa5c]"
                 } w-full text-white font-semibold py-2 px-4 rounded flex space-x-2 hover:bg-[#31a353d8] transition duration-300`}
               >
                 <span>
@@ -189,7 +181,7 @@ const Page = () => {
                     </DialogHeader>
                     <div className="grid gap-4 py-4 ">
                       <div className="grid grid-cols-4 items-center justify-start gap-4">
-                        <Label className="text-right">Job title</Label>
+                        <Label className="text-right">Your Position</Label>
                         <input
                           onChange={(e) => setJobTitle(e.target.value)}
                           type="text"
@@ -219,8 +211,19 @@ const Page = () => {
                   </DialogContent>
                 </Dialog>
                 <button
+                  disabled={
+                    jobTitle.length < 5 ||
+                    jobDescription.length < 5 ||
+                    !addedResume
+                  }
                   onClick={onScan}
-                  className="px-2 flex gap-2 bg-[#b68832] text-white py-2 font-semibold rounded transition duration-300 hover:bg-[#c49236cc]"
+                  className={`px-2 flex gap-2  text-white py-2 font-semibold rounded transition duration-300 hover:bg-[#c49236cc] ${
+                    jobTitle.length < 5 ||
+                    jobDescription.length < 5 ||
+                    !addedResume
+                      ? "bg-[#c49236cc] "
+                      : "bg-[#b68832]"
+                  }`}
                   variant="outline"
                 >
                   <span>
