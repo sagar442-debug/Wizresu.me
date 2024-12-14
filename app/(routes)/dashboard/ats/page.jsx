@@ -6,6 +6,8 @@ import { CheckCheck, CloudUpload } from "lucide-react";
 import { ListTodo } from "lucide-react";
 import { Briefcase } from "lucide-react";
 import { ScanText } from "lucide-react";
+import pdfToText from "react-pdftotext";
+import { pdfjs } from "pdfjs-dist";
 
 import {
   CircularProgressbar,
@@ -90,19 +92,19 @@ const Page = () => {
 
   const handleFileChange = (event) => {
     console.log("Done");
-    // const file = event.target.files[0];
-    // if (file) {
-    //   pdfToText(file)
-    //     .then((text) => {
-    //       setResumeDetail(text);
-    //     })
-    //     .catch((error) => {
-    //       console.error("Failed to extract text from pdf", error);
-    //       alert("Failed to extract text from the PDF. Please try again.");
-    //     });
+    const file = event.target.files[0];
+    if (file) {
+      pdfToText(file)
+        .then((text) => {
+          setResumeDetail(text);
+        })
+        .catch((error) => {
+          console.error("Failed to extract text from pdf", error);
+          alert("Failed to extract text from the PDF. Please try again.");
+        });
 
-    //   setAddedResume(true);
-    // }
+      setAddedResume(true);
+    }
   };
 
   const handleButtonClick = () => {
