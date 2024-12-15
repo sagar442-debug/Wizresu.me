@@ -75,7 +75,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                   <span className="text-[8px] xl:text-[10px]  2xl:text-xs break-words">
                     {userEmailAddress.length > 3
                       ? userEmailAddress
-                      : "sagarsapkota0987@gmail.com"}
+                      : "YourEmail0987@gmail.com"}
                   </span>
                 </li>
                 {userWebsite.length > 3 ? (
@@ -367,7 +367,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                   <span className="w-40 break-words">
                     {userEmailAddress.length > 3
                       ? userEmailAddress
-                      : "sagarsapkota0987@gmail.com"}
+                      : "YourEmail0987@gmail.com"}
                   </span>
                 </li>
                 {userWebsite.length > 3 ? (
