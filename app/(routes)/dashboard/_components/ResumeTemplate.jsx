@@ -45,8 +45,8 @@ const ResumeTemplate = forwardRef((props, ref) => {
 
   return (
     <div className="max-w-[40rem]">
-      <div ref={resumeRef} className="resume-template">
-        <div className="title pb-5 mb-2 border-b text-center mt-2">
+      <div ref={resumeRef} className="resume">
+        <div className=" pb-5 mb-2 border-b text-center mt-2">
           <h1 className="text-2xl tracking-widest">
             {userFullName.length > 3 ? userFullName : "Daniel Bryan"}
           </h1>
@@ -54,7 +54,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
             {jobTitle.length > 3 ? jobTitle : "Software developer"}
           </p>
         </div>
-        <div className="flex  pb-4">
+        <div className="flex pb-4">
           {/* Left side */}
           <div className="left-side min-w-48  xl:min-w-52 bg-[#dbdbdb] pl-4 pr-6 py-2">
             <section className="contact section text-left border-b border-[#adadad] h-36">
@@ -225,11 +225,12 @@ const ResumeTemplate = forwardRef((props, ref) => {
               </h1>
 
               {dataJobExperience?.map((exp, i) => (
-                <section key={i} className="experience-1 mb-5">
+                <section key={i} className="experience-1 mb-2">
                   <h1 className="text-xs 2xl:text-sm my-2 section-title">
                     {exp.jobTitle}
                   </h1>
-                  <span className="flex justify-between my-1  xl:my-2 mr-4">
+
+                  <span className="flex justify-between my-1 xl:my-2 mr-4">
                     <h1 className="text-[10px] xl:text-xs tracking-tighter">
                       {exp.companyName}
                     </h1>
@@ -237,14 +238,14 @@ const ResumeTemplate = forwardRef((props, ref) => {
                       {exp.startDate} - {exp.endDate}
                     </h1>
                   </span>
-                  <ol className="text-[10px] 2xl:text-xs tracking-tighter job-description pr-5">
+                  <ul className="text-[10px] 2xl:text-xs tracking-tighter job-description pr-5">
                     {exp?.userRoleDescription?.map((jobExp, i) => (
                       <li key={i}>
                         <span className="text-xs p-0 m-0"> &#8226; </span>
                         {jobExp}
                       </li>
                     ))}
-                  </ol>
+                  </ul>
                 </section>
               ))}
 
@@ -260,7 +261,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                       </h1>
                       <h1 className="text-[10px] 2xl:text-xs">2020-2024</h1>
                     </span>
-                    <ol className="text-[10px] description 2xl:text-xs tracking-tighter space-y-0 xl:space-y-1">
+                    <ol className="text-[10px] description 2xl:text-xs tracking-tighter space-y-0 xl:space-y-1 print:page-break-inside-avoid">
                       <li>
                         <span className="text-sm"> &#8226;</span>Lorem ipsum
                         dolor sit amet, consectetur adipisicing elit.
@@ -299,7 +300,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                       </h1>
                       <h1 className="text-[10px] 2xl:text-xs">2020-2024</h1>
                     </span>
-                    <ol className="description text-[10px] 2xl:text-xs tracking-tighter space-y-0 xl:space-y-1">
+                    <ol className="description text-[10px] 2xl:text-xs tracking-tighter space-y-0 xl:space-y-1 print:page-break-inside-avoid">
                       <li>
                         <span className="text-sm"> &#8226;</span>Lorem ipsum
                         dolor sit amet, consectetur adipisicing elit.

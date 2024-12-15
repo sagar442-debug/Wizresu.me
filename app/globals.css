@@ -8,32 +8,36 @@ html {
 }
 
 @media print {
-  .resume-template {
+  @page {
+    margin-bottom: 0.35in;
+  }
+
+  .resume {
+    margin-bottom: 0.35in;
     transform: scale(1.4);
     transform-origin: top left;
     width: calc(100% / 1.4);
   }
 
   body {
-    margin: 0;
     padding: 0;
-    -webkit-print-color-adjust: exact; /* Preserve colors for printing */
+    -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
-  .resume-template {
-    margin: 0; /* Ensure no extra margin around the content */
-    padding: 10mm 0; /* Add padding to the top and bottom */
-    box-sizing: border-box; /* Ensure padding is included in layout */
-  }
-
-  .job-description {
-    page-break-inside: avoid; /* Prevent a single job description from breaking */
-    margin-bottom: 10mm; /* Add space between jobs */
-  }
-
+  /* Ensure page breaks work and prevent unnecessary gaps */
+  .job-description,
   .section-title {
-    page-break-after: avoid; /* Ensure titles don't appear alone at the bottom of a page */
+    page-break-before: auto;
+    page-break-after: auto;
+  }
+
+  /* Manage the layout of the page content after breaks */
+  body {
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact; /* Preserve colors */
+    print-color-adjust: exact;
   }
 }
 

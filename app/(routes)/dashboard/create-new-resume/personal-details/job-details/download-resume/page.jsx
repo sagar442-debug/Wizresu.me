@@ -254,7 +254,6 @@ const page = () => {
   const handleDownloadPdf = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setInitialTap(true);
 
     const input = resumeRef.current;
 
@@ -266,15 +265,18 @@ const page = () => {
 
     printResume();
     setLoading(false);
-    setInitialTap(false);
   };
 
   const printResume = useReactToPrint({
     content: () => resumeRef.current,
     documentTitle: "resume",
+    onBeforeGetContent: () => {
+      const resume = resumeRef.current;
+      resume.style.marginBottom = "0.5in"; // Dynamically adjust margins
+      resume.style.padding = "0";
+    },
     onAfterPrint: () => {
-      setInitialTap(false);
-      setLoading(false);
+      console.log("Print completed");
     },
   });
 
