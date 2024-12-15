@@ -10,9 +10,8 @@ html {
 @media print {
   .resume-template {
     transform: scale(1.4);
-    transform-origin: top left; /* Keep scaling origin at top-left */
-    padding-bottom: 2mm;
-    width: calc(100% / 1.4); /* Adjust width to fit the scaled size */
+    transform-origin: top left;
+    width: calc(100% / 1.4);
   }
 
   body {
@@ -20,6 +19,21 @@ html {
     padding: 0;
     -webkit-print-color-adjust: exact; /* Preserve colors for printing */
     print-color-adjust: exact;
+  }
+
+  .resume-template {
+    margin: 0; /* Ensure no extra margin around the content */
+    padding: 10mm 0; /* Add padding to the top and bottom */
+    box-sizing: border-box; /* Ensure padding is included in layout */
+  }
+
+  .job-description {
+    page-break-inside: avoid; /* Prevent a single job description from breaking */
+    margin-bottom: 10mm; /* Add space between jobs */
+  }
+
+  .section-title {
+    page-break-after: avoid; /* Ensure titles don't appear alone at the bottom of a page */
   }
 }
 
