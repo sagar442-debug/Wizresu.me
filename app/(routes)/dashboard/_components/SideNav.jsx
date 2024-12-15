@@ -88,7 +88,7 @@ function SideNav() {
       <div
         className={`${
           lgScreen ? "w-16" : "w-60 lg:w-64"
-        } transition-all duration-500   xl:w-72 bg-[#f1f1f1] h-[100vh] shadow-2xl flex flex-col`}
+        } transition-all duration-500   xl:w-72 bg-[#242842] h-[100vh] shadow-gray-950 shadow-md flex flex-col `}
       >
         <div
           className={`${
@@ -96,17 +96,17 @@ function SideNav() {
           } flex justify-center items-center  `}
         >
           <button
-            className={`${!lgScreen ? "hidden" : ""}`}
+            className={`${!lgScreen ? "hidden" : ""} group`}
             onClick={onResizeBack}
           >
-            <GiHamburgerMenu className="text-xl mt-1 text-[#555]" />
+            <GiHamburgerMenu className="text-xl mt-1 text-white " />
           </button>
           <Link className="flex gap-2 items-center" href={"/dashboard"}>
             <Logo />
             <h1
               className={`${
                 lgScreen ? "hidden" : ""
-              } font-bold sm:text-xl xl:text-2xl lg:text-xl text-[#2a2663]`}
+              } font-bold sm:text-xl xl:text-2xl lg:text-xl text-[#fff]`}
             >
               WizResu.me
             </h1>
@@ -116,7 +116,7 @@ function SideNav() {
               className={`${lgScreen ? "hidden" : ""}`}
               onClick={onResize}
             >
-              <RxCross1 className="text-xl mt-1 text-[#2a2663]" />
+              <RxCross1 className="text-xl mt-1 text-white" />
             </button>
           </div>
         </div>
@@ -134,14 +134,14 @@ function SideNav() {
               onClick={() => onQuickBuild("/dashboard/quick-build")}
               className={`${
                 lgScreen ? "p-2 lg:w-10" : "lg:p-4 "
-              } relative flex cursor-pointer lg:gap-0 xl:gap-3 p-2 sm:p-2 hover:shadow-md transition-all xl:p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden`}
+              } relative flex cursor-pointer  lg:gap-0 xl:gap-2 p-2 sm:p-2 shadow-lg transition-all xl:p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden`}
             >
               <Wand className="animate-pulse lg:w-8" />
 
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
-                }  lg:text-base xl:text-lg font-semibold`}
+                }  lg:text-base xl:text-lg font-semibold tracking-wider`}
               >
                 Quick Build
               </span>
@@ -152,22 +152,25 @@ function SideNav() {
             <Link
               href={"/dashboard"}
               onClick={() => onRouting("/dashboard")}
-              className={`flex gap-3 hover:shadow-md transition-all p-4 ${
+              className={`flex gap-3 hover:shadow-md transition-all p-4 group ${
                 pathname.startsWith("/dashboard/create-new-resume")
                   ? "font-bold"
                   : "font-medium"
-              } items-center text-[#555] hover:bg-[#dfdfdf] rounded`}
+              } items-center text-[#555] hover:bg-[#fff] hover:text-black rounded`}
             >
               {route == "/dashboard" ? (
-                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin group-hover:text-black  text-white" />
               ) : (
-                <House width={30} className="" />
+                <House
+                  width={30}
+                  className="text-white group-hover:text-black"
+                />
               )}
 
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
-                } lg:text-base xl:text-lg`}
+                } lg:text-base xl:text-lg text-white group-hover:text-black  tracking-wider`}
               >
                 Home
               </span>
@@ -175,18 +178,21 @@ function SideNav() {
             <Link
               onClick={() => onRouting("/dashboard/resumes")}
               href={"/dashboard/resumes"}
-              className="flex gap-3 hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
+              className="flex gap-3 hover:shadow-md group transition-all font-medium p-4 items-center text-[#555] hover:bg-[#fff] rounded"
             >
               {route == "/dashboard/resumes" ? (
-                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin group-hover:text-black  text-white" />
               ) : (
-                <Blocks width={30} className="" />
+                <Blocks
+                  width={30}
+                  className="text-white group-hover:text-black"
+                />
               )}
 
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
-                } lg:text-base xl:text-lg`}
+                } lg:text-base xl:text-lg text-white group-hover:text-black tracking-wider`}
               >
                 Resumes
               </span>
@@ -194,18 +200,21 @@ function SideNav() {
             <Link
               onClick={() => onRouting("/dashboard/ats")}
               href={"/dashboard/ats"}
-              className="flex gap-3  hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
+              className="flex gap-3 group hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#fff] rounded"
             >
               {route == "/dashboard/ats" ? (
-                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin group-hover:text-black  text-white" />
               ) : (
-                <ScanText width={30} className="" />
+                <ScanText
+                  width={30}
+                  className="text-white group-hover:text-black"
+                />
               )}
 
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
-                } lg:text-base xl:text-lg`}
+                } lg:text-base xl:text-lg text-white group-hover:text-black tracking-wider`}
               >
                 ATS
               </span>
@@ -219,15 +228,15 @@ function SideNav() {
             <Link
               onClick={() => onRouting("/dashboard/user-profile")}
               href={"/dashboard/user-profile"}
-              className="flex gap-3  hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
+              className="flex gap-3 group hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#fff] rounded"
             >
               {route == "/dashboard/user-profile" ? (
-                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin group-hover:text-black  text-white" />
               ) : (
-                <div className="flex gap-3 items-center">
+                <div className="flex gap-3 items-center w-[30px]">
                   {user ? (
                     <Image
-                      className="rounded-full h-[30px] w-[30px] p-0 "
+                      className="rounded-full h-[30px] w-[30px] p-0"
                       height={30}
                       width={30}
                       src={user?.imageUrl}
@@ -239,7 +248,7 @@ function SideNav() {
                   <span
                     className={`${
                       lgScreen ? "hidden" : ""
-                    } lg:text-base xl:text-lg`}
+                    } lg:text-base xl:text-lg text-white group-hover:text-black tracking-wider`}
                   >
                     Profile
                   </span>
@@ -249,18 +258,21 @@ function SideNav() {
 
             <button
               onClick={() => signningOut()}
-              className="flex gap-3 hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#dfdfdf] rounded"
+              className="flex gap-3 group hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#fff] rounded"
             >
               {route == "signout" ? (
-                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin group-hover:text-black  text-white" />
               ) : (
-                <LogOut width={32} />
+                <LogOut
+                  width={32}
+                  className="text-white group-hover:text-black"
+                />
               )}
 
               <span
                 className={`${
                   lgScreen ? "hidden" : ""
-                } lg:text-base xl:text-lg`}
+                } lg:text-base xl:text-lg text-white group-hover:text-black tracking-wider`}
               >
                 Sign Out
               </span>
@@ -276,12 +288,12 @@ function SideNav() {
             } xl:left-3 bottom-10 lg:w-60 xl:w-60 flex gap-1 items-center cursor-pointer`}
           >
             <Link className="flex" href={"/#pricing"}>
-              <ChartNoAxesColumnIncreasing color="#4e2ec2" />
+              <ChartNoAxesColumnIncreasing color="#fff" />
 
               <h1
                 className={`${
                   lgScreen ? "hidden" : ""
-                } transition-all duration-500 underline text-[#4e2ec2] text-sm `}
+                } transition-all duration-500 underline text-[#fff] text-sm `}
               >
                 Upgrade for more premium features
               </h1>

@@ -5,10 +5,10 @@ const Logo = () => {
   return (
     <div className="flex gap-2 items-center">
       <Image
-        className="md:w-10 xl:w-10"
+        className="md:w-5 lg:w-8 xl:w-10"
         src={"/Favicon.png"}
-        height={48}
-        width={48}
+        height={30}
+        width={30}
         alt="wizresu-logo"
       />
     </div>

@@ -72,7 +72,9 @@ function Workspace() {
   };
   return (
     <div className="ml-5 pb-10">
-      <h2 className="text-4xl font-bold mx-1  tracking-wider">Dashboard</h2>
+      <h2 className="text-4xl font-bold mx-1 text-[#242842] tracking-wider">
+        Dashboard
+      </h2>
       <div className="flex justify-between items-center mx-1">
         <h2 className="text-lg font-semibold text-gray-500 tracking-wider">
           Create a new resume
