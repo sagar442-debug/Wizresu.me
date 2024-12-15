@@ -7,6 +7,7 @@ import { dark } from "@clerk/themes";
 const inter = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
+  metadataBase: new URL("https://wizresu.me/"),
   title: {
     default: "Wiz Resume | Quick Resume Build",
     template: "%s - Wiz Resume | Quick Resume Build",
@@ -17,12 +18,11 @@ export const metadata = {
     index: true,
     follow: true,
   },
+  openGraph: {
+    images: "https://wizresu.me/opengraph-image.png",
+  },
   twitter: {
     card: "summary_large_image",
-    image:
-      process.env.NEXT_PUBLIC_NODE_ENV == "production"
-        ? "https://wizresu.me/opengraph-image.png"
-        : "http://localhost:3000/opengraph-image.png", // Fallback for dev
   },
 };
 
