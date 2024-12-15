@@ -73,7 +73,7 @@ const LandingPageHeader = () => {
                   disabled={loading}
                   className={`font-semibold ${
                     loading ? "opacity-60" : ""
-                  } flex items-center duration-200 rounded-full sm:text-sm lg:text-xl px-4 py-1 lg:py-1 bg-gradient-to-r from-[#7DA7C5] to-[#949C5C] text-white hover:shadow-md`}
+                  } flex items-center duration-200  rounded shadow-md sm:text-sm lg:text-lg px-4 py-1 lg:py-1 bg-gradient-to-r from-[#7DA7C5] to-[#949C5C] text-white hover:shadow-lg`}
                 >
                   {loading ? <Loader /> : ""}
 
@@ -113,7 +113,7 @@ const LandingPageHeader = () => {
                 disabled={loading}
                 className={`font-semibold ${
                   loading ? "opacity-60" : ""
-                } font-semibold flex items-center hover:shadow-lg md:text-xl px-3 py-1  md:px-4 md:py-2 rounded-full text-white bg-gradient-to-r from-[#7DA7C5] duration-200
+                } font-semibold flex items-center hover:shadow-lg md:text-lg px-3 py-1 shadow  md:px-4 md:py-2 rounded text-white bg-gradient-to-r from-[#7DA7C5] duration-500
      to-[#949C5C] bg-[length:200%_200%] bg-left transition-all  ease-out hover:bg-right`}
               >
                 {loading ? <Loader /> : ""}
@@ -124,7 +124,7 @@ const LandingPageHeader = () => {
           ) : (
             <Link
               href={"/sign-up"}
-              className="font-semibold  hover:shadow-lg md:text-xl px-3 py-1  md:px-4 md:py-2 rounded-full text-white bg-gradient-to-r from-[#7DA7C5] duration-200
+              className="font-semibold  hover:shadow-lg md:text-lg px-3 py-1  md:px-4 md:py-2 rounded text-white bg-gradient-to-r from-[#7DA7C5] duration-500
      to-[#949C5C] bg-[length:200%_200%] bg-left transition-all  ease-out hover:bg-right"
             >
               Get Started Here

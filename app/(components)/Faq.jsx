@@ -42,17 +42,13 @@ const Faq = () => {
             </AccordionTrigger>
             <AccordionContent className="tracking-wider">
               <strong>Basic Plan (Free):</strong> Ideal for starters, offering
-              14 resumes per week and limited ATS calculator access.
+              limited access to some of the premium features.
               <br></br>
               <br></br>
-              <strong>Premium Plan ($2.99/month):</strong> For experienced
-              users, featuring unlimited resumes, text regeneration, and ATS
-              checks with some upload/save limits.
-              <br></br>
-              <br></br>
-              <strong>Exclusive Plan ($4.99/month):</strong> For professionals,
-              providing unlimited access to all features, including resume
-              uploads, saves, and text regeneration.
+              <strong>Premium Plan ($2.99/month):</strong> You will be able to
+              access premium features like unlimited resumes generation,
+              unlimited one click resume builds, unlimited resume saves and
+              unlimited ats scores(BETA) checks.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-4">
