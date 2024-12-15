@@ -123,7 +123,7 @@ const Page = () => {
         <Card className="w-[350px]">
           <CardHeader>
             <CardTitle className="text-center tracking-wider ">
-              Calculate your ATS
+              Calculate your ATS (BETA)
             </CardTitle>
           </CardHeader>
           <CardContent className="flex justify-center">
