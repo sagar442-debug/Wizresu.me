@@ -29,6 +29,7 @@ function SideNav() {
   const [lgScreen, setLgScreen] = useState(false);
   const [premium, setPremium] = useState(false);
   const [route, setRoute] = useState("");
+  const [quickBuild, setQuickBuild] = useState(false);
   useEffect(() => {
     setRoute("");
   }, [pathname]);
@@ -54,12 +55,17 @@ function SideNav() {
   };
 
   const onQuickBuild = (routeName) => {
+    setQuickBuild(true);
     if (pathname !== `${routeName}`) {
       setRoute(routeName);
     } else {
       setRoute("");
     }
   };
+
+  useEffect(() => {
+    setQuickBuild(false);
+  });
 
   useEffect(() => {
     fetchUserDetails();
@@ -88,7 +94,7 @@ function SideNav() {
       <div
         className={`${
           lgScreen ? "w-16" : "w-60 lg:w-64"
-        } transition-all duration-500   xl:w-72 bg-[#242842] h-[100vh] shadow-gray-950 shadow-md flex flex-col `}
+        } transition-all duration-500 xl:w-72 bg-[#272b46] h-[100vh] shadow-gray-950 shadow-md flex flex-col `}
       >
         <div
           className={`${
@@ -134,9 +140,13 @@ function SideNav() {
               onClick={() => onQuickBuild("/dashboard/quick-build")}
               className={`${
                 lgScreen ? "p-2 lg:w-10" : "lg:p-4 "
-              } relative flex cursor-pointer  lg:gap-0 xl:gap-2 p-2 sm:p-2 shadow-lg transition-all xl:p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden`}
+              } relative flex cursor-pointer gap-2  lg:gap-0 xl:gap-2 p-2 sm:p-2 shadow-lg transition-all xl:p-4 font-medium items-center hover:bg-blue-400 rounded bg-blue-500 text-white overflow-hidden`}
             >
-              <Wand className="animate-pulse lg:w-8" />
+              {quickBuild ? (
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin group-hover:text-black  text-white" />
+              ) : (
+                <Wand className="animate-pulse lg:w-8" />
+              )}
 
               <span
                 className={`${
