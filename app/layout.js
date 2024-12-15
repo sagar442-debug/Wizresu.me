@@ -17,8 +17,12 @@ export const metadata = {
     index: true,
     follow: true,
   },
-  twittter: {
+  twitter: {
     card: "summary_large_image",
+    image:
+      process.env.NEXT_PUBLIC_NODE_ENV == "production"
+        ? "https://wizresu.me/opengraph-image.png"
+        : "http://localhost:3000/opengraph-image.png", // Fallback for dev
   },
 };
 
