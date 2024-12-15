@@ -48,7 +48,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
       <div ref={resumeRef} className="resume-template">
         <div className="title pb-5 mb-2 border-b text-center mt-2">
           <h1 className="text-2xl tracking-widest">
-            {userFullName.length > 3 ? userFullName : "Sagar Sapkota"}
+            {userFullName.length > 3 ? userFullName : "Daniel Bryan"}
           </h1>
           <p className="text-xs font-medium mt-2 tracking-wide ">
             {jobTitle.length > 3 ? jobTitle : "Software developer"}
@@ -75,7 +75,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                   <span className="text-[8px] xl:text-[10px]  2xl:text-xs break-words">
                     {userEmailAddress.length > 3
                       ? userEmailAddress
-                      : "sagarsapkota0987@gmail.com"}
+                      : "YourEmail0987@gmail.com"}
                   </span>
                 </li>
                 {userWebsite.length > 3 ? (
@@ -338,7 +338,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
         <div className="title py-5 mb-2  border-b">
           <h1 className="text-2xl tracking-widest">
             {" "}
-            {userFullName.length > 3 ? userFullName : "Sagar Sapkota"}
+            {userFullName.length > 3 ? userFullName : "Daniel Bryan"}
           </h1>
           <p className="text-xs font-medium mt-2 tracking-wide">
             {jobTitle.length > 3 ? jobTitle : "Software developer"}
@@ -367,7 +367,7 @@ const ResumeTemplate = forwardRef((props, ref) => {
                   <span className="w-40 break-words">
                     {userEmailAddress.length > 3
                       ? userEmailAddress
-                      : "sagarsapkota0987@gmail.com"}
+                      : "YourEmail0987@gmail.com"}
                   </span>
                 </li>
                 {userWebsite.length > 3 ? (
