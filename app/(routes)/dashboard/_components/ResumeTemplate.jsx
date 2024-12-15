@@ -225,12 +225,12 @@ const ResumeTemplate = forwardRef((props, ref) => {
               </h1>
 
               {dataJobExperience?.map((exp, i) => (
-                <section key={i} className="experience-1 mb-2">
-                  <h1 className="text-xs 2xl:text-sm my-2 section-title">
+                <section key={i} className="experience-1 mb-5">
+                  <h1 className="text-xs 2xl:text-sm my-1 section-title">
                     {exp.jobTitle}
                   </h1>
 
-                  <span className="flex justify-between my-1 xl:my-2 mr-4">
+                  <span className="flex justify-between my-1 xl:my-1 mr-4">
                     <h1 className="text-[10px] xl:text-xs tracking-tighter">
                       {exp.companyName}
                     </h1>
