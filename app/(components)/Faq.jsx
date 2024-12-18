@@ -37,8 +37,7 @@ const Faq = () => {
           </AccordionItem>
           <AccordionItem value="item-3">
             <AccordionTrigger className="md:text-lg font-semibold ">
-              What is the difference between Basic, Premium, and Exclusive
-              plans?
+              What is the difference between Basic and Premium plans?
             </AccordionTrigger>
             <AccordionContent className="tracking-wider">
               <strong>Basic Plan (Free):</strong> Ideal for starters, offering
