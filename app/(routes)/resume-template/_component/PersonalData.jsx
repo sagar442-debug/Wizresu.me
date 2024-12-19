@@ -10,18 +10,18 @@ const PersonalData = () => {
   return (
     <Accordion className="mx-10 " type="single" collapsible>
       <AccordionItem className="border-none" value="item-1">
-        <AccordionTrigger className="text-md flex justify-between">
+        <AccordionTrigger className="text-sm flex justify-between">
           Personal Info
         </AccordionTrigger>
         <AccordionContent>
-          <section class="bg-white">
-            <main class="">
-              <div class="">
-                <form action="#" class="mt-2 grid grid-cols-4 gap-6">
-                  <div class="col-span-2 sm:col-span-2">
+          <section className="bg-white">
+            <main className="">
+              <div className="">
+                <form action="#" className="mt-2 grid grid-cols-4 gap-6">
+                  <div className="col-span-2 sm:col-span-2">
                     <label
-                      for="FirstName"
-                      class="block text-xs font-medium text-gray-700"
+                      htmlFor="FirstName"
+                      className="block text-xs font-medium text-gray-700"
                     >
                       First Name
                     </label>
@@ -31,14 +31,14 @@ const PersonalData = () => {
                       id="FirstName"
                       name="first_name"
                       placeholder="First Name"
-                      class="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm "
+                      className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm "
                     />
                   </div>
 
-                  <div class="col-span-2 sm:col-span-2">
+                  <div className="col-span-2 sm:col-span-2">
                     <label
-                      for="LastName"
-                      class="block text-xs font-medium text-gray-700"
+                      htmlFor="LastName"
+                      className="block text-xs font-medium text-gray-700"
                     >
                       Last Name
                     </label>
@@ -48,13 +48,13 @@ const PersonalData = () => {
                       id="LastName"
                       name="last_name"
                       placeholder="Last Name"
-                      class="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
+                      className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
-                  <div class="col-span-2 sm:col-span-2">
+                  <div className="col-span-2 sm:col-span-2">
                     <label
-                      for="email"
-                      class="block text-xs font-medium text-gray-700"
+                      htmlFor="email"
+                      className="block text-xs font-medium text-gray-700"
                     >
                       Email Address
                     </label>
@@ -64,13 +64,13 @@ const PersonalData = () => {
                       id="email"
                       name="email"
                       placeholder="Email Address"
-                      class="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
+                      className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
-                  <div class="col-span-2 sm:col-span-2">
+                  <div className="col-span-2 sm:col-span-2">
                     <label
-                      for="linkedIn"
-                      class="block text-xs font-medium text-gray-700"
+                      htmlFor="linkedIn"
+                      className="block text-xs font-medium text-gray-700"
                     >
                       LinkedIn Profile
                     </label>
@@ -80,13 +80,13 @@ const PersonalData = () => {
                       id="linkedIn"
                       name="linkedIn"
                       placeholder="LinkedIn Profile (if any)"
-                      class="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
+                      className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
-                  <div class="col-span-2 sm:col-span-2">
+                  <div className="col-span-2 sm:col-span-2">
                     <label
-                      for="phone_number"
-                      class="block text-xs font-medium text-gray-700"
+                      htmlFor="phone_number"
+                      className="block text-xs font-medium text-gray-700"
                     >
                       Phone Number
                     </label>
@@ -96,13 +96,13 @@ const PersonalData = () => {
                       id="phone_number"
                       name="phone_number"
                       placeholder="Phone Number (if any)"
-                      class="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
+                      className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
-                  <div class="col-span-2 sm:col-span-2">
+                  <div className="col-span-2 sm:col-span-2">
                     <label
-                      for="Portfolio_Website"
-                      class="block text-xs font-medium text-gray-700"
+                      htmlFor="Portfolio_Website"
+                      className="block text-xs font-medium text-gray-700"
                     >
                       Portfolio Website
                     </label>
@@ -112,13 +112,13 @@ const PersonalData = () => {
                       id="portfolio"
                       name="portfolio"
                       placeholder="Portfolio Website (if any)"
-                      class="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
+                      className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
-                  <div class="col-span-2 sm:col-span-2">
+                  <div className="col-span-2 sm:col-span-2">
                     <label
-                      for="Github_Profile"
-                      class="block text-xs font-medium text-gray-700"
+                      htmlFor="Github_Profile"
+                      className="block text-xs font-medium text-gray-700"
                     >
                       Github Profile
                     </label>
@@ -128,13 +128,13 @@ const PersonalData = () => {
                       id="portfolio"
                       name="portfolio"
                       placeholder="Github Profile (if any)"
-                      class="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
+                      className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
-                  <div class="col-span-2 sm:col-span-2">
+                  <div className="col-span-2 sm:col-span-2">
                     <label
-                      for="Additional_Link"
-                      class="block text-xs font-medium text-gray-700"
+                      htmlFor="Additional_Link"
+                      className="block text-xs font-medium text-gray-700"
                     >
                       Additional Link
                     </label>
@@ -144,13 +144,13 @@ const PersonalData = () => {
                       id="additional_link"
                       name="additional_link"
                       placeholder="Additional Link"
-                      class="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
+                      className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
-                  <div class="col-span-2 sm:col-span-2 md:col-span-4">
+                  <div className="col-span-2 sm:col-span-2 md:col-span-4">
                     <label
-                      for="Additional_Link"
-                      class="block text-xs font-medium text-gray-700"
+                      htmlFor="Additional_Link"
+                      className="block text-xs font-medium text-gray-700"
                     >
                       Summary
                     </label>
@@ -159,8 +159,8 @@ const PersonalData = () => {
                       type="text"
                       id="additional_link"
                       name="additional_link"
-                      placeholder="Add a personal summary or you can leave for automatic generation!"
-                      class="mt-1 p-2 rounded border-gray-400 bg-gray-100 text-sm text-gray-700 shadow-sm w-full"
+                      placeholder="Add a personal summary or you can leave htmlFor automatic generation!"
+                      className="mt-1 p-2 rounded border-gray-400 bg-gray-100 text-sm text-gray-700 shadow-sm w-full"
                     />
                   </div>
                 </form>

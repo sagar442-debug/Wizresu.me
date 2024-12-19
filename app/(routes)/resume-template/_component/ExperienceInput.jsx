@@ -28,15 +28,14 @@ const ExperienceInput = () => {
   };
 
   const handleRemoveBulletPoints = (index) => {
-    console.log(index);
     const newBulletPoints = bulletPoints.filter((_, i) => i !== index);
     setBulletPoints(newBulletPoints);
   };
 
   return (
-    <Accordion className="mx-10 " type="single" collapsible>
+    <Accordion className="px-2 " type="single" collapsible>
       <AccordionItem className="border-none" value="item-1">
-        <AccordionTrigger className="text-md flex justify-between">
+        <AccordionTrigger className="text-xs flex justify-between">
           Experience
         </AccordionTrigger>
         <AccordionContent>

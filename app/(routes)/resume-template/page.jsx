@@ -11,6 +11,14 @@ import { FaEdit } from "react-icons/fa";
 import { MdOutlineContactPage } from "react-icons/md";
 import PersonalData from "./_component/PersonalData";
 import ExperienceInput from "./_component/ExperienceInput";
+import EducationInput from "./_component/EducationInput";
+import SkillsInput from "./_component/SkillsInput";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Page = () => {
   return (
@@ -60,9 +68,23 @@ const Page = () => {
             <PersonalData />
           </div>
           <div>
-            <ExperienceInput />
+            <Accordion className="mx-10 " type="single" collapsible>
+              <AccordionItem className="border-none" value="item-1">
+                <AccordionTrigger className="text-sm flex justify-between">
+                  Experience
+                </AccordionTrigger>
+                <AccordionContent>
+                  <ExperienceInput />
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
-          <div></div>
+          <div>
+            <EducationInput />
+          </div>
+          <div>
+            <SkillsInput />
+          </div>
         </div>
       </div>
     </div>
