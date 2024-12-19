@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { IoIosRemoveCircle } from "react-icons/io";
 
-const ExperienceInput = ({ num }) => {
+const ProjectInput = ({ val }) => {
   const [automatedCheck, setAutomatedCheck] = useState(false);
   const [bulletPoints, setBulletPoints] = useState([""]);
 
@@ -36,7 +36,7 @@ const ExperienceInput = ({ num }) => {
     <Accordion className="" type="single" collapsible>
       <AccordionItem className="border-none" value="item-1">
         <AccordionTrigger className="text-xs flex justify-between">
-          Experience {num + 1}
+          Project {val + 1}
         </AccordionTrigger>
         <AccordionContent>
           <section className="bg-white">
@@ -45,34 +45,34 @@ const ExperienceInput = ({ num }) => {
                 <form action="#" className="mt-2 grid grid-cols-4 gap-6">
                   <div className="col-span-2 sm:col-span-2">
                     <label
-                      htmlFor="CompanyName"
+                      htmlFor="ProjectName"
                       className="block text-xs font-medium text-gray-700"
                     >
-                      Company Name
+                      Project Name
                     </label>
 
                     <input
                       type="text"
-                      id="CompanyName"
-                      name="CompanyName"
-                      placeholder="Company Name"
+                      id="ProjectName"
+                      name="ProjectName"
+                      placeholder="Project Name"
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm "
                     />
                   </div>
 
                   <div className="col-span-2 sm:col-span-2">
                     <label
-                      htmlFor="Position"
+                      htmlFor="Role"
                       className="block text-xs font-medium text-gray-700"
                     >
-                      Position
+                      Role
                     </label>
 
                     <input
                       type="text"
-                      id="Position"
-                      name="Position"
-                      placeholder="Your Position"
+                      id="Role"
+                      name="Role"
+                      placeholder="Your Role"
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -113,14 +113,14 @@ const ExperienceInput = ({ num }) => {
                       htmlFor="location"
                       className="block text-xs font-medium text-gray-700"
                     >
-                      Location
+                      Url (optional)
                     </label>
 
                     <input
                       type="text"
-                      id="location"
-                      name="location"
-                      placeholder="Location"
+                      id="url"
+                      name="url"
+                      placeholder="Add your project link"
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -222,4 +222,4 @@ const ExperienceInput = ({ num }) => {
   );
 };
 
-export default ExperienceInput;
+export default ProjectInput;

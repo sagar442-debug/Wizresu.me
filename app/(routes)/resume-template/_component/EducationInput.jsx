@@ -6,12 +6,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const EducationInput = () => {
+const EducationInput = ({ val }) => {
   return (
-    <Accordion className="mx-10 " type="single" collapsible>
+    <Accordion className="" type="single" collapsible>
       <AccordionItem className="border-none" value="item-1">
-        <AccordionTrigger className="text-sm flex justify-between">
-          Education Info
+        <AccordionTrigger className="text-xs flex justify-between">
+          Education Info {val + 1}
         </AccordionTrigger>
         <AccordionContent>
           <section className="bg-white">

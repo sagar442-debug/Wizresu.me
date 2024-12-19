@@ -41,7 +41,7 @@ const SkillsInput = () => {
                   className="mt-2 grid grid-cols-4 gap-2 items-end"
                 >
                   {totalSkills.map((skill, index) => (
-                    <>
+                    <div key={index}>
                       <div className="col-span-2 sm:col-span-2 md:col-span-1">
                         <label
                           htmlFor="Institution Name"
@@ -82,7 +82,7 @@ const SkillsInput = () => {
                           <IoIosRemoveCircle />
                         </button>
                       </div>
-                    </>
+                    </div>
                   ))}
 
                   <div className="col-span-2">

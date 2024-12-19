@@ -30,6 +30,7 @@ function SideNav() {
   const [premium, setPremium] = useState(false);
   const [route, setRoute] = useState("");
   const [quickBuild, setQuickBuild] = useState(false);
+  const [fetchedUser, setFetchedUser] = useState(false);
   useEffect(() => {
     setRoute("");
   }, [pathname]);
@@ -84,6 +85,7 @@ function SideNav() {
       ) {
         setPremium(true);
       }
+      setFetchedUser(true);
     } catch (error) {
       console.error("Error fetching user details:", error);
     }
@@ -244,7 +246,7 @@ function SideNav() {
                 <ReloadIcon className="mr-2 h-4 w-4 animate-spin group-hover:text-black  text-white" />
               ) : (
                 <div className="flex gap-3 items-center w-[30px]">
-                  {user ? (
+                  {fetchedUser ? (
                     <Image
                       className="rounded-full h-[30px] w-[30px] p-0"
                       height={30}

@@ -1,12 +1,30 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useDispatch, useSelector } from "react-redux";
+import { updateField } from "@/features/personalDataSlice";
 
 const PersonalData = () => {
+  const dispatch = useDispatch();
+  const firstName = useSelector((state) => state.personalData.firstName);
+
+  useEffect(() => {
+    handleNameChange();
+  }, []);
+
+  useEffect(() => {
+    console.log(firstName);
+  }, [firstName]);
+
+  const handleNameChange = (e) => {
+    dispatch(updateField({ field: "firstName", value: "Sagar" }));
+  };
+
   return (
     <Accordion className="mx-10 " type="single" collapsible>
       <AccordionItem className="border-none" value="item-1">
@@ -159,7 +177,7 @@ const PersonalData = () => {
                       type="text"
                       id="additional_link"
                       name="additional_link"
-                      placeholder="Add a personal summary or you can leave htmlFor automatic generation!"
+                      placeholder="Add a personal summary or you can leave for automatic generation!"
                       className="mt-1 p-2 rounded border-gray-400 bg-gray-100 text-sm text-gray-700 shadow-sm w-full"
                     />
                   </div>

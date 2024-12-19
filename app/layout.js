@@ -2,7 +2,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
+import ProviderWrapper from "./ProviderWrapper";
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -28,13 +28,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
+    <ProviderWrapper>
       <html lang="en">
         <body className={inter.className}>
           <main>{children}</main>
           <Toaster />
         </body>
       </html>
-    </ClerkProvider>
+    </ProviderWrapper>
   );
 }
