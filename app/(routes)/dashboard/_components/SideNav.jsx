@@ -35,6 +35,7 @@ function SideNav() {
   const [quickBuild, setQuickBuild] = useState(false);
   const [fetchedUser, setFetchedUser] = useState(true);
   const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.userInfo);
 
   useEffect(() => {
     setRoute("");
@@ -79,6 +80,7 @@ function SideNav() {
       updateUserInfo({
         id: user?.id,
         name: user?.fullName,
+        imageUrl: user?.imageUrl,
         email: user?.primaryEmailAddress.emailAddress,
       })
     );
