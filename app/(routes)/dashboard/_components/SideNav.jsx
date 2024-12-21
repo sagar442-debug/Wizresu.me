@@ -17,8 +17,11 @@ import { useClerk } from "@clerk/nextjs";
 import Image from "next/image";
 import { CircleUser } from "lucide-react";
 import { ScanText } from "lucide-react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { ReloadIcon } from "@radix-ui/react-icons";
+import { updateUserInfo } from "@/features/userInfoSlice";
 
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 function SideNav() {
@@ -30,7 +33,9 @@ function SideNav() {
   const [premium, setPremium] = useState(false);
   const [route, setRoute] = useState("");
   const [quickBuild, setQuickBuild] = useState(false);
-  const [fetchedUser, setFetchedUser] = useState(false);
+  const [fetchedUser, setFetchedUser] = useState(true);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     setRoute("");
   }, [pathname]);
@@ -70,6 +75,13 @@ function SideNav() {
 
   useEffect(() => {
     fetchUserDetails();
+    dispatch(
+      updateUserInfo({
+        id: user?.id,
+        name: user?.fullName,
+        email: user?.primaryEmailAddress.emailAddress,
+      })
+    );
   }, [isSignedIn]);
 
   const fetchUserDetails = async () => {
@@ -78,6 +90,8 @@ function SideNav() {
         `${apiUrl}users/get-user?clerkId=${encodeURIComponent(user.id)}`
       );
       const userData = await response.json();
+      setFetchedUser(true);
+      console.log(user);
       const subscription = userData.userData.subscription;
       if (
         subscription == process.env.NEXT_PUBLIC_PREMIUM_PRICE ||
@@ -85,7 +99,6 @@ function SideNav() {
       ) {
         setPremium(true);
       }
-      setFetchedUser(true);
     } catch (error) {
       console.error("Error fetching user details:", error);
     }
@@ -246,7 +259,7 @@ function SideNav() {
                 <ReloadIcon className="mr-2 h-4 w-4 animate-spin group-hover:text-black  text-white" />
               ) : (
                 <div className="flex gap-3 items-center w-[30px]">
-                  {fetchedUser ? (
+                  {user ? (
                     <Image
                       className="rounded-full h-[30px] w-[30px] p-0"
                       height={30}
