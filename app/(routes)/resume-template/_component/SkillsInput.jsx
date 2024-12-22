@@ -36,12 +36,9 @@ const SkillsInput = () => {
           <section className="bg-white">
             <main className="">
               <div className="">
-                <form
-                  action="#"
-                  className="mt-2 grid grid-cols-4 gap-2 items-end"
-                >
+                <form className="">
                   {totalSkills.map((skill, index) => (
-                    <div key={index}>
+                    <div className="mt-2 grid grid-cols-4 gap-2 items-end">
                       <div className="col-span-2 sm:col-span-2 md:col-span-1">
                         <label
                           htmlFor="Institution Name"
@@ -75,7 +72,7 @@ const SkillsInput = () => {
                       </div>
                       <div className="col-span-1">
                         <button
-                          class="text-sm mt-2 py-[0.7rem] px-3 border text-white bg-red-500  rounded hover:bg-red-400"
+                          className="text-sm mt-2 py-[0.7rem] px-3 border text-white bg-red-500  rounded hover:bg-red-400"
                           type="button"
                           onClick={() => removeSkill(index)}
                         >
@@ -85,9 +82,9 @@ const SkillsInput = () => {
                     </div>
                   ))}
 
-                  <div className="col-span-2">
+                  <div className="col-span-4">
                     <button
-                      class="text-sm mt-2 py-1.5 px-3 border rounded hover:bg-gray-100"
+                      className="text-sm mt-2 py-1.5 px-3 border rounded hover:bg-gray-100"
                       type="button"
                       onClick={onAddSkill}
                     >
