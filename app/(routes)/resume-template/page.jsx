@@ -23,6 +23,7 @@ import {
 import { RxCross2 } from "react-icons/rx";
 import ProjectInput from "./_component/ProjectInput";
 import { MdOutlineEdit } from "react-icons/md";
+import DefaultTemplate from "./_component/DefaultTemplate";
 
 const Page = () => {
   const [experienceCount, setExperienceCount] = useState([]);
@@ -276,6 +277,9 @@ const Page = () => {
             </div>
           </div>
         )}
+        <div className="flex justify-center items-center">
+          <DefaultTemplate />
+        </div>
       </div>
     </div>
   );
