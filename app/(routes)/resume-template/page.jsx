@@ -24,6 +24,7 @@ import { RxCross2 } from "react-icons/rx";
 import ProjectInput from "./_component/ProjectInput";
 import { MdOutlineEdit } from "react-icons/md";
 import DefaultTemplate from "./_component/DefaultTemplate";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 const Page = () => {
   const [experienceCount, setExperienceCount] = useState([]);
@@ -137,6 +138,14 @@ const Page = () => {
             <button className="inline-flex items-center gap-2 px-4 py-1.5 font-semibold text-sm border border-blue-500 bg-blue-500 hover:bg-blue-600 text-white rounded cursor-pointer">
               Download PDF
             </button>
+            <PDFDownloadLink
+              document={<DefaultTemplate />} // The document to generate
+              fileName="sample-resume.pdf" // The name of the generated file
+            >
+              {({ loading }) =>
+                loading ? "Loading document..." : "Download PDF"
+              }
+            </PDFDownloadLink>
           </div>
         </div>
       </header>
@@ -277,7 +286,7 @@ const Page = () => {
             </div>
           </div>
         )}
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center  w-full">
           <DefaultTemplate />
         </div>
       </div>
