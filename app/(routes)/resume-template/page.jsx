@@ -173,7 +173,7 @@ const Page = () => {
         </div>
 
         {view == "edit" && (
-          <div className="w-[30rem] h-[92vh] overflow-y-scroll">
+          <div className="w-[30rem] h-[93vh] overflow-y-scroll">
             <div className=" py-4 flex items-center gap-4 shadow border-b">
               <h1 className="flex-1 font-semibold text-center">Content</h1>
             </div>
@@ -286,7 +286,7 @@ const Page = () => {
             </div>
           </div>
         )}
-        <div className="flex justify-center  w-full">
+        <div className="flex justify-center w-full overflow-y-scroll ">
           <DefaultTemplate />
         </div>
       </div>

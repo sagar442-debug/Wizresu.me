@@ -18,7 +18,14 @@ import { TbPointFilled } from "react-icons/tb";
 
 const DefaultTemplate = () => {
   return (
-    <Document style={{ maxWidth: 700 }}>
+    <Document
+      style={{
+        maxWidth: 700,
+        borderRadius: 10,
+        padding: 10,
+        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+      }}
+    >
       <Page size={"A4"} style={{ padding: 10, fontFamily: "Times-Roman" }}>
         <View
           style={{
@@ -55,7 +62,7 @@ const DefaultTemplate = () => {
                 paddingRight: 5,
               }}
             >
-              Email: sagarsapkotaisthegoat@example.com
+              Email: johdoe@example.com
             </Text>
             <Text
               style={{
@@ -75,7 +82,7 @@ const DefaultTemplate = () => {
                 paddingRight: 5,
               }}
             >
-              Website: https://websitelongasswebsite.com/
+              Website: https://longwebsite.com/
             </Text>
             <Text
               style={{
@@ -137,7 +144,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <TbPointFilled />
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Led the development of web applications using React.js and
                   Node.js, improving codebase maintainability and application
@@ -151,7 +158,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <TbPointFilled />
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Collaborated closely with the design team to implement UI/UX
                   best practices, ensuring responsive and user-friendly
@@ -165,7 +172,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <TbPointFilled />
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Integrated third-party APIs and RESTful services to enhance
                   application functionality, boosting performance and usability.
@@ -176,9 +183,10 @@ const DefaultTemplate = () => {
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
+                  textDecorationStyle: "",
                 }}
               >
-                <TbPointFilled />
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Wrote unit tests and conducted code reviews, contributing to a
                   culture of high-quality, test-driven development.
@@ -216,7 +224,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <TbPointFilled />
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Led the development of web applications using React.js and
                   Node.js, improving codebase maintainability and application
@@ -230,7 +238,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <TbPointFilled />
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Collaborated closely with the design team to implement UI/UX
                   best practices, ensuring responsive and user-friendly
@@ -244,7 +252,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <TbPointFilled />
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Integrated third-party APIs and RESTful services to enhance
                   application functionality, boosting performance and usability.
@@ -257,7 +265,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <TbPointFilled />
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Wrote unit tests and conducted code reviews, contributing to a
                   culture of high-quality, test-driven development.
@@ -295,7 +303,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <TbPointFilled />
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Led the development of web applications using React.js and
                   Node.js, improving codebase maintainability and application
@@ -309,7 +317,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <TbPointFilled />
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Collaborated closely with the design team to implement UI/UX
                   best practices, ensuring responsive and user-friendly
@@ -323,7 +331,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <TbPointFilled />
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Integrated third-party APIs and RESTful services to enhance
                   application functionality, boosting performance and usability.
@@ -336,7 +344,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <TbPointFilled />
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Wrote unit tests and conducted code reviews, contributing to a
                   culture of high-quality, test-driven development.
