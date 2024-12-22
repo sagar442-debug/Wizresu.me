@@ -12,7 +12,7 @@ const DashboardLayout = ({ children }) => {
       <div>
         <SideNav />
       </div>
-      <div className="ml-10  lg:ml-10 xl:ml-64 mx-auto block w-full pt-5 pl-10 overflow-x-hidden pb-10">
+      <div className="ml-10  lg:ml-10 xl:ml-64 mx-auto block w-full pl-10 overflow-x-hidden">
         {children}
       </div>
     </div>

@@ -135,7 +135,7 @@ const Page = () => {
             <button className="inline-flex items-center gap-2 px-4 py-1.5 font-semibold text-sm border border-blue-500 bg-blue-500 hover:bg-blue-600 text-white rounded cursor-pointer">
               Save
             </button>
-            {/* <button>
+            {/* <button className="inline-flex items-center gap-2 px-4 py-1.5 font-semibold text-sm border border-blue-500 bg-blue-500 hover:bg-blue-600 text-white rounded cursor-pointer">
               Download PDF
             </button> */}
             <PDFDownloadLink

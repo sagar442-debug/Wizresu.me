@@ -20,13 +20,13 @@ const DefaultTemplate = () => {
   return (
     <Document
       style={{
-        maxWidth: 750,
-        borderRadius: 10.5,
-        padding: 10.5,
+        maxWidth: 700,
+        borderRadius: 10,
+        padding: 10,
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
       }}
     >
-      <Page size={"A4"} style={{ padding: 10.5, fontFamily: "Times-Roman" }}>
+      <Page size={"A4"} style={{ padding: 10, fontFamily: "Times-Roman" }}>
         <View
           style={{
             display: "flex",
@@ -49,7 +49,7 @@ const DefaultTemplate = () => {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
-              fontSize: 10.5,
+              fontSize: 10,
               marginTop: 5,
               flexWrap: "wrap",
             }}
@@ -100,7 +100,7 @@ const DefaultTemplate = () => {
 
         {/* Experience Section */}
         <View
-          style={{ display: "flex", flexDirection: "column", fontSize: 10.5 }}
+          style={{ display: "flex", flexDirection: "column", fontSize: 10 }}
         >
           <Text
             style={{
@@ -144,7 +144,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontSize: 10.5, marginRight: 5 }}>•</Text>
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Led the development of web applications using React.js and
                   Node.js, improving codebase maintainability and application
@@ -158,7 +158,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontSize: 10.5, marginRight: 5 }}>•</Text>
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Collaborated closely with the design team to implement UI/UX
                   best practices, ensuring responsive and user-friendly
@@ -172,7 +172,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontSize: 10.5, marginRight: 5 }}>•</Text>
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Integrated third-party APIs and RESTful services to enhance
                   application functionality, boosting performance and usability.
@@ -186,7 +186,7 @@ const DefaultTemplate = () => {
                   textDecorationStyle: "",
                 }}
               >
-                <Text style={{ fontSize: 10.5, marginRight: 5 }}>•</Text>
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Wrote unit tests and conducted code reviews, contributing to a
                   culture of high-quality, test-driven development.
@@ -195,11 +195,7 @@ const DefaultTemplate = () => {
             </View>
           </View>
           <View
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginTop: 10.5,
-            }}
+            style={{ display: "flex", flexDirection: "column", marginTop: 10 }}
           >
             <View
               style={{
@@ -228,7 +224,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontSize: 10.5, marginRight: 5 }}>•</Text>
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Led the development of web applications using React.js and
                   Node.js, improving codebase maintainability and application
@@ -242,7 +238,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontSize: 10.5, marginRight: 5 }}>•</Text>
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Collaborated closely with the design team to implement UI/UX
                   best practices, ensuring responsive and user-friendly
@@ -256,7 +252,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontSize: 10.5, marginRight: 5 }}>•</Text>
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Integrated third-party APIs and RESTful services to enhance
                   application functionality, boosting performance and usability.
@@ -269,7 +265,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontSize: 10.5, marginRight: 5 }}>•</Text>
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Wrote unit tests and conducted code reviews, contributing to a
                   culture of high-quality, test-driven development.
@@ -278,11 +274,7 @@ const DefaultTemplate = () => {
             </View>
           </View>
           <View
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginTop: 10.5,
-            }}
+            style={{ display: "flex", flexDirection: "column", marginTop: 10 }}
           >
             <View
               style={{
@@ -311,7 +303,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontSize: 10.5, marginRight: 5 }}>•</Text>
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Led the development of web applications using React.js and
                   Node.js, improving codebase maintainability and application
@@ -325,7 +317,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontSize: 10.5, marginRight: 5 }}>•</Text>
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Collaborated closely with the design team to implement UI/UX
                   best practices, ensuring responsive and user-friendly
@@ -339,7 +331,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontSize: 10.5, marginRight: 5 }}>•</Text>
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Integrated third-party APIs and RESTful services to enhance
                   application functionality, boosting performance and usability.
@@ -352,7 +344,7 @@ const DefaultTemplate = () => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontSize: 10.5, marginRight: 5 }}>•</Text>
+                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
                 <Text>
                   Wrote unit tests and conducted code reviews, contributing to a
                   culture of high-quality, test-driven development.
@@ -367,8 +359,8 @@ const DefaultTemplate = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            marginTop: 10.5,
-            fontSize: 10.5,
+            marginTop: 10,
+            fontSize: 10,
           }}
         >
           <Text
@@ -433,8 +425,8 @@ const DefaultTemplate = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            marginTop: 10.5,
-            fontSize: 10.5,
+            marginTop: 10,
+            fontSize: 10,
           }}
         >
           <Text
