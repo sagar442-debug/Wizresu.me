@@ -17,10 +17,6 @@ const PersonalData = () => {
     handleNameChange();
   }, []);
 
-  useEffect(() => {
-    console.log(firstName);
-  }, [firstName]);
-
   const handleNameChange = (e) => {
     dispatch(updateField({ field: "firstName", value: "Sagar" }));
   };

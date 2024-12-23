@@ -38,7 +38,10 @@ const SkillsInput = () => {
               <div className="">
                 <form className="">
                   {totalSkills.map((skill, index) => (
-                    <div className="mt-2 grid grid-cols-4 gap-2 items-end">
+                    <div
+                      key={index}
+                      className="mt-2 grid grid-cols-4 gap-2 items-end"
+                    >
                       <div className="col-span-2 sm:col-span-2 md:col-span-1">
                         <label
                           htmlFor="Institution Name"

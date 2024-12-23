@@ -1,6 +1,14 @@
 "use client";
-import { Document, Page, Text, View, Font } from "@react-pdf/renderer";
-import React from "react";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  Font,
+  Link,
+  PDFViewer,
+} from "@react-pdf/renderer";
+import React, { useEffect, useState } from "react";
 import { TbPointFilled } from "react-icons/tb";
 
 // Font.register({
@@ -16,7 +24,7 @@ import { TbPointFilled } from "react-icons/tb";
 //   ],
 // });
 
-const DefaultTemplate = () => {
+const DefaultTemplate = ({ name }) => {
   return (
     <Document
       style={{
@@ -41,7 +49,7 @@ const DefaultTemplate = () => {
               textAlign: "center",
             }}
           >
-            John Doe
+            {name ? name : "John Doe"}
           </Text>
           <View
             style={{
@@ -349,6 +357,116 @@ const DefaultTemplate = () => {
                   Wrote unit tests and conducted code reviews, contributing to a
                   culture of high-quality, test-driven development.
                 </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        {/* Projects */}
+
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginTop: 10.5,
+            fontSize: 10.5,
+          }}
+        >
+          <Text
+            style={{
+              borderBottomWidth: 1,
+              borderBottomColor: "black",
+              borderStyle: "solid",
+              fontSize: 12,
+              fontFamily: "Times-Bold",
+              fontWeight: "600",
+              paddingTop: 5,
+              marginBottom: 5,
+            }}
+          >
+            Projects
+          </Text>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              marginBottom: 2,
+            }}
+          >
+            <View style={{ display: "flex", flexDirection: "column" }}>
+              <Text>
+                <Link
+                  src={"https://wizresu.me"}
+                  style={{ fontFamily: "Times-Bold", fontWeight: 600 }}
+                >
+                  Eccomerce Website
+                </Link>
+              </Text>
+
+              <Text>Amazon</Text>
+              <View style={{ display: "flex", flexDirection: "column" }}>
+                <Text>California, USA</Text>
+                <Text>2020 - Present</Text>
+              </View>
+              <View
+                style={{ display: "flex", flexDirection: "column", gap: 2 }}
+              >
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
+                  <Text>
+                    Led the development of web applications using React.js and
+                    Node.js, improving codebase maintainability and application
+                    performance.
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
+                  <Text>
+                    Collaborated closely with the design team to implement UI/UX
+                    best practices, ensuring responsive and user-friendly
+                    interfaces.
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
+                  <Text>
+                    Integrated third-party APIs and RESTful services to enhance
+                    application functionality, boosting performance and
+                    usability.
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
+                  <Text>
+                    Wrote unit tests and conducted code reviews, contributing to
+                    a culture of high-quality, test-driven development.
+                  </Text>
+                </View>
               </View>
             </View>
           </View>

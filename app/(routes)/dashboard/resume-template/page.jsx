@@ -24,8 +24,11 @@ import { RxCross2 } from "react-icons/rx";
 import ProjectInput from "./_component/ProjectInput";
 import { MdOutlineEdit } from "react-icons/md";
 import DefaultTemplate from "./_component/DefaultTemplate";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-
+import dynamic from "next/dynamic";
+import ShowPDF from "./_component/ShowPDF";
+const DownloadButton = dynamic(() => import("./_component/DownloadButton"), {
+  ssr: false,
+});
 const Page = () => {
   const [experienceCount, setExperienceCount] = useState([]);
   const [educationCount, setEducationCount] = useState([]);
@@ -33,7 +36,7 @@ const Page = () => {
   const [resumeTitle, setResumeTitle] = useState("Resume");
   const [isEditing, setIsEditing] = useState(false);
   const [error, setError] = useState("");
-
+  const [name, setName] = useState("");
   const handleChange = (e) => {
     setResumeTitle(e.target.value);
   };
@@ -55,6 +58,10 @@ const Page = () => {
     if (e.key === "Enter") {
       handleSave();
     }
+  };
+
+  const handleNameChange = () => {
+    setName("Sagar Sapkota");
   };
 
   const addProject = () => {
@@ -132,21 +139,16 @@ const Page = () => {
             </BreadcrumbList>
           </Breadcrumb>
           <div className="flex gap-2">
-            <button className="inline-flex items-center gap-2 px-4 py-1.5 font-semibold text-sm border border-blue-500 bg-blue-500 hover:bg-blue-600 text-white rounded cursor-pointer">
+            <button
+              onClick={handleNameChange}
+              className="inline-flex items-center gap-2 px-4 py-1.5 font-semibold text-sm border border-blue-500 bg-blue-500 hover:bg-blue-600 text-white rounded cursor-pointer"
+            >
               Save
             </button>
             {/* <button className="inline-flex items-center gap-2 px-4 py-1.5 font-semibold text-sm border border-blue-500 bg-blue-500 hover:bg-blue-600 text-white rounded cursor-pointer">
               Download PDF
             </button> */}
-            <PDFDownloadLink
-              className="inline-flex items-center gap-2 px-4 py-1.5 font-semibold text-sm border border-blue-500 bg-blue-500 hover:bg-blue-600 text-white rounded cursor-pointer"
-              document={<DefaultTemplate />} // The document to generate
-              fileName="sample-resume.pdf" // The name of the generated file
-            >
-              {({ loading }) =>
-                loading ? "Loading document..." : "Download PDF"
-              }
-            </PDFDownloadLink>
+            <DownloadButton />
           </div>
         </div>
       </header>
@@ -288,7 +290,7 @@ const Page = () => {
           </div>
         )}
         <div className="flex justify-center w-full overflow-y-scroll ">
-          <DefaultTemplate />
+          <ShowPDF name={name} />
         </div>
       </div>
     </div>
