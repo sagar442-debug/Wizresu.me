@@ -12,9 +12,18 @@ const experienceDataSlice = createSlice({
       state.experience.push(action.payload);
     },
     updateExperience: (state, action) => {
-      const { index, field, value } = action.payload;
-      if (state.experience[index]) {
-        state.experience[index][field] = value;
+      const { num, field, value } = action.payload;
+
+      // Ensure the experience array has enough elements for the index
+      if (state.experience[num]) {
+        // If the index exists, update the field
+        state.experience[num][field] = value;
+      } else {
+        // If the index doesn't exist, add empty objects as needed
+        while (state.experience.length <= num) {
+          state.experience.push({});
+        }
+        state.experience[num][field] = value;
       }
     },
     removeExperience: (state, action) => {

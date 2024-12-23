@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -8,29 +8,73 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { IoIosRemoveCircle } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { updateExperience } from "@/features/experienceDataSlice";
 
 const ExperienceInput = ({ num }) => {
   const [automatedCheck, setAutomatedCheck] = useState(false);
   const [bulletPoints, setBulletPoints] = useState([""]);
+  const [experienceDetail, setExperienceDetail] = useState({});
+  const experience = useSelector((state) => state.experienceData.experience);
+  const dispatch = useDispatch();
 
   const handleAutomatedCheck = (e) => {
     setAutomatedCheck(e.target.checked);
   };
 
-  const handleBulletPointChange = (index, e) => {
+  const handleBulletPointChange = (index, e, field) => {
     const newBulletPoints = [...bulletPoints];
-    newBulletPoints[index] = [e.target.value];
+
+    // Ensure the index exists in the bulletPoints array
+    if (!newBulletPoints[index]) {
+      newBulletPoints[index] = e.target.value; // Initialize with the new bullet point
+    } else {
+      newBulletPoints[index] = e.target.value; // Update the existing bullet point
+    }
+
     setBulletPoints(newBulletPoints);
+
+    setExperienceDetail((prevDetail) => ({
+      ...prevDetail,
+      [field]: newBulletPoints,
+    }));
+
+    dispatch(updateExperience({ num, field, value: newBulletPoints }));
   };
 
   const handleAddBulletPoint = () => {
     setBulletPoints([...bulletPoints, ""]);
   };
 
-  const handleRemoveBulletPoints = (index) => {
+  const handleRemoveBulletPoints = (index, field) => {
+    // Create a new array with the bullet point removed
     const newBulletPoints = bulletPoints.filter((_, i) => i !== index);
+
+    // Update local state
     setBulletPoints(newBulletPoints);
+
+    // Update the field in the experienceDetail state
+    setExperienceDetail((prevDetail) => ({
+      ...prevDetail,
+      [field]: [...newBulletPoints], // Assuming field is an array of bullet points
+    }));
+
+    // Dispatch the updated bullet points to Redux store
+    dispatch(updateExperience({ num, field, value: newBulletPoints }));
   };
+
+  const onExperienceDetailChange = (e, field) => {
+    const value = e.target.value;
+    setExperienceDetail((prevDetail) => ({
+      ...prevDetail,
+      [field]: e.target.value,
+    }));
+    dispatch(updateExperience({ num, field, value }));
+  };
+
+  useEffect(() => {
+    console.log(experience);
+  }, [experience]);
 
   return (
     <Accordion className="" type="single" collapsible>
@@ -56,6 +100,10 @@ const ExperienceInput = ({ num }) => {
                       id="CompanyName"
                       name="CompanyName"
                       placeholder="Company Name"
+                      onChange={(e) =>
+                        onExperienceDetailChange(e, "companyName")
+                      }
+                      value={experienceDetail.companyName || ""}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm "
                     />
                   </div>
@@ -73,6 +121,8 @@ const ExperienceInput = ({ num }) => {
                       id="Position"
                       name="Position"
                       placeholder="Your Position"
+                      onChange={(e) => onExperienceDetailChange(e, "position")}
+                      value={experienceDetail.position || ""}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -89,6 +139,8 @@ const ExperienceInput = ({ num }) => {
                       id="startDate"
                       name="startDate"
                       placeholder="Start Date"
+                      onChange={(e) => onExperienceDetailChange(e, "startDate")}
+                      value={experienceDetail.startDate || ""}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -105,6 +157,8 @@ const ExperienceInput = ({ num }) => {
                       id="endDate"
                       name="endDate"
                       placeholder="End Date"
+                      onChange={(e) => onExperienceDetailChange(e, "endDate")}
+                      value={experienceDetail.endDate || ""}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -121,6 +175,10 @@ const ExperienceInput = ({ num }) => {
                       id="location"
                       name="location"
                       placeholder="Location"
+                      onChange={(e) =>
+                        onExperienceDetailChange(e, "companyLocation")
+                      }
+                      value={experienceDetail.companyLocation || ""}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -157,6 +215,10 @@ const ExperienceInput = ({ num }) => {
                         id="description"
                         name="description"
                         placeholder="Add Detail About Your Experience!"
+                        onChange={(e) =>
+                          onExperienceDetailChange(e, "summaryDescription")
+                        }
+                        value={experienceDetail.summaryDescription || ""}
                         className="mt-1 p-2 rounded border-gray-400 bg-gray-100 text-sm text-gray-700 shadow-sm w-full"
                       />
                     </div>
@@ -185,14 +247,18 @@ const ExperienceInput = ({ num }) => {
                             name={`description-${index}`}
                             placeholder="Add Detail About Your Experience!"
                             value={bulletPoint}
-                            onChange={(e) => handleBulletPointChange(index, e)}
+                            onChange={(e) =>
+                              handleBulletPointChange(index, e, "bulletPoint")
+                            }
                             className="mt-1 p-2 rounded border-gray-400 bg-gray-100 text-sm text-gray-700 shadow-sm w-full resize-none"
                           />
                           {bulletPoints.length > 1 ? (
                             <button
                               className="text-sm font-medium py-1.5 px-3 border text-white bg-red-500 rounded hover:bg-red-400 mt-2"
                               type="button"
-                              onClick={() => handleRemoveBulletPoints(index)}
+                              onClick={() =>
+                                handleRemoveBulletPoints(index, "bulletPoint")
+                              }
                             >
                               <IoIosRemoveCircle />
                             </button>

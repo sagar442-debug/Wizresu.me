@@ -24,7 +24,9 @@ import React, { useEffect, useState } from "react";
 // });
 
 const DefaultTemplate = ({ data }) => {
-  console.log(data);
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   return (
     <Document
       style={{
@@ -132,242 +134,228 @@ const DefaultTemplate = ({ data }) => {
           >
             Experience
           </Text>
-          <View style={{ display: "flex", flexDirection: "column" }}>
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                marginBottom: 2,
-              }}
-            >
+          {data?.experience?.length > 0 ? (
+            data?.experience?.map((item, index) => (
+              <View
+                key={index}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginBottom: 5,
+                }}
+              >
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    marginBottom: 2,
+                  }}
+                >
+                  <View style={{ display: "flex", flexDirection: "column" }}>
+                    <Text style={{ fontFamily: "Times-Bold", fontWeight: 600 }}>
+                      {item?.position}
+                    </Text>
+                    <Text>{item?.companyName}</Text>
+                  </View>
+                  <View style={{ display: "flex", flexDirection: "column" }}>
+                    <Text>{item?.companyLocation}</Text>
+                    <Text>
+                      {item?.startDate} - {item?.endDate}
+                    </Text>
+                  </View>
+                </View>
+                {item?.bulletPoint?.map((point, pointIndex) => (
+                  <View
+                    key={pointIndex}
+                    style={{ display: "flex", flexDirection: "column", gap: 2 }}
+                  >
+                    <View
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
+                      <Text>{point}</Text>
+                    </View>
+                  </View>
+                ))}
+              </View>
+            ))
+          ) : (
+            <>
               <View style={{ display: "flex", flexDirection: "column" }}>
-                <Text style={{ fontFamily: "Times-Bold", fontWeight: 600 }}>
-                  Software Engineer
-                </Text>
-                <Text>Amazon</Text>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    marginBottom: 2,
+                  }}
+                >
+                  <View style={{ display: "flex", flexDirection: "column" }}>
+                    <Text style={{ fontFamily: "Times-Bold", fontWeight: 600 }}>
+                      Software Engineer
+                    </Text>
+                    <Text>Amazon</Text>
+                  </View>
+                  <View style={{ display: "flex", flexDirection: "column" }}>
+                    <Text>California, USA</Text>
+                    <Text>2020 - Present</Text>
+                  </View>
+                </View>
+                <View
+                  style={{ display: "flex", flexDirection: "column", gap: 2 }}
+                >
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
+                    <Text>
+                      Led the development of web applications using React.js and
+                      Node.js, improving codebase maintainability and
+                      application performance.
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
+                    <Text>
+                      Collaborated closely with the design team to implement
+                      UI/UX best practices, ensuring responsive and
+                      user-friendly interfaces.
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
+                    <Text>
+                      Integrated third-party APIs and RESTful services to
+                      enhance application functionality, boosting performance
+                      and usability.
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                      textDecorationStyle: "",
+                    }}
+                  >
+                    <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
+                    <Text>
+                      Wrote unit tests and conducted code reviews, contributing
+                      to a culture of high-quality, test-driven development.
+                    </Text>
+                  </View>
+                </View>
               </View>
-              <View style={{ display: "flex", flexDirection: "column" }}>
-                <Text>California, USA</Text>
-                <Text>2020 - Present</Text>
-              </View>
-            </View>
-            <View style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+
               <View
                 style={{
                   display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
+                  flexDirection: "column",
+                  marginTop: 10,
                 }}
               >
-                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
-                <Text>
-                  Led the development of web applications using React.js and
-                  Node.js, improving codebase maintainability and application
-                  performance.
-                </Text>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    marginBottom: 2,
+                  }}
+                >
+                  <View style={{ display: "flex", flexDirection: "column" }}>
+                    <Text style={{ fontFamily: "Times-Bold", fontWeight: 600 }}>
+                      Software Engineer
+                    </Text>
+                    <Text>Amazon</Text>
+                  </View>
+                  <View style={{ display: "flex", flexDirection: "column" }}>
+                    <Text>California, USA</Text>
+                    <Text>2020 - Present</Text>
+                  </View>
+                </View>
+                <View
+                  style={{ display: "flex", flexDirection: "column", gap: 2 }}
+                >
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
+                    <Text>
+                      Led the development of web applications using React.js and
+                      Node.js, improving codebase maintainability and
+                      application performance.
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
+                    <Text>
+                      Collaborated closely with the design team to implement
+                      UI/UX best practices, ensuring responsive and
+                      user-friendly interfaces.
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
+                    <Text>
+                      Integrated third-party APIs and RESTful services to
+                      enhance application functionality, boosting performance
+                      and usability.
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
+                    <Text>
+                      Wrote unit tests and conducted code reviews, contributing
+                      to a culture of high-quality, test-driven development.
+                    </Text>
+                  </View>
+                </View>
               </View>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
-                <Text>
-                  Collaborated closely with the design team to implement UI/UX
-                  best practices, ensuring responsive and user-friendly
-                  interfaces.
-                </Text>
-              </View>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
-                <Text>
-                  Integrated third-party APIs and RESTful services to enhance
-                  application functionality, boosting performance and usability.
-                </Text>
-              </View>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  textDecorationStyle: "",
-                }}
-              >
-                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
-                <Text>
-                  Wrote unit tests and conducted code reviews, contributing to a
-                  culture of high-quality, test-driven development.
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View
-            style={{ display: "flex", flexDirection: "column", marginTop: 10 }}
-          >
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                marginBottom: 2,
-              }}
-            >
-              <View style={{ display: "flex", flexDirection: "column" }}>
-                <Text style={{ fontFamily: "Times-Bold", fontWeight: 600 }}>
-                  Software Engineer
-                </Text>
-                <Text>Amazon</Text>
-              </View>
-              <View style={{ display: "flex", flexDirection: "column" }}>
-                <Text>California, USA</Text>
-                <Text>2020 - Present</Text>
-              </View>
-            </View>
-            <View style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
-                <Text>
-                  Led the development of web applications using React.js and
-                  Node.js, improving codebase maintainability and application
-                  performance.
-                </Text>
-              </View>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
-                <Text>
-                  Collaborated closely with the design team to implement UI/UX
-                  best practices, ensuring responsive and user-friendly
-                  interfaces.
-                </Text>
-              </View>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
-                <Text>
-                  Integrated third-party APIs and RESTful services to enhance
-                  application functionality, boosting performance and usability.
-                </Text>
-              </View>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
-                <Text>
-                  Wrote unit tests and conducted code reviews, contributing to a
-                  culture of high-quality, test-driven development.
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View
-            style={{ display: "flex", flexDirection: "column", marginTop: 10 }}
-          >
-            <View
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                marginBottom: 2,
-              }}
-            >
-              <View style={{ display: "flex", flexDirection: "column" }}>
-                <Text style={{ fontFamily: "Times-Bold", fontWeight: 600 }}>
-                  Software Engineer
-                </Text>
-                <Text>Amazon</Text>
-              </View>
-              <View style={{ display: "flex", flexDirection: "column" }}>
-                <Text>California, USA</Text>
-                <Text>2020 - Present</Text>
-              </View>
-            </View>
-            <View style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
-                <Text>
-                  Led the development of web applications using React.js and
-                  Node.js, improving codebase maintainability and application
-                  performance.
-                </Text>
-              </View>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
-                <Text>
-                  Collaborated closely with the design team to implement UI/UX
-                  best practices, ensuring responsive and user-friendly
-                  interfaces.
-                </Text>
-              </View>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
-                <Text>
-                  Integrated third-party APIs and RESTful services to enhance
-                  application functionality, boosting performance and usability.
-                </Text>
-              </View>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Text style={{ fontSize: 10, marginRight: 5 }}>•</Text>
-                <Text>
-                  Wrote unit tests and conducted code reviews, contributing to a
-                  culture of high-quality, test-driven development.
-                </Text>
-              </View>
-            </View>
-          </View>
+            </>
+          )}
         </View>
 
         {/* Projects */}

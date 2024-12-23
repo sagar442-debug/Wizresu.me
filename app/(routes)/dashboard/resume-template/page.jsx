@@ -26,8 +26,9 @@ import { MdOutlineEdit } from "react-icons/md";
 import DefaultTemplate from "./_component/DefaultTemplate";
 import dynamic from "next/dynamic";
 import ShowPDF from "./_component/ShowPDF";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, pdf } from "@react-pdf/renderer";
+import { removeExperience } from "@/features/experienceDataSlice";
 const DownloadButton = dynamic(() => import("./_component/DownloadButton"), {
   ssr: false,
 });
@@ -39,6 +40,7 @@ const Page = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [error, setError] = useState("");
   const [name, setName] = useState("");
+  const dispatch = useDispatch();
 
   const firstName = useSelector((state) => state.personalData.firstName);
   const emailAddress = useSelector((state) => state.personalData.emailAddress);
@@ -55,6 +57,7 @@ const Page = () => {
   const additionalLink = useSelector(
     (state) => state.personalData.additionalLink
   );
+  const experience = useSelector((state) => state.experienceData.experience);
 
   const personalData = {
     firstName,
@@ -64,6 +67,7 @@ const Page = () => {
     portfolioWebsite,
     githubProfile,
     additionalLink,
+    experience,
   };
 
   const handleChange = (e) => {
@@ -118,6 +122,7 @@ const Page = () => {
   const removeExperience = (index) => {
     let newExperience = experienceCount.filter((_, i) => i !== index);
     setExperienceCount(newExperience);
+    dispatch(removeExperience({ index }));
   };
 
   const [view, setView] = useState("edit");
@@ -236,13 +241,15 @@ const Page = () => {
                     {experienceCount.map((item, i) => (
                       <div className="px-2" key={i}>
                         <ExperienceInput num={i} />
-                        <button
-                          className="text-sm font-medium py-1.5 px-3 border text-white bg-red-500 rounded hover:bg-red-400 -mt-4 mb-2"
-                          type="button"
-                          onClick={() => removeExperience(i)}
-                        >
-                          <RxCross2 className="text-xs" />
-                        </button>
+                        {experienceCount.length > 1 && (
+                          <button
+                            className="text-sm font-medium py-1.5 px-3 border text-white bg-red-500 rounded hover:bg-red-400 -mt-4 mb-2"
+                            type="button"
+                            onClick={() => removeExperience(i)}
+                          >
+                            <RxCross2 className="text-xs" />
+                          </button>
+                        )}
                       </div>
                     ))}
 
