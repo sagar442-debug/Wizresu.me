@@ -28,7 +28,8 @@ import dynamic from "next/dynamic";
 import ShowPDF from "./_component/ShowPDF";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, pdf } from "@react-pdf/renderer";
-import { removeExperience } from "@/features/experienceDataSlice";
+import { LuShovel } from "react-icons/lu";
+
 const DownloadButton = dynamic(() => import("./_component/DownloadButton"), {
   ssr: false,
 });
@@ -181,7 +182,12 @@ const Page = () => {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
+            <span className="flex gap-2 items-center text-sm">
+              <LuShovel />
+              Currently Underconstruction...
+            </span>
+
             <button
               onClick={handleNameChange}
               className="inline-flex items-center gap-2 px-4 py-1.5 font-semibold text-sm border border-blue-500 bg-blue-500 hover:bg-blue-600 text-white rounded cursor-pointer"
@@ -225,8 +231,11 @@ const Page = () => {
 
         {view == "edit" && (
           <div className="w-[30rem] h-[93vh] overflow-y-scroll">
-            <div className=" py-4 flex items-center gap-4 shadow border-b">
+            <div className=" py-4 flex flex-col justify-center items-center  shadow border-b">
               <h1 className="flex-1 font-semibold text-center">Content</h1>
+              <p className="text-xs text-[#555]">
+                Use ctrl + scroll to zoom in and out of the resume!
+              </p>
             </div>
             <div>
               <PersonalData />
