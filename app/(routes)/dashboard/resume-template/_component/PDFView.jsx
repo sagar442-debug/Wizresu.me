@@ -3,10 +3,10 @@ import { PDFViewer } from "@react-pdf/renderer";
 import React, { useEffect, useState } from "react";
 import DefaultTemplate from "./DefaultTemplate";
 
-const PDFView = ({ name }) => {
+const PDFView = ({ data }) => {
   return (
     <PDFViewer showToolbar={false} style={{ width: 900 }}>
-      <DefaultTemplate name={name} />
+      <DefaultTemplate data={data} />
     </PDFViewer>
   );
 };

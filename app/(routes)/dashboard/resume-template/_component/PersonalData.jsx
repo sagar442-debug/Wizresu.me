@@ -12,13 +12,24 @@ import { updateField } from "@/features/personalDataSlice";
 const PersonalData = () => {
   const dispatch = useDispatch();
   const firstName = useSelector((state) => state.personalData.firstName);
+  const lastName = useSelector((state) => state.personalData.lastName);
+  const emailAddress = useSelector((state) => state.personalData.emailAddress);
+  const linkedInProfile = useSelector(
+    (state) => state.personalData.linkedInProfile
+  );
+  const phoneNumber = useSelector((state) => state.personalData.phoneNumber);
+  const portfolioWebsite = useSelector(
+    (state) => state.personalData.portfolioWebsite
+  );
+  const githubProfile = useSelector(
+    (state) => state.personalData.githubProfile
+  );
+  const additionalLink = useSelector(
+    (state) => state.personalData.additionalLink
+  );
 
-  useEffect(() => {
-    handleNameChange();
-  }, []);
-
-  const handleNameChange = (e) => {
-    dispatch(updateField({ field: "firstName", value: "Sagar" }));
+  const handleNameChange = (e, field) => {
+    dispatch(updateField({ field, value: e.target.value }));
   };
 
   return (
@@ -45,6 +56,8 @@ const PersonalData = () => {
                       id="FirstName"
                       name="first_name"
                       placeholder="First Name"
+                      onChange={(e) => handleNameChange(e, "firstName")}
+                      value={firstName}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm "
                     />
                   </div>
@@ -62,6 +75,8 @@ const PersonalData = () => {
                       id="LastName"
                       name="last_name"
                       placeholder="Last Name"
+                      onChange={(e) => handleNameChange(e, "lastName")}
+                      value={lastName}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>

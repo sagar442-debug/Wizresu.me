@@ -93,7 +93,6 @@ function SideNav() {
       );
       const userData = await response.json();
       setFetchedUser(true);
-      console.log(user);
       const subscription = userData.userData.subscription;
       if (
         subscription == process.env.NEXT_PUBLIC_PREMIUM_PRICE ||

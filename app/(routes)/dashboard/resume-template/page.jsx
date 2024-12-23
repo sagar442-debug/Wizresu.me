@@ -26,6 +26,8 @@ import { MdOutlineEdit } from "react-icons/md";
 import DefaultTemplate from "./_component/DefaultTemplate";
 import dynamic from "next/dynamic";
 import ShowPDF from "./_component/ShowPDF";
+import { useSelector } from "react-redux";
+import { Link, pdf } from "@react-pdf/renderer";
 const DownloadButton = dynamic(() => import("./_component/DownloadButton"), {
   ssr: false,
 });
@@ -37,6 +39,9 @@ const Page = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [error, setError] = useState("");
   const [name, setName] = useState("");
+
+  const firstName = useSelector((state) => state.personalData.firstName);
+
   const handleChange = (e) => {
     setResumeTitle(e.target.value);
   };
@@ -101,6 +106,15 @@ const Page = () => {
     setView("templates");
   };
 
+  const handleDownloadPDF = async () => {
+    const doc = pdf(<DefaultTemplate data={{ firstName }} />);
+    const blob = await doc.toBlob();
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "resume.pdf";
+    link.click();
+  };
+
   return (
     <div className=" flex flex-1 flex-col overflow-y-hidden">
       <header className="border-b px-5">
@@ -148,7 +162,12 @@ const Page = () => {
             {/* <button className="inline-flex items-center gap-2 px-4 py-1.5 font-semibold text-sm border border-blue-500 bg-blue-500 hover:bg-blue-600 text-white rounded cursor-pointer">
               Download PDF
             </button> */}
-            <DownloadButton />
+            <button
+              onClick={handleDownloadPDF}
+              className="inline-flex items-center gap-2 px-4 py-1.5 font-semibold text-sm border border-blue-500 bg-blue-500 hover:bg-blue-600 text-white rounded cursor-pointer"
+            >
+              Download PDF
+            </button>
           </div>
         </div>
       </header>

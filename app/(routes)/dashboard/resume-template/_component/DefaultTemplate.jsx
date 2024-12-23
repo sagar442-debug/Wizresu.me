@@ -9,7 +9,6 @@ import {
   PDFViewer,
 } from "@react-pdf/renderer";
 import React, { useEffect, useState } from "react";
-import { TbPointFilled } from "react-icons/tb";
 
 // Font.register({
 //   family: "RobotoText",
@@ -24,7 +23,8 @@ import { TbPointFilled } from "react-icons/tb";
 //   ],
 // });
 
-const DefaultTemplate = ({ name }) => {
+const DefaultTemplate = ({ data }) => {
+  const firstName = data?.firstName;
   return (
     <Document
       style={{
@@ -49,7 +49,7 @@ const DefaultTemplate = ({ name }) => {
               textAlign: "center",
             }}
           >
-            {name ? name : "John Doe"}
+            {firstName ? firstName : "John Doe"}
           </Text>
           <View
             style={{
@@ -405,7 +405,13 @@ const DefaultTemplate = ({ name }) => {
               </Text>
 
               <Text>Amazon</Text>
-              <View style={{ display: "flex", flexDirection: "column" }}>
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
                 <Text>California, USA</Text>
                 <Text>2020 - Present</Text>
               </View>
