@@ -149,6 +149,8 @@ const PersonalData = () => {
                       type="text"
                       id="portfolio"
                       name="portfolio"
+                      onChange={(e) => handlePersonalDetail(e, "githubProfile")}
+                      value={githubProfile}
                       placeholder="Github Profile (if any)"
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />

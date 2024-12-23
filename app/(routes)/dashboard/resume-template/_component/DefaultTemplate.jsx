@@ -108,7 +108,9 @@ const DefaultTemplate = ({ data }) => {
               LinkedIn: {""}
               {data?.linkedInProfile ? data.linkedInProfile : "john-doe09"}
             </Text>
-            <Text style={{}}>Github: john-doe09</Text>
+            <Text style={{}}>
+              Github: {data?.githubProfile ? data.githubProfile : "john-doe0"}
+            </Text>
           </View>
         </View>
 
