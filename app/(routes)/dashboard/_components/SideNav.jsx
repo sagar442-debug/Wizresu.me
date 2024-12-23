@@ -22,6 +22,7 @@ import { useDispatch } from "react-redux";
 
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { updateUserInfo } from "@/features/userInfoSlice";
+import { AiOutlineExperiment } from "react-icons/ai";
 
 const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 function SideNav() {
@@ -280,6 +281,15 @@ function SideNav() {
                   </span>
                 </div>
               )}
+            </Link>
+            <Link
+              href={"/dashboard/resume-template"}
+              className="flex gap-3 group hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#fff] rounded"
+            >
+              <span className="text-white text-center hover:text-[#555] flex gap-2 items-center">
+                <AiOutlineExperiment className="text-xl" />
+                Developmental
+              </span>
             </Link>
 
             <button
