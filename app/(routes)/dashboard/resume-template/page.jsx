@@ -41,6 +41,30 @@ const Page = () => {
   const [name, setName] = useState("");
 
   const firstName = useSelector((state) => state.personalData.firstName);
+  const emailAddress = useSelector((state) => state.personalData.emailAddress);
+  const linkedInProfile = useSelector(
+    (state) => state.personalData.linkedInProfile
+  );
+  const phoneNumber = useSelector((state) => state.personalData.phoneNumber);
+  const portfolioWebsite = useSelector(
+    (state) => state.personalData.portfolioWebsite
+  );
+  const githubProfile = useSelector(
+    (state) => state.personalData.githubProfile
+  );
+  const additionalLink = useSelector(
+    (state) => state.personalData.additionalLink
+  );
+
+  const personalData = {
+    firstName,
+    emailAddress,
+    linkedInProfile,
+    phoneNumber,
+    portfolioWebsite,
+    githubProfile,
+    additionalLink,
+  };
 
   const handleChange = (e) => {
     setResumeTitle(e.target.value);
@@ -107,11 +131,11 @@ const Page = () => {
   };
 
   const handleDownloadPDF = async () => {
-    const doc = pdf(<DefaultTemplate data={{ firstName }} />);
+    const doc = pdf(<DefaultTemplate data={personalData} />);
     const blob = await doc.toBlob();
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = "resume.pdf";
+    link.download = resumeTitle + ".pdf";
     link.click();
   };
 

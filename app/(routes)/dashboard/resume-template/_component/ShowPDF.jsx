@@ -8,7 +8,30 @@ const ResumePDF = dynamic(() => import("./PDFView"), {
 
 const ShowPDF = () => {
   const firstName = useSelector((state) => state.personalData.firstName);
-  return <ResumePDF data={{ firstName: firstName }} />;
+  const emailAddress = useSelector((state) => state.personalData.emailAddress);
+  const linkedInProfile = useSelector(
+    (state) => state.personalData.linkedInProfile
+  );
+  const phoneNumber = useSelector((state) => state.personalData.phoneNumber);
+  const portfolioWebsite = useSelector(
+    (state) => state.personalData.portfolioWebsite
+  );
+  const githubProfile = useSelector(
+    (state) => state.personalData.githubProfile
+  );
+  const additionalLink = useSelector(
+    (state) => state.personalData.additionalLink
+  );
+  const data = {
+    firstName,
+    emailAddress,
+    portfolioWebsite,
+    linkedInProfile,
+    phoneNumber,
+    githubProfile,
+    additionalLink,
+  };
+  return <ResumePDF data={data} />;
 };
 
 export default ShowPDF;

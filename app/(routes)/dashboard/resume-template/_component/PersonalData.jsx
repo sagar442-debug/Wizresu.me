@@ -12,7 +12,6 @@ import { updateField } from "@/features/personalDataSlice";
 const PersonalData = () => {
   const dispatch = useDispatch();
   const firstName = useSelector((state) => state.personalData.firstName);
-  const lastName = useSelector((state) => state.personalData.lastName);
   const emailAddress = useSelector((state) => state.personalData.emailAddress);
   const linkedInProfile = useSelector(
     (state) => state.personalData.linkedInProfile
@@ -28,7 +27,7 @@ const PersonalData = () => {
     (state) => state.personalData.additionalLink
   );
 
-  const handleNameChange = (e, field) => {
+  const handlePersonalDetail = (e, field) => {
     dispatch(updateField({ field, value: e.target.value }));
   };
 
@@ -48,38 +47,20 @@ const PersonalData = () => {
                       htmlFor="FirstName"
                       className="block text-xs font-medium text-gray-700"
                     >
-                      First Name
+                      Full Name
                     </label>
 
                     <input
                       type="text"
-                      id="FirstName"
-                      name="first_name"
-                      placeholder="First Name"
-                      onChange={(e) => handleNameChange(e, "firstName")}
+                      id="fullName"
+                      name="fullName"
+                      placeholder="Full Name"
+                      onChange={(e) => handlePersonalDetail(e, "firstName")}
                       value={firstName}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm "
                     />
                   </div>
 
-                  <div className="col-span-2 sm:col-span-2">
-                    <label
-                      htmlFor="LastName"
-                      className="block text-xs font-medium text-gray-700"
-                    >
-                      Last Name
-                    </label>
-
-                    <input
-                      type="text"
-                      id="LastName"
-                      name="last_name"
-                      placeholder="Last Name"
-                      onChange={(e) => handleNameChange(e, "lastName")}
-                      value={lastName}
-                      className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
-                    />
-                  </div>
                   <div className="col-span-2 sm:col-span-2">
                     <label
                       htmlFor="email"
@@ -93,6 +74,8 @@ const PersonalData = () => {
                       id="email"
                       name="email"
                       placeholder="Email Address"
+                      onChange={(e) => handlePersonalDetail(e, "emailAddress")}
+                      value={emailAddress}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -108,6 +91,10 @@ const PersonalData = () => {
                       type="text"
                       id="linkedIn"
                       name="linkedIn"
+                      onChange={(e) =>
+                        handlePersonalDetail(e, "linkedInProfile")
+                      }
+                      value={linkedInProfile}
                       placeholder="LinkedIn Profile (if any)"
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
@@ -124,6 +111,8 @@ const PersonalData = () => {
                       type="text"
                       id="phone_number"
                       name="phone_number"
+                      onChange={(e) => handlePersonalDetail(e, "phoneNumber")}
+                      value={phoneNumber}
                       placeholder="Phone Number (if any)"
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
@@ -140,6 +129,10 @@ const PersonalData = () => {
                       type="text"
                       id="portfolio"
                       name="portfolio"
+                      onChange={(e) =>
+                        handlePersonalDetail(e, "portfolioWebsite")
+                      }
+                      value={portfolioWebsite}
                       placeholder="Portfolio Website (if any)"
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
@@ -160,7 +153,7 @@ const PersonalData = () => {
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
-                  <div className="col-span-2 sm:col-span-2">
+                  {/* <div className="col-span-2 sm:col-span-2">
                     <label
                       htmlFor="Additional_Link"
                       className="block text-xs font-medium text-gray-700"
@@ -191,7 +184,7 @@ const PersonalData = () => {
                       placeholder="Add a personal summary or you can leave for automatic generation!"
                       className="mt-1 p-2 rounded border-gray-400 bg-gray-100 text-sm text-gray-700 shadow-sm w-full"
                     />
-                  </div>
+                  </div> */}
                 </form>
               </div>
             </main>
