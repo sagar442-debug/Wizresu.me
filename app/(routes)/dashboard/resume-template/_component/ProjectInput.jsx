@@ -8,19 +8,36 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { IoIosRemoveCircle } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProject } from "@/features/projectDataSlice";
 
 const ProjectInput = ({ val }) => {
   const [automatedCheck, setAutomatedCheck] = useState(false);
   const [bulletPoints, setBulletPoints] = useState([""]);
+  const projects = useSelector((state) => state.projectData.projects);
+  const dispatch = useDispatch();
+  const [projectDetail, setProjectDetail] = useState({});
 
   const handleAutomatedCheck = (e) => {
     setAutomatedCheck(e.target.checked);
   };
 
-  const handleBulletPointChange = (index, e) => {
+  const handleBulletPointChange = (index, e, field) => {
     const newBulletPoints = [...bulletPoints];
     newBulletPoints[index] = [e.target.value];
     setBulletPoints(newBulletPoints);
+
+    if (!newBulletPoints[index]) {
+      newBulletPoints[index] = e.target.value;
+    } else {
+      newBulletPoints[index] = e.target.value;
+    }
+
+    setProjectDetail((prevDetail) => ({
+      ...prevDetail,
+      [field]: newBulletPoints,
+    }));
+    dispatch(updateProject({ val, field, value: newBulletPoints }));
   };
 
   const handleAddBulletPoint = () => {
@@ -30,6 +47,23 @@ const ProjectInput = ({ val }) => {
   const handleRemoveBulletPoints = (index) => {
     const newBulletPoints = bulletPoints.filter((_, i) => i !== index);
     setBulletPoints(newBulletPoints);
+
+    setProjectDetail((prevDetail) => ({
+      ...prevDetail,
+      [field]: [...newBulletPoints],
+    }));
+
+    dispatch(updateProject({ val, field, value: newBulletPoints }));
+  };
+
+  const onProjectDetailChange = (e, field) => {
+    const value = e.target.value;
+
+    setProjectDetail((prevDetail) => ({
+      ...prevDetail,
+      [field]: e.target.value,
+    }));
+    dispatch(updateProject({ val, field, value }));
   };
 
   return (
@@ -56,6 +90,8 @@ const ProjectInput = ({ val }) => {
                       id="ProjectName"
                       name="ProjectName"
                       placeholder="Project Name"
+                      onChange={(e) => onProjectDetailChange(e, "projectName")}
+                      value={projectDetail.projectName || ""}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm "
                     />
                   </div>
@@ -73,6 +109,8 @@ const ProjectInput = ({ val }) => {
                       id="Role"
                       name="Role"
                       placeholder="Your Role"
+                      onChange={(e) => onProjectDetailChange(e, "projectRole")}
+                      value={projectDetail.projectRole || ""}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -89,6 +127,8 @@ const ProjectInput = ({ val }) => {
                       id="startDate"
                       name="startDate"
                       placeholder="Start Date"
+                      onChange={(e) => onProjectDetailChange(e, "startDate")}
+                      value={projectDetail.startDate || ""}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -105,6 +145,8 @@ const ProjectInput = ({ val }) => {
                       id="endDate"
                       name="endDate"
                       placeholder="End Date"
+                      onChange={(e) => onProjectDetailChange(e, "endDate")}
+                      value={projectDetail.endDate || ""}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -121,6 +163,8 @@ const ProjectInput = ({ val }) => {
                       id="url"
                       name="url"
                       placeholder="Add your project link"
+                      onChange={(e) => onProjectDetailChange(e, "projectUrl")}
+                      value={projectDetail.projectUrl || ""}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -156,6 +200,10 @@ const ProjectInput = ({ val }) => {
                         type="text"
                         id="description"
                         name="description"
+                        onChange={(e) =>
+                          onProjectDetailChange(e, "projectDescription")
+                        }
+                        value={projectDetail.projectDescription || ""}
                         placeholder="Add Detail About Your Experience!"
                         className="mt-1 p-2 rounded border-gray-400 bg-gray-100 text-sm text-gray-700 shadow-sm w-full"
                       />
@@ -185,7 +233,9 @@ const ProjectInput = ({ val }) => {
                             name={`description-${index}`}
                             placeholder="Add Detail About Your Experience!"
                             value={bulletPoint}
-                            onChange={(e) => handleBulletPointChange(index, e)}
+                            onChange={(e) =>
+                              handleBulletPointChange(index, e, "bulletPoints")
+                            }
                             className="mt-1 p-2 rounded border-gray-400 bg-gray-100 text-sm text-gray-700 shadow-sm w-full resize-none"
                           />
                           {bulletPoints.length > 1 ? (

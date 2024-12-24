@@ -23,6 +23,7 @@ const ShowPDF = () => {
     (state) => state.personalData.additionalLink
   );
   const experience = useSelector((state) => state.experienceData.experience);
+  const projects = useSelector((state) => state.projectData.projects);
   const data = {
     firstName,
     emailAddress,
@@ -32,6 +33,7 @@ const ShowPDF = () => {
     githubProfile,
     additionalLink,
     experience,
+    projects,
   };
   return <ResumePDF data={data} />;
 };

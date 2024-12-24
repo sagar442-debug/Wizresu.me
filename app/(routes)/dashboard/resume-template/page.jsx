@@ -277,6 +277,37 @@ const Page = () => {
               <Accordion className="mx-10 " type="single" collapsible>
                 <AccordionItem className="border-none" value="item-1">
                   <AccordionTrigger className="text-sm flex justify-between">
+                    Projects
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    {projectCount.map((item, i) => (
+                      <div className="px-2" key={i}>
+                        <ProjectInput val={i} />
+                        <button
+                          className="text-sm font-medium py-1.5 px-3 border text-white bg-red-500 rounded hover:bg-red-400 -mt-4 mb-2"
+                          type="button"
+                          onClick={() => removeProject(i)}
+                        >
+                          <RxCross2 />
+                        </button>
+                      </div>
+                    ))}
+
+                    <button
+                      type="button"
+                      className="text-xs font-semibold py-1.5 px-3 border rounded hover:bg-gray-100"
+                      onClick={addProject}
+                    >
+                      + Add
+                    </button>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+            <div>
+              <Accordion className="mx-10 " type="single" collapsible>
+                <AccordionItem className="border-none" value="item-1">
+                  <AccordionTrigger className="text-sm flex justify-between">
                     Education Info
                   </AccordionTrigger>
                   <AccordionContent>
@@ -306,37 +337,6 @@ const Page = () => {
             </div>
             <div>
               <SkillsInput />
-            </div>
-            <div>
-              <Accordion className="mx-10 " type="single" collapsible>
-                <AccordionItem className="border-none" value="item-1">
-                  <AccordionTrigger className="text-sm flex justify-between">
-                    Projects
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    {projectCount.map((item, i) => (
-                      <div className="px-2" key={i}>
-                        <ProjectInput val={i} />
-                        <button
-                          className="text-sm font-medium py-1.5 px-3 border text-white bg-red-500 rounded hover:bg-red-400 -mt-4 mb-2"
-                          type="button"
-                          onClick={() => removeProject(i)}
-                        >
-                          <RxCross2 />
-                        </button>
-                      </div>
-                    ))}
-
-                    <button
-                      type="button"
-                      className="text-xs font-semibold py-1.5 px-3 border rounded hover:bg-gray-100"
-                      onClick={addProject}
-                    >
-                      + Add
-                    </button>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
             </div>
           </div>
         )}
