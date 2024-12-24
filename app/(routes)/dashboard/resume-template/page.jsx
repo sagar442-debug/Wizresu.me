@@ -29,6 +29,10 @@ import ShowPDF from "./_component/ShowPDF";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, pdf } from "@react-pdf/renderer";
 import { LuShovel } from "react-icons/lu";
+import {
+  updateNoExperience,
+  updateNoProject,
+} from "@/features/wizresumeDataSlice";
 
 const DownloadButton = dynamic(() => import("./_component/DownloadButton"), {
   ssr: false,
@@ -42,6 +46,13 @@ const Page = () => {
   const [error, setError] = useState("");
   const [name, setName] = useState("");
   const dispatch = useDispatch();
+  const [checked, setChecked] = useState(false);
+  const noProject = useSelector((state) => state.wizresumeData.noProject);
+  const noExperience = useSelector((state) => state.wizresumeData.noExperience);
+
+  const handleNoExperience = () => {
+    dispatch(updateNoExperience(!noExperience));
+  };
 
   const firstName = useSelector((state) => state.personalData.firstName);
   const emailAddress = useSelector((state) => state.personalData.emailAddress);
@@ -59,6 +70,11 @@ const Page = () => {
     (state) => state.personalData.additionalLink
   );
   const experience = useSelector((state) => state.experienceData.experience);
+  const projects = useSelector((state) => state.wizresumeData.projects);
+
+  const handleToggle = () => {
+    dispatch(updateNoProject(!noProject));
+  };
 
   const personalData = {
     firstName,
@@ -69,6 +85,8 @@ const Page = () => {
     githubProfile,
     additionalLink,
     experience,
+    projects,
+    noProject,
   };
 
   const handleChange = (e) => {
@@ -269,6 +287,25 @@ const Page = () => {
                     >
                       + Add
                     </button>
+                    <div className="">
+                      <label
+                        htmlFor="MarketingAccept"
+                        className="flex mt-5 gap-2 items-center"
+                      >
+                        <input
+                          type="checkbox"
+                          id="MarketingAccept"
+                          name="marketing_accept"
+                          checked={noExperience}
+                          onChange={handleNoExperience}
+                          className="size-4 rounded-md border-gray-200 bg-white shadow-sm"
+                        />
+
+                        <span className="text-xs text-gray-700">
+                          Check this box if no projects.
+                        </span>
+                      </label>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -300,6 +337,25 @@ const Page = () => {
                     >
                       + Add
                     </button>
+                    <div className="">
+                      <label
+                        htmlFor="MarketingAccept"
+                        className="flex mt-5 gap-2 items-center"
+                      >
+                        <input
+                          type="checkbox"
+                          id="MarketingAccept"
+                          name="marketing_accept"
+                          checked={noProject}
+                          onChange={handleToggle}
+                          className="size-4 rounded-md border-gray-200 bg-white shadow-sm"
+                        />
+
+                        <span className="text-xs text-gray-700">
+                          Check this box if no projects.
+                        </span>
+                      </label>
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>

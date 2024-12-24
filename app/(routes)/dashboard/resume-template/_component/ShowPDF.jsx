@@ -24,6 +24,8 @@ const ShowPDF = () => {
   );
   const experience = useSelector((state) => state.experienceData.experience);
   const projects = useSelector((state) => state.projectData.projects);
+  const noProject = useSelector((state) => state.wizresumeData.noProject);
+  const noExperience = useSelector((state) => state.wizresumeData.noExperience);
   const data = {
     firstName,
     emailAddress,
@@ -34,6 +36,8 @@ const ShowPDF = () => {
     additionalLink,
     experience,
     projects,
+    noProject,
+    noExperience,
   };
   return <ResumePDF data={data} />;
 };
