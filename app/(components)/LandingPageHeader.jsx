@@ -109,7 +109,11 @@ const LandingPageHeader = () => {
           </p>
 
           {user ? (
-            <Link className="" onClick={onDashboardClick} href={"/dashboard"}>
+            <Link
+              className="flex justify-center sm:block mt-5 sm:mt-0"
+              onClick={onDashboardClick}
+              href={"/dashboard"}
+            >
               <button
                 disabled={loading}
                 className={`font-semibold ${
@@ -117,15 +121,19 @@ const LandingPageHeader = () => {
                 } font-semibold flex items-center hover:shadow-lg md:text-lg px-3 py-1 shadow  md:px-4 md:py-1 rounded text-white bg-gradient-to-r from-[#7DA7C5] duration-500
      to-[#949C5C] bg-[length:200%_200%] bg-left transition-all  ease-out hover:bg-right`}
               >
-                {loading ? <Loader /> : ""}
-
-                <span>Go To Dashboard</span>
+                <button>
+                  {loading ? <Loader /> : ""}
+                  <span>Go To Dashboard</span>
+                </button>
               </button>
             </Link>
           ) : (
-            <Link href={"/sign-up"} className="flex justify-center sm:block">
+            <Link
+              href={"/sign-up"}
+              className="flex justify-center sm:block mt-5 sm:mt-0"
+            >
               <button
-                className=" text-lg sm:text-2xl hover:shadow-lg md:text-lg px-3 py-1  md:px-4 md:py-2 rounded text-white bg-gradient-to-r from-[#7DA7C5] duration-500
+                className="font-semibold sm:text-2xl hover:shadow-lg md:text-lg px-3 py-1  md:px-4 md:py-2 rounded text-white bg-gradient-to-r from-[#7DA7C5] duration-500
      to-[#949C5C] bg-[length:200%_200%] bg-left transition-all  ease-out hover:bg-right"
               >
                 Get Started Here
