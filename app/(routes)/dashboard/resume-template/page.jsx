@@ -33,13 +33,18 @@ import {
   updateNoExperience,
   updateNoProject,
 } from "@/features/wizresumeDataSlice";
+import {
+  removeEducation as removeEducationAction,
+  addEducation as addEducationAction,
+} from "@/features/educationSlice";
 
 const DownloadButton = dynamic(() => import("./_component/DownloadButton"), {
   ssr: false,
 });
 const Page = () => {
   const [experienceCount, setExperienceCount] = useState([]);
-  const [educationCount, setEducationCount] = useState([]);
+  const education = useSelector((state) => state.educationData.education);
+  const educationCount = education.length;
   const [projectCount, setProjectCount] = useState([]);
   const [resumeTitle, setResumeTitle] = useState("Resume");
   const [isEditing, setIsEditing] = useState(false);
@@ -71,7 +76,8 @@ const Page = () => {
   );
   const experience = useSelector((state) => state.experienceData.experience);
   const projects = useSelector((state) => state.wizresumeData.projects);
-
+  const skills = useSelector((state) => state.skillData.skills);
+  console.log(education);
   const handleToggle = () => {
     dispatch(updateNoProject(!noProject));
   };
@@ -87,6 +93,7 @@ const Page = () => {
     experience,
     projects,
     noProject,
+    skills,
   };
 
   const handleChange = (e) => {
@@ -121,17 +128,16 @@ const Page = () => {
   };
 
   const removeProject = (index) => {
-    let newProject = projectCount.filter((_, i) => i !== index);
-    setProjectCount(newProject);
+    dispatch(removeProject({ index }));
+    console.log(education);
   };
 
   const addEducation = () => {
-    setEducationCount([...educationCount, ""]);
+    dispatch(addEducationAction());
   };
 
-  const removeEducation = (index) => {
-    let newEducation = educationCount.filter((_, i) => i !== index);
-    setEducationCount(newEducation);
+  const removeEducationHere = (index) => {
+    dispatch(removeEducationAction(index));
   };
 
   const addExperience = () => {
@@ -302,7 +308,7 @@ const Page = () => {
                         />
 
                         <span className="text-xs text-gray-700">
-                          Check this box if no projects.
+                          No previous experience.
                         </span>
                       </label>
                     </div>
@@ -352,7 +358,7 @@ const Page = () => {
                         />
 
                         <span className="text-xs text-gray-700">
-                          Check this box if no projects.
+                          No previous projects.
                         </span>
                       </label>
                     </div>
@@ -367,13 +373,13 @@ const Page = () => {
                     Education Info
                   </AccordionTrigger>
                   <AccordionContent>
-                    {educationCount.map((item, i) => (
+                    {education.map((item, i) => (
                       <div className="px-2" key={i}>
                         <EducationInput val={i} />
                         <button
                           className="text-sm font-medium py-1.5 px-3 border text-white bg-red-500 rounded hover:bg-red-400 -mt-4 mb-2"
                           type="button"
-                          onClick={() => removeEducation(i)}
+                          onClick={() => removeEducationHere(i)}
                         >
                           <RxCross2 />
                         </button>

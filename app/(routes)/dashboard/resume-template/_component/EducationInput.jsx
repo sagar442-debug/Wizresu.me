@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Accordion,
@@ -5,8 +6,23 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addEducation,
+  removeEducation,
+  educationChange,
+} from "@/features/educationSlice";
 
 const EducationInput = ({ val }) => {
+  const education = useSelector((state) => state.educationData.education);
+  const dispatch = useDispatch();
+
+  const handleEducationChange = (e, field) => {
+    if (education[val]) {
+      dispatch(educationChange({ val, field, value: e.target.value }));
+    }
+  };
+
   return (
     <Accordion className="" type="single" collapsible>
       <AccordionItem className="border-none" value="item-1">
@@ -30,6 +46,8 @@ const EducationInput = ({ val }) => {
                       type="text"
                       id="institutionName"
                       name="institutionName"
+                      value={education[val]?.institution || ""}
+                      onChange={(e) => handleEducationChange(e, "institution")}
                       placeholder="Institution Name"
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm "
                     />
@@ -47,6 +65,8 @@ const EducationInput = ({ val }) => {
                       type="text"
                       id="startDate"
                       name="startDate"
+                      value={education[val]?.startYear || ""}
+                      onChange={(e) => handleEducationChange(e, "startYear")}
                       placeholder="Start Date"
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
@@ -63,6 +83,8 @@ const EducationInput = ({ val }) => {
                       type="text"
                       id="endDate"
                       name="endDate"
+                      value={education[val]?.endYear || ""}
+                      onChange={(e) => handleEducationChange(e, "endYear")}
                       placeholder="End Date"
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
@@ -79,6 +101,8 @@ const EducationInput = ({ val }) => {
                       type="text"
                       id="Location"
                       name="Location"
+                      value={education[val]?.location || ""}
+                      onChange={(e) => handleEducationChange(e, "location")}
                       placeholder="Location"
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
@@ -96,6 +120,8 @@ const EducationInput = ({ val }) => {
                       id="description"
                       name="description"
                       placeholder="Short Description"
+                      value={education[val]?.summary || ""}
+                      onChange={(e) => handleEducationChange(e, "summary")}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>

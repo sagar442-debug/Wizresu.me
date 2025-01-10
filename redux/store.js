@@ -14,7 +14,7 @@ const store = configureStore({
     projectData: projectReducer,
     wizresumeData: wizresumeReducer,
     skillData: skillReducer,
-    educationDate: educationReducer,
+    educationData: educationReducer,
   },
 });
 

@@ -2,7 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   education: [
-    { institution: "", degree: "", startYear: "", endYear: "", summary: "" },
+    {
+      institution: "",
+      degree: "",
+      startYear: "",
+      endYear: "",
+      location: "",
+      summary: "",
+    },
   ],
 };
 
@@ -10,12 +17,13 @@ const educationSlice = createSlice({
   name: "education",
   initialState,
   reducers: {
-    addEducation: (state, action) => {
+    addEducation: (state) => {
       state.education.push({
         institution: "",
         degree: "",
         startYear: "",
         endYear: "",
+        location: "",
         summary: "",
       });
     },
@@ -25,8 +33,10 @@ const educationSlice = createSlice({
       );
     },
     educationChange: (state, action) => {
-      const { index, field, value } = action.payload;
-      state.education[index][field] = value;
+      const { val, field, value } = action.payload;
+      if (state.education[val]) {
+        state.education[val][field] = value;
+      }
     },
   },
 });
