@@ -7,23 +7,24 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { IoIosRemoveCircle } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { addSkills, removeSkills, skillChange } from "@/features/skillSlice";
 
 const SkillsInput = () => {
-  const [totalSkills, setTotalSkills] = useState([""]);
+  const totalSkills = useSelector((state) => state.skillData.skills);
 
-  const onSkillChange = (e, index) => {
-    let newSkillTitle = [...totalSkills];
-    newSkillTitle[index] = [e.target.value];
-    setTotalSkills(newSkillTitle);
+  const dispatch = useDispatch();
+
+  const handleSkillChange = (e, index, field) => {
+    dispatch(skillChange({ index, field, value: e.target.value }));
   };
 
-  const onAddSkill = () => {
-    setTotalSkills([...totalSkills, ""]);
+  const handleAddSkill = () => {
+    dispatch(addSkills());
   };
 
-  const removeSkill = (index) => {
-    const newSkills = totalSkills.filter((_, i) => i !== index);
-    setTotalSkills(newSkills);
+  const handleRemoveSkill = (index) => {
+    dispatch(removeSkills(index));
   };
 
   return (
@@ -51,9 +52,10 @@ const SkillsInput = () => {
                         </label>
                         <input
                           type="text"
-                          id="skill"
+                          id={`title-${index}`}
                           name="skill"
-                          onChange={() => onSkillChange(index)}
+                          value={skill.title}
+                          onChange={(e) => handleSkillChange(e, index, "title")}
                           placeholder="Tools:"
                           className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm "
                         />
@@ -67,8 +69,12 @@ const SkillsInput = () => {
                         </label>
                         <input
                           type="text"
-                          id="skill"
+                          id={`skills-${index}`}
+                          value={skill.skills}
                           name="skill"
+                          onChange={(e) =>
+                            handleSkillChange(e, index, "skills")
+                          }
                           placeholder="Git, MS Word, MS Excel, MS Project"
                           className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm "
                         />
@@ -77,7 +83,7 @@ const SkillsInput = () => {
                         <button
                           className="text-sm mt-2 py-[0.7rem] px-3 border text-white bg-red-500  rounded hover:bg-red-400"
                           type="button"
-                          onClick={() => removeSkill(index)}
+                          onClick={() => handleRemoveSkill(index)}
                         >
                           <IoIosRemoveCircle />
                         </button>
@@ -89,7 +95,7 @@ const SkillsInput = () => {
                     <button
                       className="text-sm mt-2 py-1.5 px-3 border rounded hover:bg-gray-100"
                       type="button"
-                      onClick={onAddSkill}
+                      onClick={handleAddSkill}
                     >
                       + Add Skill
                     </button>

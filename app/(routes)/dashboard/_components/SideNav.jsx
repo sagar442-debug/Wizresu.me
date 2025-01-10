@@ -286,7 +286,7 @@ function SideNav() {
               href={"/dashboard/resume-template"}
               className="flex gap-3 group hover:shadow-md transition-all font-medium p-4 items-center text-[#555] hover:bg-[#fff] rounded"
             >
-              <span className="text-white text-center hover:text-[#555] flex gap-2 items-center">
+              <span className="text-white text-center group-hover:text-[#555] flex gap-2 items-center">
                 <AiOutlineExperiment className="text-xl" />
                 Developmental
               </span>

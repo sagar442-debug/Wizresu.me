@@ -4,7 +4,8 @@ import userInfoReducer from "../features/userInfoSlice";
 import experienceReducer from "../features/experienceDataSlice";
 import projectReducer from "../features/projectDataSlice";
 import wizresumeReducer from "../features/wizresumeDataSlice";
-
+import skillReducer from "../features/skillSlice";
+import educationReducer from "../features/educationSlice";
 const store = configureStore({
   reducer: {
     personalData: personalDataReducer,
@@ -12,6 +13,8 @@ const store = configureStore({
     experienceData: experienceReducer,
     projectData: projectReducer,
     wizresumeData: wizresumeReducer,
+    skillData: skillReducer,
+    educationDate: educationReducer,
   },
 });
 

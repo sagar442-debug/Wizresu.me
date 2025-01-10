@@ -25,7 +25,7 @@ import React, { useEffect, useState } from "react";
 
 const DefaultTemplate = ({ data }) => {
   useEffect(() => {
-    console.log(data);
+    console.log(data.skills);
   }, [data]);
   return (
     <Document
@@ -672,13 +672,28 @@ const DefaultTemplate = ({ data }) => {
           >
             Skills
           </Text>
-          <View style={{ display: "flex", flexDirection: "row", gap: 5 }}>
-            <Text style={{ fontFamily: "Times-Bold", fontWeight: 600 }}>
-              Frameworks:
-            </Text>
-            <Text>
-              React, Node.js,JavaScript, HTML, CSS, MongoDB, Git, Agile
-            </Text>
+          <View
+            style={{ display: "flex", flexDirection: "column", columnGap: 10 }}
+          >
+            {data?.skills[0]?.title?.length > 0 ? (
+              data?.skills.map((item) => (
+                <View style={{ display: "flex", flexDirection: "row", gap: 5 }}>
+                  <Text style={{ fontFamily: "Times-Bold", fontWeight: 600 }}>
+                    {item.title}:
+                  </Text>
+                  <Text>{item.skills}</Text>
+                </View>
+              ))
+            ) : (
+              <View style={{ display: "flex", flexDirection: "row", gap: 5 }}>
+                <Text style={{ fontFamily: "Times-Bold", fontWeight: 600 }}>
+                  Frameworks:
+                </Text>
+                <Text>
+                  React, Node.js,JavaScript, HTML, CSS, MongoDB, Git, Agile
+                </Text>
+              </View>
+            )}
           </View>
         </View>
       </Page>

@@ -121,7 +121,7 @@ const LandingPageHeader = () => {
                 } font-semibold flex items-center hover:shadow-lg md:text-lg px-3 py-1 shadow  md:px-4 md:py-1 rounded text-white bg-gradient-to-r from-[#7DA7C5] duration-500
      to-[#949C5C] bg-[length:200%_200%] bg-left transition-all  ease-out hover:bg-right`}
               >
-                <button className="flex gap-2">
+                <button className="flex gap-2 items-center">
                   {loading ? <Loader /> : ""}
                   <span>Go To Dashboard</span>
                 </button>
