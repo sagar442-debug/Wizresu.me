@@ -47,7 +47,7 @@ const SkillsInput = () => {
                           htmlFor="Institution Name"
                           className="block text-xs font-medium text-gray-700"
                         >
-                          Skills Title
+                          Title
                         </label>
                         <input
                           type="text"
