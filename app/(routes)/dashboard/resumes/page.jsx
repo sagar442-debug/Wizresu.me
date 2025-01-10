@@ -135,7 +135,7 @@ export default function Page() {
               </th>
             </tr>
           </thead>
-          {resumeDetails === null ? (
+          {resumeDetails?.length === 0 ? (
             // While loading, show the ClipLoader
             <tbody className="divide-y divide-gray-200">
               <tr>
@@ -153,7 +153,7 @@ export default function Page() {
                 </td>
               </tr>
             </tbody>
-          ) : resumeDetails.length === 0 ? (
+          ) : resumeDetails === null ? (
             // If no resumes are available, display a message
             <tbody className="divide-y divide-gray-200">
               <tr>

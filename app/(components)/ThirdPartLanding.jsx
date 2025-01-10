@@ -12,7 +12,7 @@ const ThirdPartLanding = () => {
     <div id="pricing" className="mt-24 md:mt-36 md:my-10">
       <h1 className="font-semibold text-center text-5xl">Pricing</h1>
       <div className="flex justify-center lg:block ">
-        <div className="mt-28 grid grid-cols-1  md:grid-cols-1 mx-auto gap-10 lg:gap-4 lg:flex lg:justify-center lg:space-x-12">
+        <div className="mt-28 grid grid-cols-1 md:grid-cols-1 mx-auto gap-10 lg:flex lg:justify-center ">
           <BasicCard />
           <Premium />
         </div>
