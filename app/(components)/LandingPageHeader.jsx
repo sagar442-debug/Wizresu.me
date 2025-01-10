@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useUser } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import Loader from "../(routes)/dashboard/_components/Loader";
+import PhoneHeader from "./PhoneHeader";
 // #2a2663
 
 const LandingPageHeader = () => {
@@ -95,13 +96,13 @@ const LandingPageHeader = () => {
           </div>
         </div>
       </div>
-
+      <PhoneHeader />
       <div className="flex lg:justify-between md:mt-0 lg:mt-5 md:px-10 xl:px-0 sm:items-center md:items-start">
         <div className="w-[40rem]">
-          <h1 className=" md:mt-20 sm:mt-10 text-2xl md:text-2xl lg:text-5xl font-bold  text-[#2a2663]">
+          <h1 className=" sm:block text-center md:mt-20 sm:text-start sm:mt-10 text-xl md:text-2xl lg:text-5xl font-bold  text-[#2a2663]">
             ATS-Friendly Resumes in One Click
           </h1>
-          <p className="text-[#2a2663] text-sm leading-none md:text-lg my-5 lg:leading-10 ">
+          <p className="text-[#2a2663] text-sm text-center sm:text-start sm:text-sm leading-none md:text-lg my-5 lg:leading-10 ">
             Don't waste time customizing your resume for every job. With just
             one click, we create an ATS-optimized resume with score tailored to
             your details—fast, easy, and efficient.
@@ -122,12 +123,13 @@ const LandingPageHeader = () => {
               </button>
             </Link>
           ) : (
-            <Link
-              href={"/sign-up"}
-              className="font-semibold  hover:shadow-lg md:text-lg px-3 py-1  md:px-4 md:py-2 rounded text-white bg-gradient-to-r from-[#7DA7C5] duration-500
+            <Link href={"/sign-up"} className="flex justify-center sm:block">
+              <button
+                className=" text-lg sm:text-2xl hover:shadow-lg md:text-lg px-3 py-1  md:px-4 md:py-2 rounded text-white bg-gradient-to-r from-[#7DA7C5] duration-500
      to-[#949C5C] bg-[length:200%_200%] bg-left transition-all  ease-out hover:bg-right"
-            >
-              Get Started Here
+              >
+                Get Started Here
+              </button>
             </Link>
           )}
         </div>
@@ -135,7 +137,7 @@ const LandingPageHeader = () => {
           src={"/resume6.jpg"}
           height={500}
           width={500}
-          className="h-44 w-44 mt-14 md:mt-0 md:h-[25rem] md:w-[25rem] lg:h-[30rem] lg:w-[30rem] xl:h-[35rem] xl:w-[35rem] "
+          className="hidden sm:block h-44 w-44 mt-14 md:mt-0 md:h-[25rem] md:w-[25rem] lg:h-[30rem] lg:w-[30rem] xl:h-[35rem] xl:w-[35rem] "
         />
       </div>
     </div>
