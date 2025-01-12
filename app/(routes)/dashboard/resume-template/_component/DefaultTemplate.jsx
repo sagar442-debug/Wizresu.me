@@ -25,7 +25,7 @@ import React, { useEffect, useState } from "react";
 
 const DefaultTemplate = ({ data }) => {
   useEffect(() => {
-    console.log(data.skills);
+    console.log(data.education.map((item) => item.institution));
   }, [data]);
   return (
     <Document
@@ -584,6 +584,7 @@ const DefaultTemplate = ({ data }) => {
         )}
 
         {/* Education Section */}
+
         <View
           style={{
             display: "flex",
@@ -606,47 +607,88 @@ const DefaultTemplate = ({ data }) => {
           >
             Education
           </Text>
-          <View style={{ display: "flex", flexDirection: "column", gap: 5 }}>
-            <View style={{ display: "flex", flexDirection: "row", gap: 5 }}>
-              <Text
-                style={{
-                  borderRightWidth: 1,
-                  borderStyle: "solid",
-                  borderColor: "black",
-                  paddingRight: 5,
-                  fontFamily: "Times-Bold",
-                  fontWeight: "600",
-                }}
+          {data?.education[0]?.institution?.length > 0 ? (
+            data?.education?.map((item, index) => (
+              <View
+                key={index}
+                style={{ display: "flex", flexDirection: "column", gap: 5 }}
               >
-                University of Texas
-              </Text>
-              <Text
-                style={{
-                  borderRightWidth: 1,
-                  borderStyle: "solid",
-                  borderColor: "black",
-                  paddingRight: 5,
-                }}
-              >
-                Bachelor of Science in Computer Science
-              </Text>
-              <Text style={{}}>2016-2020</Text>
+                <View style={{ display: "flex", flexDirection: "row", gap: 5 }}>
+                  <Text
+                    style={{
+                      borderRightWidth: 1,
+                      borderStyle: "solid",
+                      borderColor: "black",
+                      paddingRight: 5,
+                      fontFamily: "Times-Bold",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {item?.institution}
+                  </Text>
+                  <Text
+                    style={{
+                      borderRightWidth: 1,
+                      borderStyle: "solid",
+                      borderColor: "black",
+                      paddingRight: 5,
+                    }}
+                  >
+                    {item?.degree}
+                  </Text>
+                  <Text style={{}}>
+                    {item?.startYear} - {item?.endYear}
+                  </Text>
+                </View>
+                <View style={{ display: "flex", flexDirection: "column" }}>
+                  <Text style={{ fontWeight: "600" }}>Summary</Text>
+                  <Text>{item?.summary}</Text>
+                </View>
+              </View>
+            ))
+          ) : (
+            <View style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+              <View style={{ display: "flex", flexDirection: "row", gap: 5 }}>
+                <Text
+                  style={{
+                    borderRightWidth: 1,
+                    borderStyle: "solid",
+                    borderColor: "black",
+                    paddingRight: 5,
+                    fontFamily: "Times-Bold",
+                    fontWeight: "600",
+                  }}
+                >
+                  University of Texas
+                </Text>
+                <Text
+                  style={{
+                    borderRightWidth: 1,
+                    borderStyle: "solid",
+                    borderColor: "black",
+                    paddingRight: 5,
+                  }}
+                >
+                  Bachelor of Science in Computer Science
+                </Text>
+                <Text style={{}}>2016-2020</Text>
+              </View>
+              <View style={{ display: "flex", flexDirection: "column" }}>
+                <Text style={{ fontWeight: "600" }}>Summary</Text>
+                <Text>
+                  Gained in-depth knowledge of algorithms, data structures, and
+                  software engineering principles. Completed hands-on projects
+                  involving web development, data analysis, and machine
+                  learning, using technologies such as React, Node.js, Python,
+                  and Java. Led collaborative coding projects that emphasized
+                  teamwork, debugging, and effective communication. Excelled in
+                  courses related to databases, cloud computing, and mobile
+                  development, developing a strong foundation for building
+                  scalable, secure, and efficient applications.
+                </Text>
+              </View>
             </View>
-            <View style={{ display: "flex", flexDirection: "column" }}>
-              <Text style={{ fontWeight: "600" }}>Summary</Text>
-              <Text>
-                Gained in-depth knowledge of algorithms, data structures, and
-                software engineering principles. Completed hands-on projects
-                involving web development, data analysis, and machine learning,
-                using technologies such as React, Node.js, Python, and Java. Led
-                collaborative coding projects that emphasized teamwork,
-                debugging, and effective communication. Excelled in courses
-                related to databases, cloud computing, and mobile development,
-                developing a strong foundation for building scalable, secure,
-                and efficient applications.
-              </Text>
-            </View>
-          </View>
+          )}
         </View>
 
         {/* Skills Section */}

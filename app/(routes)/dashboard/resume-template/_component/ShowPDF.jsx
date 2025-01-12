@@ -27,6 +27,7 @@ const ShowPDF = () => {
   const noProject = useSelector((state) => state.wizresumeData.noProject);
   const noExperience = useSelector((state) => state.wizresumeData.noExperience);
   const skills = useSelector((state) => state.skillData.skills);
+  const education = useSelector((state) => state.educationData.education);
   const data = {
     firstName,
     emailAddress,
@@ -40,6 +41,7 @@ const ShowPDF = () => {
     noProject,
     noExperience,
     skills,
+    education,
   };
   return <ResumePDF data={data} />;
 };

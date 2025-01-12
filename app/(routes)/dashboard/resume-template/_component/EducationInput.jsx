@@ -21,6 +21,7 @@ const EducationInput = ({ val }) => {
     if (education[val]) {
       dispatch(educationChange({ val, field, value: e.target.value }));
     }
+    console.log(education);
   };
 
   return (
@@ -91,19 +92,19 @@ const EducationInput = ({ val }) => {
                   </div>
                   <div className="col-span-2 sm:col-span-2 md:col-span-4">
                     <label
-                      htmlFor="Location"
+                      htmlFor="degree"
                       className="block text-xs font-medium text-gray-700"
                     >
-                      Location
+                      Degree
                     </label>
 
                     <input
                       type="text"
-                      id="Location"
-                      name="Location"
-                      value={education[val]?.location || ""}
-                      onChange={(e) => handleEducationChange(e, "location")}
-                      placeholder="Location"
+                      id="degree"
+                      name="degree"
+                      value={education[val]?.degree || ""}
+                      onChange={(e) => handleEducationChange(e, "degree")}
+                      placeholder="degree"
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"
                     />
                   </div>
@@ -119,7 +120,7 @@ const EducationInput = ({ val }) => {
                       type="text"
                       id="description"
                       name="description"
-                      placeholder="Short Description"
+                      placeholder="Add relevant coursework, projects, or thesis"
                       value={education[val]?.summary || ""}
                       onChange={(e) => handleEducationChange(e, "summary")}
                       className="mt-1 p-2 w-full rounded border-gray-400  bg-gray-100 text-sm text-gray-700 shadow-sm"

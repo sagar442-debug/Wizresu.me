@@ -77,7 +77,7 @@ const Page = () => {
   const experience = useSelector((state) => state.experienceData.experience);
   const projects = useSelector((state) => state.wizresumeData.projects);
   const skills = useSelector((state) => state.skillData.skills);
-  console.log(education);
+
   const handleToggle = () => {
     dispatch(updateNoProject(!noProject));
   };
@@ -94,6 +94,7 @@ const Page = () => {
     projects,
     noProject,
     skills,
+    education,
   };
 
   const handleChange = (e) => {
