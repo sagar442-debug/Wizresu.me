@@ -24,9 +24,6 @@ import React, { useEffect, useState } from "react";
 // });
 
 const DefaultTemplate = ({ data }) => {
-  useEffect(() => {
-    console.log(data.education.map((item) => item.institution));
-  }, [data]);
   return (
     <Document
       style={{
@@ -79,7 +76,7 @@ const DefaultTemplate = ({ data }) => {
               </Text>
             )}
 
-            {data?.emailAddress?.length > 0 &&
+            {data?.firstName?.length > 0 &&
             data?.phoneNumber?.length == 0 ? null : (
               <Text
                 style={{
@@ -94,7 +91,7 @@ const DefaultTemplate = ({ data }) => {
               </Text>
             )}
 
-            {data?.emailAddress?.length > 0 &&
+            {data?.firstName?.length > 0 &&
             data?.portfolioWebsite?.length == 0 ? null : (
               <Text
                 style={{
@@ -110,7 +107,7 @@ const DefaultTemplate = ({ data }) => {
                   : "https://longwebsite.com/"}
               </Text>
             )}
-            {data?.portfolioWebsite?.length > 0 &&
+            {data?.firstName?.length > 0 &&
             data?.linkedInProfile?.length == 0 ? null : (
               <Text
                 style={{
